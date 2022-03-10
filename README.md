@@ -26,17 +26,22 @@
 ---
 
 ### TO-DO PREPARATIONS ###
-- [ ] **figure out technology stack**
+- [X] **figure out technology stack**
   - [X] will be kept locally for now
   - [X] will be written in JS
   - [X] React
   - [X] state management Redux
   - [X] Bootstrap
-  - [ ] GraphQL?
-    - [ ] should complete FSO chapter 8 first in order to figure out whether to go with it or not
-  - [ ] MongoDB as database?
-    - [ ] how many records can be inside MongoDB?
+  - [X] GraphQL?
+    - [X] should complete FSO chapter 8 first in order to figure out whether to go with it or not
+    - [X] yes
+  - [X] MongoDB as database?
+    - [X] how many records can be inside MongoDB?
+  - [X] **coding preparation**
+      - [X] do research about how are similar simple web apps structured
+      - [X] create structure and place files into respective folders
 
+### TO-DO PREPARATIONS FRONT-END ###
 - [ ] **expand main concept**
   - [ ] list all functions that app needs to have
 
@@ -44,14 +49,17 @@
   - [ ] basic look, button placement, how many pages
   - [ ] find Bootstrap template
 
-- [ ] **coding preparation**
-  - [ ] do research about how are similar simple web apps structured
-  - [ ] create structure and place files into respective folders
-  - [ ] push version 0.01 to github
-
 ---
 
-### TO-DO WORK ###
- - [ ] start
+### TO-DO WORK BACKEND ###
+ - [X] start
+ - [X] install packages, set-up lint
+ - [X] create Mongo db
+ - [X] define how database will look like
+ - [X] typeDefs - setup how items and users should be structured
+ - [ ] models for above
+ - [ ] resolvers
+ - [ ] figure out firebase authorization
+ - [ ] validator for authorization
 
 ---
