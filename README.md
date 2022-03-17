@@ -31,7 +31,6 @@
   - [X] will be written in JS
   - [X] React
   - [X] state management Redux
-  - [X] Bootstrap
   - [X] GraphQL?
     - [X] should complete FSO chapter 8 first in order to figure out whether to go with it or not
     - [X] yes
@@ -41,14 +40,6 @@
       - [X] do research about how are similar simple web apps structured
       - [X] create structure and place files into respective folders
 
-### TO-DO PREPARATIONS FRONT-END ###
-- [ ] **expand main concept**
-  - [ ] list all functions that app needs to have
-
-- [ ] **figure out basic design**
-  - [ ] basic look, button placement, how many pages
-  - [ ] find Bootstrap template
-
 ---
 
 ### TO-DO WORK BACKEND ###
@@ -57,9 +48,23 @@
  - [X] create Mongo db
  - [X] define how database will look like
  - [X] typeDefs - setup how items and users should be structured
- - [ ] models for above
- - [ ] resolvers
- - [ ] figure out firebase authorization
- - [ ] validator for authorization
+ - [X] models for above
+ - [X] resolvers
+ - [X] queries
+ - [X] validator for authorization
+ - [X] set-up context and tokens for authorization
+ - [ ] figure out item categories
+ - [ ] mutation for creation of categories
+ - [ ] link item with user
+ - [ ] default values for currency and isUpdated
+ - [ ] timestamps - 1 format, dayjs necessary?
 
 ---
+
+### TO-DO PREPARATIONS FRONT-END ###
+- [ ] **expand main concept**
+  - [ ] list all functions that app needs to have
+
+- [ ] **figure out basic design**
+  - [ ] figure out Tailwind/Bootstrap/???
+  - [ ] basic look, button placement, how many pages
