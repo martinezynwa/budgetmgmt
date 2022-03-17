@@ -1,0 +1,26 @@
+{
+  "name": "budget-management",
+  "version": "0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "M.G.",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "apollo-server": "^3.6.3",
+    "bcryptjs": "^2.4.3",
+    "dayjs": "^1.10.8",
+    "dotenv": "^16.0.0",
+    "firebase": "^9.6.8",
+    "graphql": "^16.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.5"
+  }
+}
