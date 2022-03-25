@@ -5,9 +5,15 @@ const typeDefs = gql`
     id: ID!
     itemDate: String
     itemName: String!
+    itemCategory: Category
     itemPrice: Price!
     itemUpdated: Updated
     createdBy: CreatedBy!
+  }
+
+  type Category {
+    categoryName: String
+    categoryType: String!
   }
 
   type Price {
@@ -24,6 +30,7 @@ const typeDefs = gql`
   type CreatedBy {
     username: String
     name: String
+    date: String
   }
 
   type User {
@@ -37,9 +44,15 @@ const typeDefs = gql`
 
   input ItemInput {
     itemDate: String
-    itemName: String!
-    itemPrice: PriceInput!
+    itemName: String
+    itemCategory: CategoryInput
+    itemPrice: PriceInput
     itemUpdated: UpdatedInput
+  }
+
+  input CategoryInput {
+    categoryName: String
+    categoryType: String
   }
 
   input PriceInput {
@@ -65,12 +78,15 @@ const typeDefs = gql`
     getSingleItem(itemID: ID!): Item
     getSpecificMonth(selectedMonth: String!): [Item]
     getItemsByUser(username: String!): [Item]
+    getCategories: [Category]
+    getCategory(categoryName: String!): Category
   }
 
   type Mutation {
     addItem(itemInput: ItemInput): Item!
     editItem(itemID: ID!, itemInput: ItemInput): Item!
     removeItem(id: ID!): String!
+    createCategory(category: CategoryInput): Category!
     registerUser(registerInput: RegisterInput): User!
     loginUser(username: String!, password: String!): User!
   }

@@ -1,6 +1,6 @@
+const { checkAuthorization } = require('../../util/auth')
 const dayjs = require('dayjs')
 const Item = require('../../models/Item')
-const { checkAuthorization } = require('../../util/auth')
 
 const itemsResolvers = {
   Query: {
@@ -35,7 +35,7 @@ const itemsResolvers = {
   Mutation: {
     addItem: async (_, args, context) => {
       const currentUser = await checkAuthorization(context)
-      const { itemName, itemPrice, itemUpdated } = args.itemInput
+      const { itemName, itemCategory, itemPrice, itemUpdated } = args.itemInput
       let { itemDate } = args.itemInput
 
       if (!itemDate) {
@@ -46,13 +46,17 @@ const itemsResolvers = {
       const createdBy = {
         username: currentUser.username,
         name: currentUser.name,
+        date: new Date().toISOString(),
       }
+
+      itemCategory.categoryName = itemName
 
       itemPrice.currency = 'Kč'
       itemUpdated.isUpdated = false
       const item = new Item({
         itemDate,
         itemName,
+        itemCategory,
         itemPrice,
         itemUpdated,
         createdBy,
@@ -63,17 +67,48 @@ const itemsResolvers = {
     },
     editItem: async (_, args, context) => {
       const currentUser = await checkAuthorization(context)
-      const { itemID } = args
-      let { itemDate, itemName, itemPrice, itemUpdated } = args.itemInput
+
+      const item = await Item.findById(args.itemID)
+
+      let { itemDate, itemName, itemCategory, itemPrice, itemUpdated } =
+        args.itemInput
 
       if (itemDate) {
         itemDate = dayjs(itemDate).format('YYYY-MM-DDTHH:mm:ss')
       }
+
       if (itemPrice) {
-        itemPrice = { ...itemPrice, price: itemPrice.price, currency: 'Kč' }
+        itemPrice = { ...itemPrice, currency: item.itemPrice.currency }
+      } else {
+        itemPrice = {
+          ...itemPrice,
+          price: item.itemPrice.price,
+          currency: item.itemPrice.currency,
+        }
       }
 
-      if (itemDate || itemName || itemPrice) {
+      if (itemCategory) {
+        if (!itemCategory.categoryName) {
+          itemCategory = {
+            ...itemCategory,
+            categoryName: item.itemCategory.categoryName,
+          }
+        }
+        if (!itemCategory.categoryType) {
+          itemCategory = {
+            ...itemCategory,
+            categoryType: item.itemCategory.categoryType,
+          }
+        }
+      } else {
+        itemCategory = {
+          ...itemCategory,
+          categoryName: item.itemCategory.categoryName,
+          categoryType: item.itemCategory.categoryType,
+        }
+      }
+
+      if (itemDate || itemName || itemCategory || itemPrice) {
         const currentDate = dayjs(new Date()).format('YYYY-MM-DDTHH:mm:ss')
         itemUpdated = {
           ...itemUpdated,
@@ -81,10 +116,19 @@ const itemsResolvers = {
           updatedBy: currentUser.username,
           updateStamp: currentDate,
         }
-        const itemBody = await Item.findByIdAndUpdate(
-          itemID,
-          { itemDate, itemName, itemPrice, itemUpdated },
-          { new: true },
+
+        const itemBody = await Item.findOneAndUpdate(
+          { _id: args.itemID },
+          {
+            $set: {
+              itemDate: itemDate,
+              itemName: itemName,
+              itemCategory: itemCategory,
+              itemPrice: itemPrice,
+              itemUpdated: itemUpdated,
+            },
+          },
+          { upsert: true, new: true },
         )
         return itemBody
       }

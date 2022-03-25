@@ -9,6 +9,16 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  itemCategory: {
+    type: Object,
+
+    name: {
+      type: String,
+    },
+    category: {
+      type: String,
+    },
+  },
   itemPrice: {
     type: Object,
     required: true,
@@ -38,6 +48,9 @@ const schema = new mongoose.Schema({
       type: String,
     },
     name: {
+      type: String,
+    },
+    date: {
       type: String,
     },
   },

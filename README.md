@@ -53,9 +53,10 @@
  - [X] queries
  - [X] validator for authorization
  - [X] set-up context and tokens for authorization
- - [ ] figure out item categories
- - [ ] mutation for creation of categories
- - [ ] link item with user
+ - [X] figure out item categories
+ - [X] category resolvers, models, mutations etc.
+ - [ ] category name link with item name
+ - [ ] link item and categories with user etc.
  - [ ] default values for currency and isUpdated
  - [ ] timestamps - 1 format, dayjs necessary?
 
