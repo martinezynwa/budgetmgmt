@@ -22,7 +22,6 @@ const usersResolvers = {
         confirmPassword,
         email,
       )
-
       if (!valid) {
         throw new UserInputError('Errors', { errors })
       }

@@ -1,58 +1,83 @@
 const { checkAuthorization } = require('../../util/auth')
+const { UserInputError } = require('apollo-server')
 const dayjs = require('dayjs')
 const Item = require('../../models/Item')
+
+const { validateItemInput } = require('../../util/validators')
 
 const itemsResolvers = {
   Query: {
     getItems: async () => {
-      const items = await Item.find({})
-      if (items) {
+      try {
+        const items = await Item.find({})
         return items
+      } catch (err) {
+        throw new Error(err)
       }
     },
     getSingleItem: async (_, args) => {
-      const item = await Item.findById(args.itemID)
-      if (item) {
+      try {
+        const item = await Item.findById(args.itemID)
         return item
+      } catch (err) {
+        throw new Error('Item not found')
       }
     },
     getSpecificMonth: async (_, args) => {
-      const allItems = await Item.find({})
-      const items = allItems.filter(
-        item => item.itemDate.substring(0, 7) === args.selectedMonth,
-      )
-      return items
+      try {
+        const allItems = await Item.find({})
+        const items = allItems.filter(
+          item => item.itemDate.substring(0, 7) === args.selectedMonth,
+        )
+        return items
+      } catch (err) {
+        throw new Error('Specific month not found')
+      }
     },
     getItemsByUser: async (_, args) => {
-      const allItems = await Item.find({})
-      const itemsByUser = allItems.filter(
-        item => item.createdBy.username === args.username,
-      )
-      return itemsByUser
+      try {
+        const allItems = await Item.find({})
+        const itemsByUser = allItems.filter(
+          item => item.createdBy.username === args.username,
+        )
+        return itemsByUser
+      } catch (err) {
+        throw new Error(err)
+      }
     },
   },
 
   Mutation: {
-    addItem: async (_, args, context) => {
+    addItem: async (
+      _,
+      { itemInput: { itemDate, itemName, itemCategory, itemPrice } },
+      context,
+    ) => {
       const currentUser = await checkAuthorization(context)
-      const { itemName, itemCategory, itemPrice, itemUpdated } = args.itemInput
-      let { itemDate } = args.itemInput
-
-      if (!itemDate) {
-        itemDate = dayjs(new Date()).format('YYYY-MM-DDTHH:mm:ss')
-      } else {
-        itemDate = dayjs(itemDate).format('YYYY-MM-DDTHH:mm:ss')
+      const { valid, errors } = validateItemInput(
+        itemDate,
+        itemName,
+        itemCategory,
+        itemPrice,
+      )
+      if (!valid) {
+        throw new UserInputError('Errors', { errors })
       }
+
+      itemPrice.currency = 'Kč'
+
       const createdBy = {
         username: currentUser.username,
         name: currentUser.name,
-        date: new Date().toISOString(),
+        date: dayjs(new Date()).format('YYYY-MM-DDTHH:mm:ss'),
       }
 
-      itemCategory.categoryName = itemName
+      const itemUpdated = {
+        isUpdated: false,
+        updatedBy: null,
+        updateStamp: null,
+      }
 
-      itemPrice.currency = 'Kč'
-      itemUpdated.isUpdated = false
       const item = new Item({
         itemDate,
         itemName,
@@ -67,8 +92,17 @@ const itemsResolvers = {
     },
     editItem: async (_, args, context) => {
       const currentUser = await checkAuthorization(context)
+      let item = {}
 
-      const item = await Item.findById(args.itemID)
+      try {
+        item = await Item.findById(args.itemID)
+      } catch (err) {
+        throw new Error('ID of an item does not exist')
+      }
+
+      if (!args.itemInput) {
+        throw new Error('At least one field must be edited')
+      }
 
       let { itemDate, itemName, itemCategory, itemPrice, itemUpdated } =
         args.itemInput
@@ -84,27 +118,6 @@ const itemsResolvers = {
           ...itemPrice,
           price: item.itemPrice.price,
           currency: item.itemPrice.currency,
-        }
-      }
-
-      if (itemCategory) {
-        if (!itemCategory.categoryName) {
-          itemCategory = {
-            ...itemCategory,
-            categoryName: item.itemCategory.categoryName,
-          }
-        }
-        if (!itemCategory.categoryType) {
-          itemCategory = {
-            ...itemCategory,
-            categoryType: item.itemCategory.categoryType,
-          }
-        }
-      } else {
-        itemCategory = {
-          ...itemCategory,
-          categoryName: item.itemCategory.categoryName,
-          categoryType: item.itemCategory.categoryType,
         }
       }
 
@@ -128,7 +141,6 @@ const itemsResolvers = {
               itemUpdated: itemUpdated,
             },
           },
-          { upsert: true, new: true },
         )
         return itemBody
       }
@@ -140,7 +152,7 @@ const itemsResolvers = {
         await itemID.delete()
         return `ID ${id} deleted successfully`
       } catch (err) {
-        throw new Error(err)
+        throw new Error('ID of an item does not exist')
       }
     },
   },

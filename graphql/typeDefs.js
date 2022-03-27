@@ -3,21 +3,21 @@ const { gql } = require('apollo-server')
 const typeDefs = gql`
   type Item {
     id: ID!
-    itemDate: String
+    itemDate: String!
     itemName: String!
-    itemCategory: Category
+    itemCategory: String!
     itemPrice: Price!
     itemUpdated: Updated
     createdBy: CreatedBy!
   }
 
   type Category {
-    categoryName: String
+    categoryName: String!
     categoryType: String!
   }
 
   type Price {
-    price: String!
+    price: Float!
     currency: String
   }
 
@@ -45,7 +45,7 @@ const typeDefs = gql`
   input ItemInput {
     itemDate: String
     itemName: String
-    itemCategory: CategoryInput
+    itemCategory: String
     itemPrice: PriceInput
     itemUpdated: UpdatedInput
   }
@@ -56,7 +56,7 @@ const typeDefs = gql`
   }
 
   input PriceInput {
-    price: String!
+    price: Float!
     currency: String
   }
 

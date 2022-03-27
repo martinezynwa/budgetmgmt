@@ -42,4 +42,30 @@ const validateLoginInput = (username, password) => {
   }
 }
 
-module.exports = { validateRegisterInput, validateLoginInput }
+const validateItemInput = (itemDate, itemName, itemCategory, itemPrice) => {
+  const errors = {}
+
+  if (itemDate.trim() === '') {
+    errors.itemDate = 'Item date cannot be empty'
+  }
+  if (itemName.trim() === '') {
+    errors.itemName = 'Item name cannot be empty'
+  }
+  if (itemCategory.trim() === '') {
+    errors.itemCategory = 'Item category cannot be empty'
+  }
+  if (itemPrice.price === '') {
+    errors.itemPrice = 'Item price cannot be empty'
+  }
+
+  return {
+    errors,
+    valid: Object.keys(errors).length < 1,
+  }
+}
+
+module.exports = {
+  validateRegisterInput,
+  validateLoginInput,
+  validateItemInput,
+}

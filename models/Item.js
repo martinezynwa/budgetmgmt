@@ -10,21 +10,15 @@ const schema = new mongoose.Schema({
     required: true,
   },
   itemCategory: {
-    type: Object,
-
-    name: {
-      type: String,
-    },
-    category: {
-      type: String,
-    },
+    type: String,
+    required: true,
   },
   itemPrice: {
     type: Object,
     required: true,
 
     price: {
-      type: String,
+      type: Number,
       required: true,
     },
     currency: {
@@ -36,6 +30,9 @@ const schema = new mongoose.Schema({
 
     isUpdated: {
       type: Boolean,
+    },
+    updatedBy: {
+      type: String,
     },
     updateStamp: {
       type: String,

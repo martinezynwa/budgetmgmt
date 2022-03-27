@@ -55,10 +55,10 @@
  - [X] set-up context and tokens for authorization
  - [X] figure out item categories
  - [X] category resolvers, models, mutations etc.
- - [ ] category name link with item name
- - [ ] link item and categories with user etc.
- - [ ] default values for currency and isUpdated
- - [ ] timestamps - 1 format, dayjs necessary?
+ - [X] timestamps - 1 format, dayjs necessary?
+ - [ ] category name link with item name - **don't need right now**
+ - [ ] link item and categories with user etc. **to be tested better with frontend**
+ - [ ] default values for currency
 
 ---
 
@@ -69,3 +69,24 @@
 - [ ] **figure out basic design**
   - [ ] figure out Tailwind/Bootstrap/???
   - [ ] basic look, button placement, how many pages
+
+---
+
+### TO-DO WORK FRONTEND ###
+ - [X] install first packages
+ - [X] get queries working in Apollo explorer
+ - [ ] prepare files
+ - [ ] routing
+ - [ ] implement registration(without styles)
+ - [ ] implement login(without styles)
+ - [ ] implement logout(without styles)
+ - [ ] implement navbar(without styles)
+ - [ ] basic view for getItems
+ - [ ] basic view for getSpecificMonth
+ - [ ] basic view for getItemsByUser
+ - [ ] addItem
+ - [ ] deleteItem
+ - [ ] editItem
+ - [ ] apply styles
+
+---
