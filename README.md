@@ -75,12 +75,13 @@
 ### TO-DO WORK FRONTEND ###
  - [X] install first packages
  - [X] get queries working in Apollo explorer
- - [ ] prepare files
- - [ ] routing
- - [ ] implement registration(without styles)
- - [ ] implement login(without styles)
- - [ ] implement logout(without styles)
- - [ ] implement navbar(without styles)
+ - [X] routing
+ - [X] implement registration(without styles)
+ - [X] implement login(without styles)
+ - [X] implement logout(without styles)
+ - [X] implement navbar(without styles)
+ - [X] implement hiding login/logout when user is logged-in
+ - [X] implement hiding home/statistics when no-one is logged-in
  - [ ] basic view for getItems
  - [ ] basic view for getSpecificMonth
  - [ ] basic view for getItemsByUser

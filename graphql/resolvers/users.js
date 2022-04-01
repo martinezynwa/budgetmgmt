@@ -18,6 +18,7 @@ const usersResolvers = {
     ) => {
       const { valid, errors } = validateRegisterInput(
         username,
+        name,
         password,
         confirmPassword,
         email,
@@ -39,7 +40,7 @@ const usersResolvers = {
       if (emailCheck) {
         throw new UserInputError('Email is in the database already', {
           errors: {
-            email: 'This email has been used',
+            email: 'This email is taken',
           },
         })
       }
@@ -55,9 +56,12 @@ const usersResolvers = {
       })
       const generatedUser = await newUser.save()
 
+      const token = generateToken(newUser)
+
       return {
         ...generatedUser._doc,
         id: generatedUser._id,
+        token,
       }
     },
 
