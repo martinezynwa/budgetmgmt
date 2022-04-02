@@ -3,6 +3,8 @@ import { useMutation } from '@apollo/client'
 import { AuthContext } from '../context/auth'
 import { LOGIN_USER } from '../graphql/mutations'
 
+import { Form, Button } from 'react-bootstrap'
+
 const Login = () => {
   const context = useContext(AuthContext)
 
@@ -34,30 +36,7 @@ const Login = () => {
     addUser()
   }
 
-  return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={onSubmit}>
-        <div>
-          username
-          <input
-            id="username"
-            type="text"
-            value={inputValues.username}
-            name="username"
-            onChange={onChange}
-          />
-        </div>
-        <div>
-          password
-          <input
-            id="password"
-            type="password"
-            value={inputValues.password}
-            name="password"
-            onChange={onChange}
-          />
-        </div>
+  /*
         {Object.keys(errors).length > 0 && (
           <div>
             <ul>
@@ -67,9 +46,34 @@ const Login = () => {
             </ul>
           </div>
         )}
-        <button id="login-button" type="submit">
-          login
-        </button>
+  )*/
+
+  return (
+    <div>
+      <h2>Login</h2>
+      <form onSubmit={onSubmit}>
+        <Form.Group>
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            id="username"
+            name="username"
+            type="text"
+            value={inputValues.username}
+            onChange={onChange}
+          />
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            id="password"
+            name="password"
+            type="password"
+            value={inputValues.password}
+            onChange={onChange}
+          />
+        </Form.Group>
+        <br />
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
       </form>
     </div>
   )

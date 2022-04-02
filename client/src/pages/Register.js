@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { AuthContext } from '../context/auth'
 import { REGISTER_USER } from '../graphql/mutations'
+import { Form, Button } from 'react-bootstrap'
 
 const Register = () => {
   const context = useContext(AuthContext)
@@ -42,70 +43,54 @@ const Register = () => {
 
   return (
     <div>
-      <h1>Register</h1>
+      <h2>Login</h2>
       <form onSubmit={onSubmit}>
-        <div>
-          username
-          <input
+        <Form.Group>
+          <Form.Label>Username</Form.Label>
+          <Form.Control
             id="username"
+            name="username"
             type="text"
             value={inputValues.username}
-            name="username"
             onChange={onChange}
           />
-        </div>
-        <div>
-          name
-          <input
+          <Form.Label>Name</Form.Label>
+          <Form.Control
             id="name"
+            name="name"
             type="text"
             value={inputValues.name}
-            name="name"
             onChange={onChange}
           />
-        </div>
-        <div>
-          password
-          <input
+          <Form.Label>Password</Form.Label>
+          <Form.Control
             id="password"
+            name="password"
             type="password"
             value={inputValues.password}
-            name="password"
             onChange={onChange}
           />
-        </div>
-        <div>
-          confirmPassword
-          <input
+          <Form.Label>Confirm password</Form.Label>
+          <Form.Control
             id="confirmPassword"
+            name="password"
             type="password"
             value={inputValues.confirmPassword}
-            name="confirmPassword"
             onChange={onChange}
           />
-        </div>
-        <div>
-          email
-          <input
+          <Form.Label>Email</Form.Label>
+          <Form.Control
             id="email"
+            name="email"
             type="email"
             value={inputValues.email}
-            name="email"
             onChange={onChange}
           />
-        </div>
-        {Object.keys(errors).length > 0 && (
-          <div>
-            <ul>
-              {Object.values(errors).map(error => (
-                <li key={error}>{error}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-        <button id="register-button" type="submit">
-          register
-        </button>
+        </Form.Group>
+        <br />
+        <Button variant="primary" type="register">
+          Register
+        </Button>
       </form>
     </div>
   )

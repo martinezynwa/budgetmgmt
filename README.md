@@ -62,8 +62,14 @@
 - [x] basic view for getSpecificMonth
 - [x] addItem
 - [x] deleteItem
-- [ ] apply Bootstrap styles
+- [ ] apply React-Bootstrap styles
+  - [X] login/register
+  - [X] navbar
+  - [ ] homepage
+  - [ ] for item records
 - [ ] on item input, category should be drop-down with category options
+- [ ] calendar view when setting date
+- [ ] default date inside form = today 
 - [ ] button next to item, that will display drop-down menu with:
   - [ ] delete button
   - [ ] fields for editItem

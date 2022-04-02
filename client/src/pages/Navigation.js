@@ -1,23 +1,41 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../context/auth'
 import { Link } from 'react-router-dom'
+import { Navbar, Nav } from 'react-bootstrap'
 
 const Navigation = () => {
   const { user, logout } = useContext(AuthContext)
+
   const menuBar = user ? (
-    <nav>
-      <div>{user.name}</div>
-      <Link to="/">Home</Link>
-      <Link to="/statistics">Statistics</Link>
-      <button type="submit" onClick={logout}>
-        logout
-      </button>
-    </nav>
+    <div>
+      <Navbar bg="white" variant="light">
+        <Navbar.Brand>{user.name}</Navbar.Brand>
+        <Nav className="me-auto">
+          <Nav.Link as="span">
+            <Link to="/">Home</Link>
+          </Nav.Link>
+          <Nav.Link as="span">
+            <Link to="/statistics">Statistics</Link>
+          </Nav.Link>
+        </Nav>
+        <Nav>
+          <Nav.Link onClick={logout}>Logout</Nav.Link>
+        </Nav>
+      </Navbar>
+    </div>
   ) : (
-    <nav>
-      <Link to="/login">Login</Link>
-      <Link to="/register">Register</Link>
-    </nav>
+    <div>
+      <Navbar bg="white" variant="light">
+        <Nav className="me-auto">
+          <Nav.Link as="span">
+            <Link to="/login">Login</Link>
+          </Nav.Link>
+          <Nav.Link as="span">
+            <Link to="/register">Register</Link>
+          </Nav.Link>
+        </Nav>
+      </Navbar>
+    </div>
   )
 
   return menuBar

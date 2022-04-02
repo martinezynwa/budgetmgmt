@@ -4,6 +4,7 @@ import DeleteButton from '../components/DeleteButton'
 
 import { CURRENT_MONTH } from '../graphql/queries'
 import ItemForm from '../components/ItemForm'
+import { Table } from 'react-bootstrap'
 
 const Home = props => {
   const result = useQuery(CURRENT_MONTH)
@@ -20,14 +21,16 @@ const Home = props => {
     <div>
       <ItemForm />
       <h1>Items</h1>
-      <table>
-        <tbody>
+      <Table striped bordered hover size="sm">
+        <thead>
           <tr>
             <th>Name</th>
             <th>Date</th>
             <th>Category</th>
             <th>Price</th>
           </tr>
+        </thead>
+        <tbody>
           {itemsInMonth.map(item => (
             <tr key={item.id}>
               <td>{item.itemName}</td>
@@ -40,7 +43,7 @@ const Home = props => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </div>
   )
 }
