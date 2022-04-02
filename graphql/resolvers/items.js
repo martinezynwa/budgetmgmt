@@ -23,6 +23,18 @@ const itemsResolvers = {
         throw new Error('Item not found')
       }
     },
+    getCurrentMonth: async () => {
+      try {
+        const currentMonth = dayjs(new Date()).format('YYYY-MM')
+        const allItems = await Item.find({})
+        const items = allItems.filter(
+          item => item.itemDate.substring(0, 7) === currentMonth,
+        )
+        return items
+      } catch (err) {
+        throw new Error('Current month not found')
+      }
+    },
     getSpecificMonth: async (_, args) => {
       try {
         const allItems = await Item.find({})
@@ -64,12 +76,15 @@ const itemsResolvers = {
         throw new UserInputError('Errors', { errors })
       }
 
-      itemPrice.currency = 'Kč'
-
       const createdBy = {
         username: currentUser.username,
         name: currentUser.name,
         date: dayjs(new Date()).format('YYYY-MM-DDTHH:mm:ss'),
+      }
+
+      itemPrice = {
+        price: itemPrice,
+        currency: 'Kč',
       }
 
       const itemUpdated = {
@@ -87,7 +102,6 @@ const itemsResolvers = {
         createdBy,
       })
       await item.save()
-
       return item
     },
     editItem: async (_, args, context) => {
@@ -145,12 +159,12 @@ const itemsResolvers = {
         return itemBody
       }
     },
-    removeItem: async (_, { id }, context) => {
+    removeItem: async (_, { itemId }, context) => {
       await checkAuthorization(context)
       try {
-        const itemID = await Item.findByIdAndDelete(id)
-        await itemID.delete()
-        return `ID ${id} deleted successfully`
+        const item = await Item.findByIdAndDelete(itemId)
+        await item.delete()
+        return `ID ${itemId} deleted successfully`
       } catch (err) {
         throw new Error('ID of an item does not exist')
       }

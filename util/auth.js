@@ -4,7 +4,6 @@ const User = require('../models/User')
 
 const checkAuthorization = async context => {
   const auth = context ? context.req.headers.authorization : null
-
   if (auth && auth.toLowerCase().startsWith('bearer ')) {
     try {
       const decodedToken = jwt.verify(auth.substring(7), process.env.SECRET_KEY)

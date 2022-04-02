@@ -8,86 +8,70 @@
     - expenses per month
     - difference between persons(total, monthly)
     - division by categories(groceries, lunch, gas, etc..)
+---
+### TO-DO PREPARATIONS
+
+- [x] **figure out technology stack**
+  - [x] will be kept locally for now
+  - [x] will be written in JS
+  - [x] React
+  - [x] state management Redux
+  - [x] GraphQL?
+    - [x] should complete FSO chapter 8 first in order to figure out whether to go with it or not
+    - [x] yes
+  - [x] MongoDB as database?
+    - [x] how many records can be inside MongoDB?
+  - [x] **coding preparation**
+    - [x] do research about how are similar simple web apps structured
+    - [x] create structure and place files into respective folders
 
 ---
 
-### PAGE LOOK AND FUNCTIONS ###
+### TO-DO WORK BACKEND
 
-#### header
-- TBD
-#### upper-body
-- TBD
-#### mid-body
-- TBD
-#### footer
-- TBD
-
-
----
-
-### TO-DO PREPARATIONS ###
-- [X] **figure out technology stack**
-  - [X] will be kept locally for now
-  - [X] will be written in JS
-  - [X] React
-  - [X] state management Redux
-  - [X] GraphQL?
-    - [X] should complete FSO chapter 8 first in order to figure out whether to go with it or not
-    - [X] yes
-  - [X] MongoDB as database?
-    - [X] how many records can be inside MongoDB?
-  - [X] **coding preparation**
-      - [X] do research about how are similar simple web apps structured
-      - [X] create structure and place files into respective folders
+- [x] start
+- [x] install packages, set-up lint
+- [x] create Mongo db
+- [x] define how database will look like
+- [x] typeDefs - setup how items and users should be structured
+- [x] models for above
+- [x] resolvers
+- [x] queries
+- [x] validator for authorization
+- [x] set-up context and tokens for authorization
+- [x] figure out item categories
+- [x] category resolvers, models, mutations etc.
+- [x] timestamps - 1 format, dayjs necessary?
+- [ ] category name link with item name - **don't need right now**
+- [ ] link item and categories with user etc. **to be tested better with frontend**
+- [X] default values for currency
 
 ---
 
-### TO-DO WORK BACKEND ###
- - [X] start
- - [X] install packages, set-up lint
- - [X] create Mongo db
- - [X] define how database will look like
- - [X] typeDefs - setup how items and users should be structured
- - [X] models for above
- - [X] resolvers
- - [X] queries
- - [X] validator for authorization
- - [X] set-up context and tokens for authorization
- - [X] figure out item categories
- - [X] category resolvers, models, mutations etc.
- - [X] timestamps - 1 format, dayjs necessary?
- - [ ] category name link with item name - **don't need right now**
- - [ ] link item and categories with user etc. **to be tested better with frontend**
- - [ ] default values for currency
+### TO-DO WORK FRONTEND
 
----
-
-### TO-DO PREPARATIONS FRONT-END ###
-- [ ] **expand main concept**
-  - [ ] list all functions that app needs to have
-
-- [ ] **figure out basic design**
-  - [ ] figure out Tailwind/Bootstrap/???
-  - [ ] basic look, button placement, how many pages
-
----
-
-### TO-DO WORK FRONTEND ###
- - [X] install first packages
- - [X] get queries working in Apollo explorer
- - [X] routing
- - [X] implement registration(without styles)
- - [X] implement login(without styles)
- - [X] implement logout(without styles)
- - [X] implement navbar(without styles)
- - [X] implement hiding login/logout when user is logged-in
- - [X] implement hiding home/statistics when no-one is logged-in
- - [ ] basic view for getItems
- - [ ] basic view for getSpecificMonth
- - [ ] basic view for getItemsByUser
- - [ ] addItem
- - [ ] deleteItem
- - [ ] editItem
- - [ ] apply styles
-
+- [x] install first packages
+- [x] get queries working in Apollo explorer
+- [x] routing
+- [x] implement registration(without styles)
+- [x] implement login(without styles)
+- [x] implement logout(without styles)
+- [x] implement navbar(without styles)
+- [x] implement hiding login/logout when user is logged-in
+- [x] implement hiding home/statistics when no-one is logged-in
+- [x] basic view for getSpecificMonth
+- [x] addItem
+- [x] deleteItem
+- [ ] apply Bootstrap styles
+- [ ] on item input, category should be drop-down with category options
+- [ ] button next to item, that will display drop-down menu with:
+  - [ ] delete button
+  - [ ] fields for editItem
+  - [ ] implement editItem mutation
+  - [ ] hide after item edited
+- [ ] pop-up notifications
+  - [ ] after item added
+  - [ ] after item deleted
+  - [ ] after item edited
+  - [ ] for any type of error
 ---

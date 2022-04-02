@@ -54,7 +54,6 @@ const validateLoginInput = (username, password) => {
 
 const validateItemInput = (itemDate, itemName, itemCategory, itemPrice) => {
   const errors = {}
-
   if (itemDate.trim() === '') {
     errors.itemDate = 'Item date cannot be empty'
   }
@@ -64,10 +63,9 @@ const validateItemInput = (itemDate, itemName, itemCategory, itemPrice) => {
   if (itemCategory.trim() === '') {
     errors.itemCategory = 'Item category cannot be empty'
   }
-  if (itemPrice.price === '') {
+  if (itemPrice === '') {
     errors.itemPrice = 'Item price cannot be empty'
   }
-
   return {
     errors,
     valid: Object.keys(errors).length < 1,

@@ -17,7 +17,7 @@ const typeDefs = gql`
   }
 
   type Price {
-    price: Float!
+    price: String!
     currency: String
   }
 
@@ -46,7 +46,7 @@ const typeDefs = gql`
     itemDate: String
     itemName: String
     itemCategory: String
-    itemPrice: PriceInput
+    itemPrice: String
     itemUpdated: UpdatedInput
   }
 
@@ -56,7 +56,7 @@ const typeDefs = gql`
   }
 
   input PriceInput {
-    price: Float!
+    price: String!
     currency: String
   }
 
@@ -77,6 +77,7 @@ const typeDefs = gql`
     getItems: [Item]
     getSingleItem(itemID: ID!): Item
     getSpecificMonth(selectedMonth: String!): [Item]
+    getCurrentMonth: [Item]
     getItemsByUser(username: String!): [Item]
     getCategories: [Category]
     getCategory(categoryName: String!): Category
@@ -85,7 +86,7 @@ const typeDefs = gql`
   type Mutation {
     addItem(itemInput: ItemInput): Item!
     editItem(itemID: ID!, itemInput: ItemInput): Item!
-    removeItem(id: ID!): String!
+    removeItem(itemId: ID!): String!
     createCategory(category: CategoryInput): Category!
     registerUser(registerInput: RegisterInput): User!
     loginUser(username: String!, password: String!): User!

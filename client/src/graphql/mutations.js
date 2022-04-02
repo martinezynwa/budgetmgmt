@@ -39,4 +39,48 @@ const LOGIN_USER = gql`
     }
   }
 `
-export { REGISTER_USER, LOGIN_USER }
+
+const ADD_ITEM = gql`
+  mutation addItem(
+    $itemDate: String
+    $itemName: String
+    $itemCategory: String
+    $itemPrice: String
+  ) {
+    addItem(
+      itemInput: {
+        itemDate: $itemDate
+        itemName: $itemName
+        itemCategory: $itemCategory
+        itemPrice: $itemPrice
+      }
+    ) {
+      id
+      itemDate
+      itemName
+      itemCategory
+      itemPrice {
+        price
+        currency
+      }
+      itemUpdated {
+        isUpdated
+        updatedBy
+        updateStamp
+      }
+      createdBy {
+        username
+        name
+        date
+      }
+    }
+  }
+`
+
+const DELETE_ITEM = gql`
+  mutation removeItem($itemId: ID!) {
+    removeItem(itemId: $itemId)
+  }
+`
+
+export { REGISTER_USER, LOGIN_USER, ADD_ITEM, DELETE_ITEM }
