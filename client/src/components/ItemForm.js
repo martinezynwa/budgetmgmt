@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { ADD_ITEM } from '../graphql/mutations'
 import { CURRENT_MONTH } from '../graphql/queries'
+import { Button } from 'react-bootstrap'
+import CategorySelect from './CategorySelect'
+const dayjs = require('dayjs')
 
 const ItemForm = () => {
   const initialState = {
-    itemDate: '',
+    itemDate: dayjs(new Date()).format('YYYY-MM-DD'),
     itemName: '',
     itemCategory: '',
     itemPrice: '',
@@ -19,7 +22,7 @@ const ItemForm = () => {
       [event.target.name]: event.target.value,
     })
   }
-  
+
   const [addItem] = useMutation(ADD_ITEM, {
     variables: itemInput,
 
@@ -39,60 +42,78 @@ const ItemForm = () => {
 
   return (
     <div>
-      <h1>Add item</h1>
+      <h2>Add Item</h2>
       <form onSubmit={onSubmit}>
-        <div>
-          date
+        <div className="input-group input-group-sm mb-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="inputGroup-sizing-sm">
+              Date
+            </span>
+          </div>
           <input
+            type="date"
+            className="form-control"
+            aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm"
             id="itemDate"
-            type="text"
             value={itemInput.itemDate}
             name="itemDate"
             onChange={onChange}
           />
         </div>
-        <div>
-          name
+        <div className="input-group input-group-sm mb-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="inputGroup-sizing-sm">
+              Item
+            </span>
+          </div>
           <input
-            id="itemName"
             type="text"
+            className="form-control"
+            aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm"
+            id="itemName"
             value={itemInput.itemName}
             name="itemName"
             onChange={onChange}
           />
         </div>
-        <div>
-          category
-          <input
-            id="itemCategory"
+        <div className="input-group input-group-sm mb-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="inputGroup-sizing-sm">
+              Category
+            </span>
+          </div>
+          <select
             type="text"
-            value={itemInput.itemCategory}
             name="itemCategory"
             onChange={onChange}
-          />
+            className="form-select"
+            aria-label="Default select example">
+            <CategorySelect />
+          </select>
         </div>
-        <div>
-          price
+        <div className="input-group input-group-sm mb-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="inputGroup-sizing-sm">
+              Price
+            </span>
+          </div>
           <input
-            id="itemPrice"
             type="text"
+            className="form-control"
+            aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm"
+            id="itemPrice"
             value={itemInput.itemPrice}
             name="itemPrice"
             onChange={onChange}
           />
         </div>
-        {Object.keys(errors).length > 0 && (
-          <div>
-            <ul>
-              {Object.values(errors).map(error => (
-                <li key={error}>{error}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-        <button id="add-button" type="submit">
-          add item
-        </button>
+
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
       </form>
     </div>
   )

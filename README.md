@@ -62,22 +62,24 @@
 - [x] basic view for getSpecificMonth
 - [x] addItem
 - [x] deleteItem
-- [ ] apply React-Bootstrap styles
+- [X] apply React-Bootstrap styles
   - [X] login/register
   - [X] navbar
-  - [ ] homepage
-  - [ ] for item records
-- [ ] on item input, category should be drop-down with category options
-- [ ] calendar view when setting date
-- [ ] default date inside form = today 
-- [ ] button next to item, that will display drop-down menu with:
-  - [ ] delete button
-  - [ ] fields for editItem
-  - [ ] implement editItem mutation
-  - [ ] hide after item edited
+  - [X] homepage
+  - [X] for item records
+- [X] calendar view when setting date
+- [X] default date inside form = today 
+- [X] on item input, category should be drop-down with category options
+- [ ] buttons on homepage that will change items view per selected user
+- [ ] display total spending per user above addItem
 - [ ] pop-up notifications
   - [ ] after item added
   - [ ] after item deleted
   - [ ] after item edited
   - [ ] for any type of error
+- [ ] button next to item, that will display drop-down menu with:
+  - [ ] delete button
+  - [ ] fields for editItem
+  - [ ] implement editItem mutation
+  - [ ] hide after item edited
 ---

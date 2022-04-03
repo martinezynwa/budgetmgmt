@@ -25,4 +25,12 @@ const CURRENT_MONTH = gql`
   }
 `
 
-export { CURRENT_MONTH }
+const ALL_CATEGORIES = gql`
+  query getCategories {
+    getCategories {
+      categoryName
+    }
+  }
+`
+
+export { CURRENT_MONTH, ALL_CATEGORIES }

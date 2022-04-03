@@ -7,10 +7,7 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  categoryType: {
-    type: String,
-    required: true,
-  },
+
   createdBy: {
     type: Object,
 

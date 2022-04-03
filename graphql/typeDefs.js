@@ -12,8 +12,8 @@ const typeDefs = gql`
   }
 
   type Category {
+    id: ID!
     categoryName: String!
-    categoryType: String!
   }
 
   type Price {
@@ -52,7 +52,6 @@ const typeDefs = gql`
 
   input CategoryInput {
     categoryName: String
-    categoryType: String
   }
 
   input PriceInput {

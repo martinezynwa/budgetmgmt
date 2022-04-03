@@ -20,7 +20,7 @@ const categoryResolvers = {
   Mutation: {
     createCategory: async (_, args, context) => {
       const currentUser = await checkAuthorization(context)
-      const { categoryName, categoryType } = args.category
+      const { categoryName } = args.category
 
       const createdBy = {
         username: currentUser.username,
@@ -30,7 +30,6 @@ const categoryResolvers = {
 
       const category = new Category({
         categoryName,
-        categoryType,
         createdBy,
       })
 
