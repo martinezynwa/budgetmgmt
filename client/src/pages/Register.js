@@ -37,6 +37,7 @@ const Register = () => {
   })
 
   const onSubmit = event => {
+    console.log('inputValues :>> ', inputValues)
     event.preventDefault()
     addUser()
   }
@@ -73,7 +74,7 @@ const Register = () => {
           <Form.Label>Confirm password</Form.Label>
           <Form.Control
             id="confirmPassword"
-            name="password"
+            name="confirmPassword"
             type="password"
             value={inputValues.confirmPassword}
             onChange={onChange}

@@ -57,6 +57,19 @@ const itemsResolvers = {
         throw new Error(err)
       }
     },
+    getCurrentMonthByUser: async (_, args) => {
+      try {
+        const allItems = await Item.find({})
+        const items = allItems
+          .filter(item => item.itemDate.substring(0, 7) === args.selectedMonth)
+          .filter(item =>
+            args.username ? item.createdBy.username === args.username : true,
+          )
+        return items
+      } catch (err) {
+        throw new Error('Specific month not found')
+      }
+    },
   },
 
   Mutation: {
@@ -159,12 +172,12 @@ const itemsResolvers = {
         return itemBody
       }
     },
-    removeItem: async (_, { itemId }, context) => {
+    removeItem: async (_, args, context) => {
       await checkAuthorization(context)
       try {
-        const item = await Item.findByIdAndDelete(itemId)
+        const item = await Item.findByIdAndDelete(args.itemId)
         await item.delete()
-        return `ID ${itemId} deleted successfully`
+        return `ID ${args.itemId} deleted successfully`
       } catch (err) {
         throw new Error('ID of an item does not exist')
       }

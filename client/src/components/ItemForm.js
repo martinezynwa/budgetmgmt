@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useMutation } from '@apollo/client'
 import { ADD_ITEM } from '../graphql/mutations'
-import { CURRENT_MONTH } from '../graphql/queries'
+import { CURRENT_MONTH_BY_USER } from '../graphql/queries'
+import { AuthContext } from '../context/auth'
+
 import { Button } from 'react-bootstrap'
 import CategorySelect from './CategorySelect'
 const dayjs = require('dayjs')
 
 const ItemForm = () => {
+  const { user } = useContext(AuthContext)
   const initialState = {
     itemDate: dayjs(new Date()).format('YYYY-MM-DD'),
     itemName: '',
@@ -26,12 +29,25 @@ const ItemForm = () => {
   const [addItem] = useMutation(ADD_ITEM, {
     variables: itemInput,
 
-    update(_, result) {},
-
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.errors)
     },
-    refetchQueries: [{ query: CURRENT_MONTH }],
+    refetchQueries: () => [
+      {
+        query: CURRENT_MONTH_BY_USER,
+        variables: {
+          selectedMonth: dayjs(new Date()).format('YYYY-MM'),
+          username: '',
+        },
+      },
+      {
+        query: CURRENT_MONTH_BY_USER,
+        variables: {
+          selectedMonth: dayjs(new Date()).format('YYYY-MM'),
+          username: user.username,
+        },
+      },
+    ],
   })
 
   const onSubmit = event => {
@@ -88,6 +104,7 @@ const ItemForm = () => {
             type="text"
             name="itemCategory"
             onChange={onChange}
+            value={itemInput.itemCategory}
             className="form-select"
             aria-label="Default select example">
             <CategorySelect />

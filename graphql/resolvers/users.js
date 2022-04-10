@@ -9,7 +9,14 @@ const {
 const { generateToken } = require('../../util/auth')
 
 const usersResolvers = {
-  Query: {},
+  Query: {
+    getUsers: async () => {
+      const users = await User.find({})
+      if (users) {
+        return users
+      }
+    },
+  },
 
   Mutation: {
     registerUser: async (

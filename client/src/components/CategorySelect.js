@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { ALL_CATEGORIES } from '../graphql/queries'
 import { useQuery } from '@apollo/client'
 
-const CategorySelect = () => {
+const CategorySelect = ({ itemCategory }) => {
   const result = useQuery(ALL_CATEGORIES)
 
   const [categories, setCategories] = useState([])
@@ -16,7 +16,7 @@ const CategorySelect = () => {
 
   return (
     <>
-      <option value>Choose category</option>
+      <option value>{itemCategory}</option>
       {categories.map(category => (
         <option key={category.categoryName} value={category.categoryName}>
           {category.categoryName}

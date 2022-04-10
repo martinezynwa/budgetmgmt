@@ -70,7 +70,9 @@
 - [X] calendar view when setting date
 - [X] default date inside form = today 
 - [X] on item input, category should be drop-down with category options
-- [ ] buttons on homepage that will change items view per selected user
+- [X] buttons on homepage that will change items view per selected user
+  - [X] after item is added, refetchQueries so new item is displayed immediately
+  - [X] after item is deleted, refetchQueries
 - [ ] display total spending per user above addItem
 - [ ] pop-up notifications
   - [ ] after item added

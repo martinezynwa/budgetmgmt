@@ -25,6 +25,31 @@ const CURRENT_MONTH = gql`
   }
 `
 
+const CURRENT_MONTH_BY_USER = gql`
+  query getCurrentMonthByUser($selectedMonth: String!, $username: String) {
+    getCurrentMonthByUser(selectedMonth: $selectedMonth, username: $username) {
+      id
+      itemDate
+      itemName
+      itemCategory
+      itemPrice {
+        price
+        currency
+      }
+      itemUpdated {
+        isUpdated
+        updatedBy
+        updateStamp
+      }
+      createdBy {
+        username
+        name
+        date
+      }
+    }
+  }
+`
+
 const ALL_CATEGORIES = gql`
   query getCategories {
     getCategories {
@@ -33,4 +58,13 @@ const ALL_CATEGORIES = gql`
   }
 `
 
-export { CURRENT_MONTH, ALL_CATEGORIES }
+const ALL_USERS = gql`
+  query getUsers {
+    getUsers {
+      name
+      username
+    }
+  }
+`
+
+export { CURRENT_MONTH, ALL_CATEGORIES, ALL_USERS, CURRENT_MONTH_BY_USER }
