@@ -1,31 +1,35 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useQuery } from '@apollo/client'
 import TableOfItems from '../components/TableOfItems'
 import { ALL_USERS } from '../graphql/queries'
+import useItem from '../context/ItemsContext'
+
+const dayjs = require('dayjs')
 
 const Items = () => {
   let users = []
   const result = useQuery(ALL_USERS)
+  const { getItems } = useItem()
+  const currentMonth = dayjs(new Date()).format('YYYY-MM')
 
-  const [username, setUsername] = useState('')
+  const { items } = useItem()
 
   if (result.data && result.data.getUsers) {
     users = [...result.data.getUsers]
-  }
-  if (users.loading) {
-    return <div>loading...</div>
   }
 
   return (
     <div>
       <div>
-        <button onClick={() => setUsername('')}>All items</button>
+        <button onClick={() => getItems('', currentMonth)}>All items</button>
         {users.map(user => (
-          <button onClick={() => setUsername(user.username)} key={user.name}>
+          <button
+            onClick={() => getItems(user.username, currentMonth)}
+            key={user.name}>
             {user.name}
           </button>
         ))}
-        <TableOfItems username={username} />
+        <TableOfItems items={items} />
       </div>
     </div>
   )

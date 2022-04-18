@@ -1,23 +1,14 @@
-import React, { useState } from 'react'
-import { useQuery } from '@apollo/client'
-import { Table } from 'react-bootstrap'
+import React from 'react'
 import { useMutation } from '@apollo/client'
+import { Table } from 'react-bootstrap'
 import { DELETE_ITEM } from '../graphql/mutations'
 import { CURRENT_MONTH_BY_USER } from '../graphql/queries'
-
+import useNotification from '../context/NotificationContext'
 const dayjs = require('dayjs')
 
-const TableOfItems = ({ username }) => {
+const TableOfItems = ({ items }) => {
+  const { setNotification } = useNotification()
   let refreshedUsername = ''
-  const selectedMonth = dayjs(new Date()).format('YYYY-MM')
-  let items = []
-  const result = useQuery(CURRENT_MONTH_BY_USER, {
-    variables: { selectedMonth, username },
-  })
-
-  if (result.data && result.data.getCurrentMonthByUser) {
-    items = [...result.data.getCurrentMonthByUser]
-  }
 
   const [deleteItem] = useMutation(DELETE_ITEM, {
     refetchQueries: () => [
@@ -32,7 +23,6 @@ const TableOfItems = ({ username }) => {
         query: CURRENT_MONTH_BY_USER,
         variables: {
           selectedMonth: dayjs(new Date()).format('YYYY-MM'),
-          username: '',
         },
       },
     ],
@@ -41,12 +31,12 @@ const TableOfItems = ({ username }) => {
   const triggerDeletion = (itemId, username) => {
     refreshedUsername = username
     deleteItem({ variables: { itemId: itemId } })
+    setNotification('deleted', 5)
   }
 
   return (
     <div>
       <div>
-        <h1>Items</h1>
         <Table size="sm">
           <thead>
             <tr>
@@ -58,27 +48,29 @@ const TableOfItems = ({ username }) => {
             </tr>
           </thead>
           <tbody>
-            {items.map(item => (
-              <tr key={item.id}>
-                <td>{item.createdBy.username}</td>
-                <td>{item.itemDate}</td>
-                <td>{item.itemName}</td>
-                <td>{item.itemCategory}</td>
-                <td>
-                  {item.itemPrice.price} {item.itemPrice.currency}
-                </td>
-                <td>
-                  {
-                    <button
-                      onClick={() =>
-                        triggerDeletion(item.id, item.createdBy.username)
-                      }>
-                      delete
-                    </button>
-                  }
-                </td>
-              </tr>
-            ))}
+            {items
+              ? items.map(item => (
+                  <tr key={item.id}>
+                    <td>{item.createdBy.username}</td>
+                    <td>{item.itemDate}</td>
+                    <td>{item.itemName}</td>
+                    <td>{item.itemCategory}</td>
+                    <td>
+                      {item.itemPrice.price} {item.itemPrice.currency}
+                    </td>
+                    <td>
+                      {
+                        <button
+                          onClick={() =>
+                            triggerDeletion(item.id, item.createdBy.username)
+                          }>
+                          delete
+                        </button>
+                      }
+                    </td>
+                  </tr>
+                ))
+              : null}
           </tbody>
         </Table>
       </div>

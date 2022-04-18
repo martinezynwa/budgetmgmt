@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
-import { AuthContext } from '../context/auth'
+import useAuth from '../context/AuthContext'
 import { REGISTER_USER } from '../graphql/mutations'
 import { Form, Button } from 'react-bootstrap'
 
 const Register = () => {
-  const context = useContext(AuthContext)
+  const context = useAuth()
 
   const [inputValues, setInputValues] = useState({
     username: '',
@@ -37,14 +37,13 @@ const Register = () => {
   })
 
   const onSubmit = event => {
-    console.log('inputValues :>> ', inputValues)
     event.preventDefault()
     addUser()
   }
 
   return (
     <div>
-      <h2>Login</h2>
+      <h2>Register</h2>
       <form onSubmit={onSubmit}>
         <Form.Group>
           <Form.Label>Username</Form.Label>
@@ -55,6 +54,7 @@ const Register = () => {
             value={inputValues.username}
             onChange={onChange}
           />
+          <p>{errors.username}</p>
           <Form.Label>Name</Form.Label>
           <Form.Control
             id="name"
@@ -63,6 +63,8 @@ const Register = () => {
             value={inputValues.name}
             onChange={onChange}
           />
+          <p>{errors.name}</p>
+
           <Form.Label>Password</Form.Label>
           <Form.Control
             id="password"
@@ -71,6 +73,8 @@ const Register = () => {
             value={inputValues.password}
             onChange={onChange}
           />
+          <p>{errors.password}</p>
+
           <Form.Label>Confirm password</Form.Label>
           <Form.Control
             id="confirmPassword"
@@ -79,6 +83,8 @@ const Register = () => {
             value={inputValues.confirmPassword}
             onChange={onChange}
           />
+          <p>{errors.confirmPassword}</p>
+
           <Form.Label>Email</Form.Label>
           <Form.Control
             id="email"
@@ -87,6 +93,7 @@ const Register = () => {
             value={inputValues.email}
             onChange={onChange}
           />
+          <p>{errors.email}</p>
         </Form.Group>
         <br />
         <Button variant="primary" type="register">

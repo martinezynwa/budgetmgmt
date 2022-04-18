@@ -1,12 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
-import { AuthContext } from '../context/auth'
+import useAuth from '../context/AuthContext'
 import { LOGIN_USER } from '../graphql/mutations'
-
 import { Form, Button } from 'react-bootstrap'
 
 const Login = () => {
-  const context = useContext(AuthContext)
+  const context = useAuth()
 
   const [inputValues, setInputValues] = useState({
     username: '',
@@ -14,6 +13,7 @@ const Login = () => {
   })
 
   const [errors, setErrors] = useState({})
+
   const onChange = event => {
     setInputValues({
       ...inputValues,
@@ -36,18 +36,6 @@ const Login = () => {
     addUser()
   }
 
-  /*
-        {Object.keys(errors).length > 0 && (
-          <div>
-            <ul>
-              {Object.values(errors).map(error => (
-                <li key={error}>{error}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-  )*/
-
   return (
     <div>
       <h2>Login</h2>
@@ -61,6 +49,7 @@ const Login = () => {
             value={inputValues.username}
             onChange={onChange}
           />
+          <p>{errors.username}</p>
           <Form.Label>Password</Form.Label>
           <Form.Control
             id="password"
@@ -69,7 +58,9 @@ const Login = () => {
             value={inputValues.password}
             onChange={onChange}
           />
+          <p>{errors.password}</p>
         </Form.Group>
+        <p>{errors.general}</p>
         <br />
         <Button variant="primary" type="submit">
           Submit

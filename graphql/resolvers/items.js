@@ -65,6 +65,11 @@ const itemsResolvers = {
           .filter(item =>
             args.username ? item.createdBy.username === args.username : true,
           )
+          .sort(
+            (a, b) =>
+              new Date(...b.itemDate.split('-').reverse()) -
+              new Date(...a.itemDate.split('-').reverse()),
+          )
         return items
       } catch (err) {
         throw new Error('Specific month not found')

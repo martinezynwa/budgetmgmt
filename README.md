@@ -9,6 +9,7 @@
     - difference between persons(total, monthly)
     - division by categories(groceries, lunch, gas, etc..)
 ---
+
 ### TO-DO PREPARATIONS
 
 - [x] **figure out technology stack**
@@ -44,7 +45,7 @@
 - [x] timestamps - 1 format, dayjs necessary?
 - [ ] category name link with item name - **don't need right now**
 - [ ] link item and categories with user etc. **to be tested better with frontend**
-- [X] default values for currency
+- [x] default values for currency
 
 ---
 
@@ -62,26 +63,32 @@
 - [x] basic view for getSpecificMonth
 - [x] addItem
 - [x] deleteItem
-- [X] apply React-Bootstrap styles
-  - [X] login/register
-  - [X] navbar
-  - [X] homepage
-  - [X] for item records
-- [X] calendar view when setting date
-- [X] default date inside form = today 
-- [X] on item input, category should be drop-down with category options
-- [X] buttons on homepage that will change items view per selected user
-  - [X] after item is added, refetchQueries so new item is displayed immediately
-  - [X] after item is deleted, refetchQueries
-- [ ] display total spending per user above addItem
+- [x] apply React-Bootstrap styles
+  - [x] login/register
+  - [x] navbar
+  - [x] homepage
+  - [x] for item records
+- [x] calendar view when setting date
+- [x] default date inside form = today
+- [x] on item input, category should be drop-down with category options
+- [x] buttons on homepage that will change items view per selected user
+  - [x] after item is added, refetchQueries so new item is displayed immediately
+  - [x] after item is deleted, refetchQueries
 - [ ] pop-up notifications
-  - [ ] after item added
-  - [ ] after item deleted
+  - [x] after item added
+  - [x] after item deleted
+  - [x] for any type of error
   - [ ] after item edited
-  - [ ] for any type of error
+- [x] implement useReducer, useQuery
+  - [x] implement AuthContext + authReducer
+  - [x] implement NotificationContext + notificationReducer
+  - [x] implement ItemContext + itemReducer
+- [ ] display total spending per user above addItem
+- [ ] check that price contains numbers only
 - [ ] button next to item, that will display drop-down menu with:
   - [ ] delete button
   - [ ] fields for editItem
   - [ ] implement editItem mutation
   - [ ] hide after item edited
+
 ---

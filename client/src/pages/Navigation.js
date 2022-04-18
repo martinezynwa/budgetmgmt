@@ -1,10 +1,10 @@
-import React, { useContext } from 'react'
-import { AuthContext } from '../context/auth'
+import React from 'react'
+import useAuth from '../context/AuthContext'
 import { Link } from 'react-router-dom'
 import { Navbar, Nav } from 'react-bootstrap'
 
 const Navigation = () => {
-  const { user, logout } = useContext(AuthContext)
+  const { user, logout } = useAuth()
 
   const menuBar = user ? (
     <div>

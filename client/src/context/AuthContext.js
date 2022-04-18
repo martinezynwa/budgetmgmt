@@ -1,5 +1,6 @@
-import React, { useReducer, createContext } from 'react'
+import React, { useReducer, createContext, useContext } from 'react'
 import jwtDecode from 'jwt-decode'
+import authReducer from '../reducers/authReducer'
 
 const initialState = {
   user: null,
@@ -20,24 +21,7 @@ const AuthContext = createContext({
   logout: () => {},
 })
 
-const authReducer = (state, action) => {
-  switch (action.type) {
-    case 'LOGIN':
-      return {
-        ...state,
-        user: action.payload,
-      }
-    case 'LOGOUT':
-      return {
-        ...state,
-        user: null,
-      }
-    default:
-      return state
-  }
-}
-
-const AuthProvider = props => {
+export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState)
 
   const login = userData => {
@@ -55,12 +39,23 @@ const AuthProvider = props => {
     })
   }
 
-  return (
-    <AuthContext.Provider
-      value={{ user: state.user, login, logout }}
-      {...props}
-    />
-  )
+  const value = {
+    user: state.user,
+    login,
+    logout,
+  }
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
-export { AuthContext, AuthProvider }
+const useAuth = () => {
+  const context = useContext(AuthContext)
+
+  if (context === undefined) {
+    throw new Error('useAuth must be used within AuthContext')
+  }
+
+  return context
+}
+
+export default useAuth

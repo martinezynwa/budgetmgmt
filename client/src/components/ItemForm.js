@@ -1,15 +1,17 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { ADD_ITEM } from '../graphql/mutations'
 import { CURRENT_MONTH_BY_USER } from '../graphql/queries'
-import { AuthContext } from '../context/auth'
+import useAuth from '../context/AuthContext'
+import useNotification from '../context/NotificationContext'
 
 import { Button } from 'react-bootstrap'
 import CategorySelect from './CategorySelect'
 const dayjs = require('dayjs')
 
 const ItemForm = () => {
-  const { user } = useContext(AuthContext)
+  const { setNotification } = useNotification()
+  const { user } = useAuth()
   const initialState = {
     itemDate: dayjs(new Date()).format('YYYY-MM-DD'),
     itemName: '',
@@ -37,28 +39,30 @@ const ItemForm = () => {
         query: CURRENT_MONTH_BY_USER,
         variables: {
           selectedMonth: dayjs(new Date()).format('YYYY-MM'),
-          username: '',
+          username: user.username,
         },
       },
       {
         query: CURRENT_MONTH_BY_USER,
         variables: {
           selectedMonth: dayjs(new Date()).format('YYYY-MM'),
-          username: user.username,
         },
       },
     ],
+    onCompleted: () => {
+      setItemInput(initialState)
+      setErrors({})
+      setNotification('added', 5)
+    },
   })
 
   const onSubmit = event => {
     event.preventDefault()
     addItem()
-    setItemInput(initialState)
   }
 
   return (
     <div>
-      <h2>Add Item</h2>
       <form onSubmit={onSubmit}>
         <div className="input-group input-group-sm mb-3">
           <div className="input-group-prepend">
@@ -77,6 +81,8 @@ const ItemForm = () => {
             onChange={onChange}
           />
         </div>
+        <p>{errors.itemDate}</p>
+
         <div className="input-group input-group-sm mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="inputGroup-sizing-sm">
@@ -94,6 +100,8 @@ const ItemForm = () => {
             onChange={onChange}
           />
         </div>
+        <p>{errors.itemName}</p>
+
         <div className="input-group input-group-sm mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="inputGroup-sizing-sm">
@@ -110,6 +118,8 @@ const ItemForm = () => {
             <CategorySelect />
           </select>
         </div>
+        <p>{errors.itemCategory}</p>
+
         <div className="input-group input-group-sm mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="inputGroup-sizing-sm">
@@ -127,6 +137,7 @@ const ItemForm = () => {
             onChange={onChange}
           />
         </div>
+        <p>{errors.itemPrice}</p>
 
         <Button variant="primary" type="submit">
           Submit
