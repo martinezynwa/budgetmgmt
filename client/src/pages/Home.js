@@ -1,14 +1,22 @@
 import React from 'react'
-import Stats from '../components/Stats'
+import Notification from '../components/Notification'
+import TotalCard from '../components/TotalCard'
 import Items from '../components/Items'
 import ItemForm from '../components/ItemForm'
+import { NotificationProvider } from '../context/NotificationContext'
+import { ItemProvider } from '../context/ItemsContext'
 
-const Home = props => {
+const Home = () => {
   return (
     <div>
-      <Stats />
-      <ItemForm />
-      <Items />
+      <NotificationProvider>
+        <ItemProvider>
+          <Notification />
+          <ItemForm />
+          <TotalCard />
+          <Items />
+        </ItemProvider>
+      </NotificationProvider>
     </div>
   )
 }

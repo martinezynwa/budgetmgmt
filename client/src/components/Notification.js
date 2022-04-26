@@ -1,19 +1,21 @@
 import React from 'react'
 import useNotification from '../context/NotificationContext'
+import { Alert } from 'react-bootstrap'
 
 const Notification = () => {
   const { notification } = useNotification()
-  if (!notification) return null
 
-  if (notification === 'SUCCESS') {
-    return <div>success</div>
+  if (!notification) {
+    return null
   }
 
-  if (notification === 'ERROR') {
-    return <div>error</div>
-  }
-
-  return <div>{notification}</div>
+  return (
+    <div>
+      <Alert key={'success'} variant={'success'}>
+        Item successfully {notification}
+      </Alert>
+    </div>
+  )
 }
 
 export default Notification

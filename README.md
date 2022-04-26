@@ -74,21 +74,31 @@
 - [x] buttons on homepage that will change items view per selected user
   - [x] after item is added, refetchQueries so new item is displayed immediately
   - [x] after item is deleted, refetchQueries
-- [ ] pop-up notifications
+- [x] pop-up notifications
   - [x] after item added
   - [x] after item deleted
   - [x] for any type of error
-  - [ ] after item edited
+  - [x] after item edited
 - [x] implement useReducer, useQuery
   - [x] implement AuthContext + authReducer
   - [x] implement NotificationContext + notificationReducer
   - [x] implement ItemContext + itemReducer
-- [ ] display total spending per user above addItem
+- [ ] start implementing CSS
+  - [x] category icons
+  - [x] custom form
+  - [x] item card
+  - [x] edit form
+  - [ ] notification bootstrap to custom css
+  - [ ] total spending card/button
+- [ ] display total spending card per user above addItem
 - [ ] check that price contains numbers only
-- [ ] button next to item, that will display drop-down menu with:
-  - [ ] delete button
-  - [ ] fields for editItem
-  - [ ] implement editItem mutation
+- [ ] fix refetchQueries after item is added/edited/deleted
+- [ ] uncontrolled component error during item editing
+- [x] button next to item, that will display popup with:
+  - [x] delete button
+  - [x] fields for editItem
+  - [x] implement editItem mutation
   - [ ] hide after item edited
+- [x] button for category addition(somewhere)
 
 ---

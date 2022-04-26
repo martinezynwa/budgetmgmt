@@ -77,10 +77,28 @@ const ADD_ITEM = gql`
   }
 `
 
+const UPDATE_ITEM = gql`
+  mutation editItem(
+    $itemId: ID!
+    $itemInput: ItemInput
+  ) {
+    editItem(itemID: $itemId, itemInput: $itemInput) {
+      id
+      itemDate
+      itemName
+      itemCategory
+      itemPrice {
+        price
+        currency
+      }
+    }
+  }
+`
+
 const DELETE_ITEM = gql`
   mutation removeItem($itemId: ID!) {
     removeItem(itemId: $itemId)
   }
 `
 
-export { REGISTER_USER, LOGIN_USER, ADD_ITEM, DELETE_ITEM }
+export { REGISTER_USER, LOGIN_USER, ADD_ITEM, UPDATE_ITEM, DELETE_ITEM }

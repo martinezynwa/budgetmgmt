@@ -4,9 +4,9 @@ import { ADD_ITEM } from '../graphql/mutations'
 import { CURRENT_MONTH_BY_USER } from '../graphql/queries'
 import useAuth from '../context/AuthContext'
 import useNotification from '../context/NotificationContext'
-
-import { Button } from 'react-bootstrap'
 import CategorySelect from './CategorySelect'
+import styles from '../styles/components/ItemForm.module.scss'
+
 const dayjs = require('dayjs')
 
 const ItemForm = () => {
@@ -42,12 +42,6 @@ const ItemForm = () => {
           username: user.username,
         },
       },
-      {
-        query: CURRENT_MONTH_BY_USER,
-        variables: {
-          selectedMonth: dayjs(new Date()).format('YYYY-MM'),
-        },
-      },
     ],
     onCompleted: () => {
       setItemInput(initialState)
@@ -62,86 +56,56 @@ const ItemForm = () => {
   }
 
   return (
-    <div>
+    <div className={styles.itemForm}>
       <form onSubmit={onSubmit}>
-        <div className="input-group input-group-sm mb-3">
-          <div className="input-group-prepend">
-            <span className="input-group-text" id="inputGroup-sizing-sm">
-              Date
-            </span>
-          </div>
+        <div className={styles.formControl}>
+          <label>Date</label>
           <input
             type="date"
-            className="form-control"
-            aria-label="Small"
-            aria-describedby="inputGroup-sizing-sm"
-            id="itemDate"
             value={itemInput.itemDate}
             name="itemDate"
             onChange={onChange}
           />
         </div>
-        <p>{errors.itemDate}</p>
+        <span className={styles.error}>{errors.itemDate}</span>
 
-        <div className="input-group input-group-sm mb-3">
-          <div className="input-group-prepend">
-            <span className="input-group-text" id="inputGroup-sizing-sm">
-              Item
-            </span>
-          </div>
+        <div className={styles.formControl}>
+          <label>Item</label>
           <input
             type="text"
-            className="form-control"
-            aria-label="Small"
-            aria-describedby="inputGroup-sizing-sm"
-            id="itemName"
             value={itemInput.itemName}
             name="itemName"
             onChange={onChange}
           />
         </div>
-        <p>{errors.itemName}</p>
+        <span className={styles.error}>{errors.itemName}</span>
 
-        <div className="input-group input-group-sm mb-3">
-          <div className="input-group-prepend">
-            <span className="input-group-text" id="inputGroup-sizing-sm">
-              Category
-            </span>
-          </div>
+        <div className={styles.formControl}>
+          <label>Category</label>
           <select
             type="text"
             name="itemCategory"
             onChange={onChange}
-            value={itemInput.itemCategory}
-            className="form-select"
-            aria-label="Default select example">
+            value={itemInput.itemCategory}>
             <CategorySelect />
           </select>
         </div>
-        <p>{errors.itemCategory}</p>
+        <span className={styles.error}>{errors.itemCategory}</span>
 
-        <div className="input-group input-group-sm mb-3">
-          <div className="input-group-prepend">
-            <span className="input-group-text" id="inputGroup-sizing-sm">
-              Price
-            </span>
-          </div>
+        <div className={styles.formControl}>
+          <label>Price</label>
           <input
             type="text"
-            className="form-control"
-            aria-label="Small"
-            aria-describedby="inputGroup-sizing-sm"
-            id="itemPrice"
             value={itemInput.itemPrice}
             name="itemPrice"
             onChange={onChange}
           />
         </div>
-        <p>{errors.itemPrice}</p>
+        <span className={styles.error}>{errors.itemPrice}</span>
 
-        <Button variant="primary" type="submit">
+        <button variant="primary" type="submit">
           Submit
-        </Button>
+        </button>
       </form>
     </div>
   )

@@ -125,26 +125,29 @@ const itemsResolvers = {
     editItem: async (_, args, context) => {
       const currentUser = await checkAuthorization(context)
       let item = {}
-
       try {
         item = await Item.findById(args.itemID)
       } catch (err) {
         throw new Error('ID of an item does not exist')
       }
 
-      if (!args.itemInput) {
-        throw new Error('At least one field must be edited')
-      }
-
       let { itemDate, itemName, itemCategory, itemPrice, itemUpdated } =
         args.itemInput
+
+      if (!itemDate && !itemName && !itemCategory && !itemPrice) {
+        throw new Error('At least one field must be edited')
+      }
 
       if (itemDate) {
         itemDate = dayjs(itemDate).format('YYYY-MM-DDTHH:mm:ss')
       }
 
       if (itemPrice) {
-        itemPrice = { ...itemPrice, currency: item.itemPrice.currency }
+        itemPrice = {
+          ...itemPrice,
+          price: itemPrice,
+          currency: item.itemPrice.currency,
+        }
       } else {
         itemPrice = {
           ...itemPrice,
