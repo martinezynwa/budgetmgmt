@@ -1,0 +1,29 @@
+.buttons {
+  margin: 15px;
+  text-align: center;
+}
+
+.selected {
+  display: inline-block;
+  padding: 6px 15px;
+  border: 6px solid rgb(255, 255, 255);
+  border-radius: 11px;
+  background-color: #4586e0;
+  color: #ffffff;
+}
+
+.nonselected {
+  display: inline-block;
+  padding: 6px 15px;
+  border: 6px solid rgb(255, 255, 255);
+  border-radius: 11px;
+  background-color: #9db7c9;
+  color: #ffffff;
+}
+
+.button {
+  color: #ffffff;
+  border: 0px solid rgb(255, 255, 255);
+  background-color: transparent;
+  padding: 6px 15px;
+}

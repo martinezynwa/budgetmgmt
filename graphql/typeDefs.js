@@ -72,6 +72,11 @@ const typeDefs = gql`
     email: String!
   }
 
+  type Total {
+    username: String
+    total: String
+  }
+
   type Query {
     getUsers: [User]
     getItems: [Item]
@@ -82,13 +87,15 @@ const typeDefs = gql`
     getCategories: [Category]
     getCategory(categoryName: String!): Category
     getCurrentMonthByUser(selectedMonth: String!, username: String): [Item]
+    getTotals(selectedMonth: String, username: String): [Total]
   }
 
   type Mutation {
     addItem(itemInput: ItemInput): Item!
     editItem(itemID: ID!, itemInput: ItemInput): Item!
     removeItem(itemId: ID!): String!
-    createCategory(category: CategoryInput): Category!
+    createCategory(categoryInput: CategoryInput): Category!
+    deleteCategory(categoryId: ID!): String!
     registerUser(registerInput: RegisterInput): User!
     loginUser(username: String!, password: String!): User!
   }

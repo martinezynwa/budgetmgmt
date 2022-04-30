@@ -75,6 +75,39 @@ const itemsResolvers = {
         throw new Error('Specific month not found')
       }
     },
+    getTotals: async (_, args) => {
+      try {
+        const allItems = await Item.find({})
+        const items = allItems
+          .filter(item =>
+            args.selectedMonth
+              ? item.itemDate.substring(0, 7) === args.selectedMonth
+              : true,
+          )
+          .filter(item =>
+            args.username ? item.createdBy.username === args.username : true,
+          )
+        const groupAndAdd = items =>
+          Object.values(
+            items.reduce(
+              (acc, { createdBy: { username }, itemPrice: { price } }) => {
+                acc.allUsers ??= { username: 'allUsers', total: 0 }
+                acc.allUsers.total += +price
+                if (username in acc) {
+                  acc[username].total += +price
+                } else {
+                  acc[username] = { username, total: +price }
+                }
+                return acc
+              },
+              {},
+            ),
+          )
+        return groupAndAdd(items)
+      } catch (err) {
+        throw new Error('User or month not found')
+      }
+    },
   },
 
   Mutation: {

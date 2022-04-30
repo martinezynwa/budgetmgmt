@@ -1,8 +1,6 @@
 const itemReducer = (state, action) => {
   switch (action.type) {
     case 'ALL':
-/*      console.log('state :>> ', state)
-      console.log('action :>> ', action)*/
       return {
         ...state,
         items: action.items,

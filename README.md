@@ -83,22 +83,36 @@
   - [x] implement AuthContext + authReducer
   - [x] implement NotificationContext + notificationReducer
   - [x] implement ItemContext + itemReducer
-- [ ] start implementing CSS
+- [x] start implementing CSS
   - [x] category icons
   - [x] custom form
   - [x] item card
   - [x] edit form
-  - [ ] notification bootstrap to custom css
-  - [ ] total spending card/button
-- [ ] display total spending card per user above addItem
-- [ ] check that price contains numbers only
-- [ ] fix refetchQueries after item is added/edited/deleted
-- [ ] uncontrolled component error during item editing
+  - [x] notification bootstrap to custom css
+  - [x] total spending card/button
+- [x] improve navbar styling
+- [x] display total spending card per user above addItem
+  - [x] backend to be updated
+  - [x] figure out how to return spending per user
+  - [x] implement the returned value into TotalCard
+- [x] fix disappearing user name after refresh
 - [x] button next to item, that will display popup with:
   - [x] delete button
   - [x] fields for editItem
   - [x] implement editItem mutation
   - [ ] hide after item edited
-- [x] button for category addition(somewhere)
+- [x] category addition(somewhere)
+  - [x] input
+  - [x] category card
+  - [x] category deletion
+    - [x] update backend
+- [x] .scss to .css
+- [ ] Statistics page
+- [ ] Toggle for adding items/categories
+- [ ] CategoryContext?
+- [ ] fix refetchQueries after item is added/edited/deleted
+- [ ] uncontrolled component error during item editing
+- [ ] improve the notification placement
+- [ ] check that price contains numbers only
 
 ---

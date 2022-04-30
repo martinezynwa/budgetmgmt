@@ -1,5 +1,6 @@
 const Category = require('../../models/Category')
 const { checkAuthorization } = require('../../util/auth')
+const { UserInputError } = require('apollo-server')
 
 const categoryResolvers = {
   Query: {
@@ -18,9 +19,23 @@ const categoryResolvers = {
     },
   },
   Mutation: {
-    createCategory: async (_, args, context) => {
+    createCategory: async (_, { categoryInput: { categoryName } }, context) => {
       const currentUser = await checkAuthorization(context)
-      const { categoryName } = args.category
+      if (!categoryName.trim()) {
+        throw new UserInputError('Category name cannot be empty', {
+          errors: {
+            category: 'Category name cannot be empty',
+          },
+        })
+      }
+      const categoryCheck = await Category.findOne({ categoryName })
+      if (categoryCheck) {
+        throw new UserInputError('Category exists already', {
+          errors: {
+            category: 'Category exists already',
+          },
+        })
+      }
 
       const createdBy = {
         username: currentUser.username,
@@ -28,14 +43,24 @@ const categoryResolvers = {
         date: new Date().toISOString(),
       }
 
-      const category = new Category({
+      const newCategory = new Category({
         categoryName,
         createdBy,
       })
 
-      await category.save()
+      await newCategory.save()
 
-      return category
+      return newCategory
+    },
+    deleteCategory: async (_, args, context) => {
+      await checkAuthorization(context)
+      try {
+        const category = await Category.findByIdAndDelete(args.categoryId)
+        await category.delete()
+        return `ID ${args.categoryId} deleted successfully`
+      } catch (err) {
+        throw new Error('ID of category does not exist')
+      }
     },
   },
 }

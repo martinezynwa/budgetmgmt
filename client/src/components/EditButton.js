@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client'
 import Button from 'react-bootstrap/Button'
 import { UPDATE_ITEM } from '../graphql/mutations'
-import { CURRENT_MONTH_BY_USER } from '../graphql/queries'
+import { CURRENT_MONTH_BY_USER, GET_TOTAL } from '../graphql/queries'
 import useNotification from '../context/NotificationContext'
 
 const dayjs = require('dayjs')
@@ -21,6 +21,9 @@ const EditButton = ({ itemId, itemInput }) => {
           selectedMonth: dayjs(new Date()).format('YYYY-MM'),
         },
       },
+      {
+        query: GET_TOTAL,
+      }
     ],
     onCompleted: () => {
       setNotification('edited', 5)

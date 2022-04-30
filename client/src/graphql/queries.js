@@ -53,6 +53,7 @@ const CURRENT_MONTH_BY_USER = gql`
 const ALL_CATEGORIES = gql`
   query getCategories {
     getCategories {
+      id
       categoryName
     }
   }
@@ -67,4 +68,19 @@ const ALL_USERS = gql`
   }
 `
 
-export { CURRENT_MONTH, ALL_CATEGORIES, ALL_USERS, CURRENT_MONTH_BY_USER }
+const GET_TOTAL = gql`
+  query getTotals($selectedMonth: String, $username: String) {
+    getTotals(selectedMonth: $selectedMonth, username: $username) {
+      username
+      total
+    }
+  }
+`
+
+export {
+  CURRENT_MONTH,
+  ALL_CATEGORIES,
+  ALL_USERS,
+  CURRENT_MONTH_BY_USER,
+  GET_TOTAL,
+}

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { ADD_ITEM } from '../graphql/mutations'
-import { CURRENT_MONTH_BY_USER } from '../graphql/queries'
+import { CURRENT_MONTH_BY_USER, GET_TOTAL } from '../graphql/queries'
 import useAuth from '../context/AuthContext'
 import useNotification from '../context/NotificationContext'
 import CategorySelect from './CategorySelect'
-import styles from '../styles/components/ItemForm.module.scss'
+import '../styles/components/ItemForm.css'
 
 const dayjs = require('dayjs')
 
@@ -42,6 +42,9 @@ const ItemForm = () => {
           username: user.username,
         },
       },
+      {
+        query: GET_TOTAL,
+      },
     ],
     onCompleted: () => {
       setItemInput(initialState)
@@ -56,33 +59,36 @@ const ItemForm = () => {
   }
 
   return (
-    <div className={styles.itemForm}>
+    <div className="itemForm">
       <form onSubmit={onSubmit}>
-        <div className={styles.formControl}>
-          <label>Date</label>
+        <div className="formControl">
+          <label className="formLabel">Date</label>
           <input
+            className="formInput"
             type="date"
             value={itemInput.itemDate}
             name="itemDate"
             onChange={onChange}
           />
         </div>
-        <span className={styles.error}>{errors.itemDate}</span>
+        <span className="formError">{errors.itemDate}</span>
 
-        <div className={styles.formControl}>
-          <label>Item</label>
+        <div className="formControl">
+          <label className="formLabel">Item</label>
           <input
+            className="formInput"
             type="text"
             value={itemInput.itemName}
             name="itemName"
             onChange={onChange}
           />
         </div>
-        <span className={styles.error}>{errors.itemName}</span>
+        <span className="formError">{errors.itemName}</span>
 
-        <div className={styles.formControl}>
-          <label>Category</label>
+        <div className="formControl">
+          <label className="formLabel">Category</label>
           <select
+            className="formSelect"
             type="text"
             name="itemCategory"
             onChange={onChange}
@@ -90,20 +96,21 @@ const ItemForm = () => {
             <CategorySelect />
           </select>
         </div>
-        <span className={styles.error}>{errors.itemCategory}</span>
+        <span className="formError">{errors.itemCategory}</span>
 
-        <div className={styles.formControl}>
-          <label>Price</label>
+        <div className="formControl">
+          <label className="formLabel">Price</label>
           <input
+            className="formInput"
             type="text"
             value={itemInput.itemPrice}
             name="itemPrice"
             onChange={onChange}
           />
         </div>
-        <span className={styles.error}>{errors.itemPrice}</span>
+        <span className="formError">{errors.itemPrice}</span>
 
-        <button variant="primary" type="submit">
+        <button variant="primary" type="submit" className="formButton">
           Submit
         </button>
       </form>

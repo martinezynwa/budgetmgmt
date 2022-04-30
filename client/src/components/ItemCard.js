@@ -1,24 +1,25 @@
 import React from 'react'
-import styles from '../styles/components/ItemCard.module.scss'
 import CategoryIcon from './CategoryIcon'
 import ItemModal from './ItemModal'
+import '../styles/components/ItemCard.css'
+
 const dayjs = require('dayjs')
 
 const ItemCard = ({ item }) => {
   return (
-    <div className={styles.itemCard}>
-      <div className={styles.date}>{dayjs(item.itemDate).format('DD MMM')}</div>
-      <div className={styles.category}>
+    <div className="itemCard">
+      <div className="itemDate">{dayjs(item.itemDate).format('DD MMM')}</div>
+      <div className="itemCategory">
         <CategoryIcon itemCategory={item.itemCategory} />
       </div>
-      <div className={styles.info}>
-        <div className={styles.title}>{item.itemName}</div>
-        <div className={styles.user}>{item.createdBy.name.split(' ')[0]}</div>
+      <div className="itemInfo">
+        <div className="itemTitle">{item.itemName}</div>
+        <div className="itemUser">{item.createdBy.name.split(' ')[0]}</div>
       </div>
-      <div className={styles.price}>
+      <div className="itemPrice">
         {item.itemPrice.price} {item.itemPrice.currency}
       </div>
-      <div className={styles.editButton}>
+      <div className="itemEditButton">
         <ItemModal item={item} />
       </div>
     </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import CategorySelect from './CategorySelect'
-import formStyles from '../styles/components/ItemForm.module.scss'
+import '../styles/components/ItemForm.css'
 import { FaEdit } from 'react-icons/fa'
 
 import EditButton from './EditButton'
@@ -25,10 +25,7 @@ const ItemModal = ({ item }) => {
 
   return (
     <div>
-      <FaEdit
-        className={formStyles.editButton}
-        variant="primary"
-        onClick={handleShow}>
+      <FaEdit className="formEditButton" variant="primary" onClick={handleShow}>
         Edit
       </FaEdit>
 
@@ -38,11 +35,12 @@ const ItemModal = ({ item }) => {
         </Modal.Header>
 
         <Modal.Body>
-          <div className={formStyles.itemForm}>
+          <div className="itemForm">
             <form>
-              <div className={formStyles.formControl}>
-                <label>Date</label>
+              <div className="formControl">
+                <label className="formLabel">Date</label>
                 <input
+                  className="formInput"
                   type="date"
                   name="itemDate"
                   id="date"
@@ -52,9 +50,10 @@ const ItemModal = ({ item }) => {
                 />
               </div>
 
-              <div className={formStyles.formControl}>
-                <label>Item</label>
+              <div>
+                <label className="formLabel">Item</label>
                 <input
+                  className="formInput"
                   type="text"
                   name="itemName"
                   placeholder={item.itemName}
@@ -63,9 +62,10 @@ const ItemModal = ({ item }) => {
                 />
               </div>
 
-              <div className={formStyles.formControl}>
-                <label>Category</label>
+              <div>
+                <label className="formLabel">Category</label>
                 <select
+                  className="formSelect"
                   type="text"
                   name="itemCategory"
                   placeholder={item.itemCategory}
@@ -75,9 +75,10 @@ const ItemModal = ({ item }) => {
                 </select>
               </div>
 
-              <div className={formStyles.formControl}>
-                <label>Price</label>
+              <div>
+                <label className="formLabel">Price</label>
                 <input
+                  className="formInput"
                   type="text"
                   name="itemPrice"
                   placeholder={item.itemPrice.price}
@@ -93,7 +94,7 @@ const ItemModal = ({ item }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <DeleteButton itemId={item.id} />
+          <DeleteButton className="formEditButton" itemId={item.id} />
           <EditButton
             itemId={item.id}
             itemInput={itemInput}

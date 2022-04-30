@@ -5,6 +5,11 @@ import {
   FaBeer,
   FaWineGlassAlt,
   FaEllipsisH,
+  FaHome,
+  FaGift,
+  FaRegStar,
+  FaBusAlt,
+  FaHamburger,
 } from 'react-icons/fa'
 import { RiRestaurantFill } from 'react-icons/ri'
 
@@ -24,10 +29,18 @@ const CategoryIcon = itemCategory => {
       return <FaBeer style={style} />
     case 'Wine':
       return <FaWineGlassAlt style={style} />
+    case 'Home':
+      return <FaHome style={style} />
+    case 'Gifts':
+      return <FaGift style={style} />
+    case 'Transportation':
+      return <FaBusAlt style={style} />
+    case 'Take-out food':
+      return <FaHamburger style={style} />
     case 'Others':
       return <FaEllipsisH style={style} />
     default:
-      return null
+      return <FaRegStar style={style} />
   }
 }
 

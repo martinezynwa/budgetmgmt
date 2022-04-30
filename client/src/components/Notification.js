@@ -1,6 +1,6 @@
 import React from 'react'
 import useNotification from '../context/NotificationContext'
-import { Alert } from 'react-bootstrap'
+import '../styles/components/Notification.css'
 
 const Notification = () => {
   const { notification } = useNotification()
@@ -10,11 +10,7 @@ const Notification = () => {
   }
 
   return (
-    <div>
-      <Alert key={'success'} variant={'success'}>
-        Item successfully {notification}
-      </Alert>
-    </div>
+    <div className='notification'>Item successfully {notification}</div>
   )
 }
 

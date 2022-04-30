@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client'
 
 import { DELETE_ITEM } from '../graphql/mutations'
-import { CURRENT_MONTH_BY_USER } from '../graphql/queries'
+import { CURRENT_MONTH_BY_USER, GET_TOTAL } from '../graphql/queries'
 import useNotification from '../context/NotificationContext'
 import Button from 'react-bootstrap/Button'
 
@@ -22,12 +22,17 @@ const DeleteButton = itemId => {
           selectedMonth: dayjs(new Date()).format('YYYY-MM'),
         },
       },
+      {
+        query: GET_TOTAL,
+      },
     ],
+    onCompleted: () => {
+      setNotification('deleted', 5)
+    },
   })
 
   const triggerDeletion = itemId => {
     deleteItem({ variables: { itemId: itemId.itemId } })
-    setNotification('deleted', 5)
   }
 
   return (

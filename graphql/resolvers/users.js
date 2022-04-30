@@ -51,7 +51,6 @@ const usersResolvers = {
           },
         })
       }
-      console.log(errors)
 
       password = await bcrypt.hash(password, 12)
 

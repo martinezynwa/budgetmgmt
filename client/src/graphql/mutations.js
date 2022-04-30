@@ -78,10 +78,7 @@ const ADD_ITEM = gql`
 `
 
 const UPDATE_ITEM = gql`
-  mutation editItem(
-    $itemId: ID!
-    $itemInput: ItemInput
-  ) {
+  mutation editItem($itemId: ID!, $itemInput: ItemInput) {
     editItem(itemID: $itemId, itemInput: $itemInput) {
       id
       itemDate
@@ -101,4 +98,26 @@ const DELETE_ITEM = gql`
   }
 `
 
-export { REGISTER_USER, LOGIN_USER, ADD_ITEM, UPDATE_ITEM, DELETE_ITEM }
+const CREATE_CATEGORY = gql`
+  mutation createCategory($categoryName: String) {
+    createCategory(categoryInput: { categoryName: $categoryName }) {
+      id
+      categoryName
+    }
+  }
+`
+const DELETE_CATEGORY = gql`
+  mutation deleteCategory($categoryId: ID!) {
+    deleteCategory(categoryId: $categoryId)
+  }
+`
+
+export {
+  REGISTER_USER,
+  LOGIN_USER,
+  ADD_ITEM,
+  UPDATE_ITEM,
+  DELETE_ITEM,
+  CREATE_CATEGORY,
+  DELETE_CATEGORY,
+}
