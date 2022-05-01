@@ -1,12 +1,13 @@
 import React, { useReducer, createContext, useContext, useEffect } from 'react'
 import { useQuery } from '@apollo/client'
-import { CURRENT_MONTH_BY_USER } from '../graphql/queries'
+import { CURRENT_MONTH_BY_USER, ALL_ITEMS } from '../graphql/queries'
 import itemReducer from '../reducers/itemReducer'
 const dayjs = require('dayjs')
 
 const ItemContext = createContext()
 
 export const ItemProvider = ({ children }) => {
+  let allItems = []
   let items = []
   const selectedMonth = dayjs(new Date()).format('YYYY-MM')
   const [state, dispatch] = useReducer(itemReducer, [])
@@ -17,6 +18,12 @@ export const ItemProvider = ({ children }) => {
 
   if (result.data && result.data.getCurrentMonthByUser) {
     items = [...result.data.getCurrentMonthByUser]
+  }
+
+  const resultAllItems = useQuery(ALL_ITEMS)
+
+  if (resultAllItems.data && resultAllItems.data.getItems) {
+    allItems = [...resultAllItems.data.getItems]
   }
 
   useEffect(() => {
@@ -35,9 +42,17 @@ export const ItemProvider = ({ children }) => {
     })
   }
 
+  const getAllItems = selectedMonth => {
+    dispatch({
+      type: 'ALL_ITEMS',
+      data: { allItems, selectedMonth },
+    })
+  }
+
   const value = {
     items: state.items,
     getItems,
+    getAllItems,
   }
   return <ItemContext.Provider value={value}>{children}</ItemContext.Provider>
 }

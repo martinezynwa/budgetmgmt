@@ -104,7 +104,7 @@
 
   .item {
     display: block;
-    padding: 52px;
+    padding: 63px;
     width: 100%;
     color: #ffffff;
     font-weight: 600;
@@ -112,7 +112,7 @@
   }
 
   .logout {
-    padding: 52px;
+    padding: 63px;
     color: #ffffff;
     font-weight: 600;
     background-color: transparent;

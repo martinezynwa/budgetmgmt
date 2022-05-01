@@ -24,11 +24,6 @@
   font-weight: 500;
 }
 
-.count {
-  font-size: 12px;
-  font-style: italic;
-}
-
 .deleteCategory {
   font-size: 25px;
   display: flex;

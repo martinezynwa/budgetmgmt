@@ -1,5 +1,30 @@
 import { gql } from 'graphql-tag'
 
+const ALL_ITEMS = gql`
+  query getItems {
+    getItems {
+      id
+      itemDate
+      itemName
+      itemCategory
+      itemPrice {
+        price
+        currency
+      }
+      itemUpdated {
+        isUpdated
+        updatedBy
+        updateStamp
+      }
+      createdBy {
+        username
+        name
+        date
+      }
+    }
+  }
+`
+
 const CURRENT_MONTH = gql`
   query getCurrentMonth {
     getCurrentMonth {
@@ -78,6 +103,7 @@ const GET_TOTAL = gql`
 `
 
 export {
+  ALL_ITEMS,
   CURRENT_MONTH,
   ALL_CATEGORIES,
   ALL_USERS,

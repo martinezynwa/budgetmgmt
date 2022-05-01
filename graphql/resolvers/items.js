@@ -10,6 +10,7 @@ const itemsResolvers = {
     getItems: async () => {
       try {
         const items = await Item.find({})
+        console.log('items :>> ', items)
         return items
       } catch (err) {
         throw new Error(err)
@@ -78,15 +79,11 @@ const itemsResolvers = {
     getTotals: async (_, args) => {
       try {
         const allItems = await Item.find({})
-        const items = allItems
-          .filter(item =>
-            args.selectedMonth
-              ? item.itemDate.substring(0, 7) === args.selectedMonth
-              : true,
-          )
-          .filter(item =>
-            args.username ? item.createdBy.username === args.username : true,
-          )
+        const items = allItems.filter(item =>
+          args.selectedMonth
+            ? item.itemDate.substring(0, 7) === args.selectedMonth
+            : true,
+        )
         const groupAndAdd = items =>
           Object.values(
             items.reduce(

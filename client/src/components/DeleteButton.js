@@ -7,11 +7,10 @@ import Button from 'react-bootstrap/Button'
 
 const dayjs = require('dayjs')
 
-const DeleteButton = itemId => {
+const DeleteButton = ({ item }) => {
   const { setNotification } = useNotification()
-
   const [deleteItem] = useMutation(DELETE_ITEM, {
-    variables: itemId,
+    variables: item.id,
     onError(err) {
       console.log(err)
     },
@@ -24,6 +23,17 @@ const DeleteButton = itemId => {
       },
       {
         query: GET_TOTAL,
+        variables: {
+          selectedMonth: dayjs(new Date()).format('YYYY-MM'),
+          username: item.createdBy.username,
+        },
+      },
+      {
+        query: GET_TOTAL,
+        variables: {
+          selectedMonth: dayjs(new Date()).format('YYYY-MM'),
+          username: 'allUsers',
+        },
       },
     ],
     onCompleted: () => {
@@ -31,13 +41,13 @@ const DeleteButton = itemId => {
     },
   })
 
-  const triggerDeletion = itemId => {
-    deleteItem({ variables: { itemId: itemId.itemId } })
+  const triggerDeletion = id => {
+    deleteItem({ variables: { itemId: id } })
   }
 
   return (
     <div>
-      <Button onClick={() => triggerDeletion(itemId)}>Delete</Button>
+      <Button onClick={() => triggerDeletion(item.id)}>Delete</Button>
     </div>
   )
 }

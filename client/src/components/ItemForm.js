@@ -44,6 +44,17 @@ const ItemForm = () => {
       },
       {
         query: GET_TOTAL,
+        variables: {
+          selectedMonth: dayjs(new Date()).format('YYYY-MM'),
+          username: user.username,
+        },
+      },
+      {
+        query: GET_TOTAL,
+        variables: {
+          selectedMonth: dayjs(new Date()).format('YYYY-MM'),
+          username: 'allUsers',
+        },
       },
     ],
     onCompleted: () => {

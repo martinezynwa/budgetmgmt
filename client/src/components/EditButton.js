@@ -6,11 +6,10 @@ import useNotification from '../context/NotificationContext'
 
 const dayjs = require('dayjs')
 
-const EditButton = ({ itemId, itemInput }) => {
+const EditButton = ({ item, itemInput }) => {
   const { setNotification } = useNotification()
-
   const [editItem] = useMutation(UPDATE_ITEM, {
-    variables: { itemId: itemId, itemInput: itemInput },
+    variables: { itemId: item.id, itemInput: itemInput },
     onError(err) {
       console.log(err)
     },
@@ -23,7 +22,18 @@ const EditButton = ({ itemId, itemInput }) => {
       },
       {
         query: GET_TOTAL,
-      }
+        variables: {
+          selectedMonth: dayjs(new Date()).format('YYYY-MM'),
+          username: item.createdBy.username,
+        },
+      },
+      {
+        query: GET_TOTAL,
+        variables: {
+          selectedMonth: dayjs(new Date()).format('YYYY-MM'),
+          username: 'allUsers',
+        },
+      },
     ],
     onCompleted: () => {
       setNotification('edited', 5)
@@ -36,7 +46,7 @@ const EditButton = ({ itemId, itemInput }) => {
 
   return (
     <div>
-      <Button onClick={() => triggerEdit(itemId, itemInput)}>Edit</Button>
+      <Button onClick={() => triggerEdit(item.id, itemInput)}>Edit</Button>
     </div>
   )
 }

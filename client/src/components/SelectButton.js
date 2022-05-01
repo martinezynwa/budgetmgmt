@@ -22,6 +22,7 @@ const TotalCard = () => {
     getItems(username, currentMonth)
     setActiveButton(username)
   }
+  
   return (
     <div className="buttons">
       <div className={activeButton === '' ? 'selected' : 'nonselected'}>

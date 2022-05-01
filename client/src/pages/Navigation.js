@@ -35,6 +35,11 @@ const Navigation = () => {
             </Link>
           </li>
           <li>
+            <Link to="/allrecords" onClick={handleClick} className="item">
+              All Records
+            </Link>
+          </li>
+          <li>
             <Link to="/statistics" onClick={handleClick} className="item">
               Statistics
             </Link>

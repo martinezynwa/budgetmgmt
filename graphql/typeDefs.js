@@ -14,6 +14,7 @@ const typeDefs = gql`
   type Category {
     id: ID!
     categoryName: String!
+    importance: String!
   }
 
   type Price {
@@ -52,6 +53,7 @@ const typeDefs = gql`
 
   input CategoryInput {
     categoryName: String
+    importance: String
   }
 
   input PriceInput {

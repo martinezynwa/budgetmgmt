@@ -11,7 +11,6 @@ const CategoryCard = ({ category }) => {
       </div>
       <div className="categoryInfo">
         <div className="categoryName">{category.categoryName}</div>
-        <div className="count">Used x times</div>
       </div>
       <div className="deleteCategory">
         <DeleteCategoryButton id={category.id} />

@@ -94,9 +94,9 @@ const ItemModal = ({ item }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <DeleteButton className="formEditButton" itemId={item.id} />
+          <DeleteButton className="formEditButton" item={item} />
           <EditButton
-            itemId={item.id}
+            item={item}
             itemInput={itemInput}
             onSubmit={handleClose}
           />

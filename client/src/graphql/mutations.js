@@ -99,10 +99,13 @@ const DELETE_ITEM = gql`
 `
 
 const CREATE_CATEGORY = gql`
-  mutation createCategory($categoryName: String) {
-    createCategory(categoryInput: { categoryName: $categoryName }) {
+  mutation createCategory($categoryName: String!, $importance: String!) {
+    createCategory(
+      categoryInput: { categoryName: $categoryName, importance: $importance }
+    ) {
       id
       categoryName
+      importance
     }
   }
 `

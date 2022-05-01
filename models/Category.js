@@ -6,6 +6,11 @@ const schema = new mongoose.Schema({
     required: true,
   },
 
+  importance: {
+    type: Number,
+    required: true,
+  },
+
   createdBy: {
     type: Object,
 

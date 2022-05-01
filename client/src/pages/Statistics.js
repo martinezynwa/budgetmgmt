@@ -1,11 +1,5 @@
-import React from 'react'
-
 const Statistics = () => {
-  return (
-    <div>
-      <h1>Statistics page</h1>
-    </div>
-  )
+  return <div>Statistics page</div>
 }
 
 export default Statistics

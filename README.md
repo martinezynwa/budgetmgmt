@@ -107,12 +107,21 @@
   - [x] category deletion
     - [x] update backend
 - [x] .scss to .css
+- [x] importance to category
+- [x] CategoryContext
+- [x] Page that will show all reacords
+  - [x] udpate backend
+  - [x] update/create context/reducers
+  - [x] create All Records page
+  - [x] filter according to year and month
+  - [x] total spending card synced with selected year+month
 - [ ] Statistics page
-- [ ] Toggle for adding items/categories
-- [ ] CategoryContext?
+- [ ] difference between users
+- [ ] Toggle for hiding of adding items/categories
 - [ ] fix refetchQueries after item is added/edited/deleted
 - [ ] uncontrolled component error during item editing
 - [ ] improve the notification placement
 - [ ] check that price contains numbers only
+- [ ] validation for category on backend into separate component
 
 ---

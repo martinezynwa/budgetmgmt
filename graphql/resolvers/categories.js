@@ -5,10 +5,11 @@ const { UserInputError } = require('apollo-server')
 const categoryResolvers = {
   Query: {
     getCategories: async () => {
-      const categories = await Category.find({})
-      if (categories) {
-        return categories
-      }
+      const allCategories = await Category.find({})
+      const categories = allCategories.sort(
+        (a, b) => a.importance - b.importance,
+      )
+      return categories
     },
     getCategory: async (_, args) => {
       const categories = await Category.find({})
@@ -19,7 +20,11 @@ const categoryResolvers = {
     },
   },
   Mutation: {
-    createCategory: async (_, { categoryInput: { categoryName } }, context) => {
+    createCategory: async (
+      _,
+      { categoryInput: { categoryName, importance } },
+      context,
+    ) => {
       const currentUser = await checkAuthorization(context)
       if (!categoryName.trim()) {
         throw new UserInputError('Category name cannot be empty', {
@@ -28,11 +33,25 @@ const categoryResolvers = {
           },
         })
       }
+      if (!importance) {
+        throw new UserInputError('Importance cannot be empty', {
+          errors: {
+            category: 'Importance cannot be empty',
+          },
+        })
+      }
       const categoryCheck = await Category.findOne({ categoryName })
       if (categoryCheck) {
         throw new UserInputError('Category exists already', {
           errors: {
             category: 'Category exists already',
+          },
+        })
+      }
+      if (Number(importance) >= 6 || Number(importance) <= 0) {
+        throw new UserInputError('Input between 0-5', {
+          errors: {
+            category: 'Input between 1-5',
           },
         })
       }
@@ -45,6 +64,7 @@ const categoryResolvers = {
 
       const newCategory = new Category({
         categoryName,
+        importance,
         createdBy,
       })
 

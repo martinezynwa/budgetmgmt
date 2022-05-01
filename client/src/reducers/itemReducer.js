@@ -5,6 +5,16 @@ const itemReducer = (state, action) => {
         ...state,
         items: action.items,
       }
+    case 'ALL_ITEMS':
+      let { allItems, selectedMonth } = action.data
+
+      allItems = action.data.allItems.filter(
+        item => item.itemDate.substring(0, 7) === selectedMonth,
+      )
+      return {
+        ...state,
+        items: allItems,
+      }
     case 'FILTERED':
       let { username, items } = action.data
       if (!username) {
@@ -13,7 +23,10 @@ const itemReducer = (state, action) => {
       items = action.data.items.filter(
         item => item.createdBy.username === username,
       )
-      return { items }
+      return {
+        ...state,
+        items: items,
+      }
     default:
       return state
   }

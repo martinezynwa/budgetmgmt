@@ -10,6 +10,7 @@ const CategoryForm = () => {
 
   const initialState = {
     categoryName: '',
+    importance: '',
   }
   const [categoryInput, setCategoryInput] = useState(initialState)
 
@@ -26,7 +27,7 @@ const CategoryForm = () => {
     variables: categoryInput,
 
     onError(err) {
-      setErrors(err.graphQLErrors[0].extensions.errors.category)
+      setErrors(err.graphQLErrors[0].extensions.errors)
     },
     refetchQueries: () => [
       {
@@ -35,7 +36,7 @@ const CategoryForm = () => {
     ],
     onCompleted: () => {
       setCategoryInput(initialState)
-      setErrors('')
+      setErrors({})
       setNotification('added', 5)
     },
   })
@@ -58,8 +59,16 @@ const CategoryForm = () => {
               name="categoryName"
               onChange={onChange}
             />
+            <label className="categoryLabel">Importance(1-5)</label>
+            <input
+              className="categoryInput"
+              type="number"
+              value={categoryInput.importance}
+              name="importance"
+              onChange={onChange}
+            />
           </div>
-          <span className="error">{errors}</span>
+          <span className="error">{errors.category}</span>
 
           <button variant="primary" type="submit" className="categoryButton">
             Submit

@@ -1,5 +1,6 @@
 import {
   FaShoppingBasket,
+  FaUtensils,
   FaCar,
   FaCat,
   FaBeer,
@@ -9,9 +10,11 @@ import {
   FaGift,
   FaRegStar,
   FaBusAlt,
-  FaHamburger,
+  FaPizzaSlice,
+  FaHeart,
+  FaHotel,
+  FaMusic,
 } from 'react-icons/fa'
-import { RiRestaurantFill } from 'react-icons/ri'
 
 const style = { fontSize: '2em' }
 
@@ -24,7 +27,7 @@ const CategoryIcon = itemCategory => {
     case 'Pets':
       return <FaCat style={style} />
     case 'Restaurants':
-      return <RiRestaurantFill style={style} />
+      return <FaUtensils style={style} />
     case 'Beer':
       return <FaBeer style={style} />
     case 'Wine':
@@ -36,7 +39,13 @@ const CategoryIcon = itemCategory => {
     case 'Transportation':
       return <FaBusAlt style={style} />
     case 'Take-out food':
-      return <FaHamburger style={style} />
+      return <FaPizzaSlice style={style} />
+    case 'Drugstore':
+      return <FaHeart style={style} />
+    case 'Accomodation':
+      return <FaHotel style={style} />
+    case 'Concerts':
+      return <FaMusic style={style} />
     case 'Others':
       return <FaEllipsisH style={style} />
     default:
