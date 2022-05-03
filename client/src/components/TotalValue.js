@@ -10,12 +10,13 @@ const TotalValue = ({ username, selectedMonth }) => {
   if (resultTotal.data && resultTotal.data.getTotals) {
     total = [...resultTotal.data.getTotals]
   }
-  const returnTotal = total.map(t => (t.username === username ? t.total : null))
+  const returnTotal = total.find(t => t.username === username)
 
-  if (returnTotal.length === 0) {
+  if (!returnTotal) {
     return 0
   }
-  return returnTotal
+
+  return returnTotal.total
 }
 
 export default TotalValue

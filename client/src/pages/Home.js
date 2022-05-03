@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <>
       <ItemProvider>
-        <TotalCard selectedMonth={selectedMonth} />
+        <TotalCard selectedMonth={selectedMonth} showDifference={true} />
         <ItemForm />
         <SelectButton />
         <Notification />

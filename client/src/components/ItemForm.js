@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { ADD_ITEM } from '../graphql/mutations'
-import { CURRENT_MONTH_BY_USER, GET_TOTAL } from '../graphql/queries'
+import {
+  CURRENT_MONTH_BY_USER,
+  GET_TOTAL,
+  GET_ALL_TIME_TOTALS,
+} from '../graphql/queries'
 import useAuth from '../context/AuthContext'
 import useNotification from '../context/NotificationContext'
 import CategorySelect from './CategorySelect'
@@ -56,6 +60,7 @@ const ItemForm = () => {
           username: 'allUsers',
         },
       },
+      { query: GET_ALL_TIME_TOTALS },
     ],
     onCompleted: () => {
       setItemInput(initialState)

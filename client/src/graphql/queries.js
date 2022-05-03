@@ -102,6 +102,15 @@ const GET_TOTAL = gql`
   }
 `
 
+const GET_ALL_TIME_TOTALS = gql`
+  query getAllTimeTotals {
+    getAllTimeTotals {
+      username
+      total
+    }
+  }
+`
+
 export {
   ALL_ITEMS,
   CURRENT_MONTH,
@@ -109,4 +118,5 @@ export {
   ALL_USERS,
   CURRENT_MONTH_BY_USER,
   GET_TOTAL,
+  GET_ALL_TIME_TOTALS,
 }

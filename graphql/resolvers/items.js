@@ -10,7 +10,6 @@ const itemsResolvers = {
     getItems: async () => {
       try {
         const items = await Item.find({})
-        console.log('items :>> ', items)
         return items
       } catch (err) {
         throw new Error(err)
@@ -90,6 +89,28 @@ const itemsResolvers = {
               (acc, { createdBy: { username }, itemPrice: { price } }) => {
                 acc.allUsers ??= { username: 'allUsers', total: 0 }
                 acc.allUsers.total += +price
+                if (username in acc) {
+                  acc[username].total += +price
+                } else {
+                  acc[username] = { username, total: +price }
+                }
+                return acc
+              },
+              {},
+            ),
+          )
+        return groupAndAdd(items)
+      } catch (err) {
+        throw new Error('User or month not found')
+      }
+    },
+    getAllTimeTotals: async () => {
+      try {
+        const items = await Item.find({})
+        const groupAndAdd = items =>
+          Object.values(
+            items.reduce(
+              (acc, { createdBy: { username }, itemPrice: { price } }) => {
                 if (username in acc) {
                   acc[username].total += +price
                 } else {

@@ -38,6 +38,7 @@
 }
 
 .difference {
-  font-size: 10px;
+  color: red;
+  font-size: 11px;
   width: 99%;
 }

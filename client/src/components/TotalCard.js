@@ -1,20 +1,31 @@
 import React from 'react'
-import { ALL_USERS } from '../graphql/queries'
+import { ALL_USERS, GET_ALL_TIME_TOTALS } from '../graphql/queries'
 import '../styles/components/TotalCard.css'
 import { useQuery } from '@apollo/client'
 import TotalValue from './TotalValue'
+import TotalDifference from './TotalDifference'
 
-const TotalCard = ({ selectedMonth }) => {
+const dayjs = require('dayjs')
+
+const TotalCard = ({ selectedMonth, showDifference }) => {
   let users = []
+  let totals = []
   const result = useQuery(ALL_USERS)
+  const resultTotals = useQuery(GET_ALL_TIME_TOTALS)
 
   if (result.data && result.data.getUsers) {
     users = [...result.data.getUsers]
   }
 
+  if (resultTotals.data && resultTotals.data.getAllTimeTotals) {
+    totals = [...resultTotals.data.getAllTimeTotals]
+  }
+
   return (
     <div className="totals">
-      <div className="total-header">{selectedMonth}</div>
+      <div className="total-header">
+        {selectedMonth ? dayjs(selectedMonth).format('MMMM YYYY') : null}
+      </div>
       <div className="total">
         <div className="total-name">Total</div>
         <div className="amount">
@@ -30,7 +41,9 @@ const TotalCard = ({ selectedMonth }) => {
               selectedMonth={selectedMonth}
             />{' '}
             Kč
-            <div className="difference">-45 Kč</div>
+            {totals && showDifference ? (
+              <TotalDifference username={user.username} totals={totals} />
+            ) : null}
           </div>
         </div>
       ))}

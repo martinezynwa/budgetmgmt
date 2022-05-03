@@ -90,6 +90,7 @@ const typeDefs = gql`
     getCategory(categoryName: String!): Category
     getCurrentMonthByUser(selectedMonth: String!, username: String): [Item]
     getTotals(selectedMonth: String, username: String): [Total]
+    getAllTimeTotals: [Total]
   }
 
   type Mutation {
