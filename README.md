@@ -43,8 +43,6 @@
 - [x] figure out item categories
 - [x] category resolvers, models, mutations etc.
 - [x] timestamps - 1 format, dayjs necessary?
-- [ ] category name link with item name - **don't need right now**
-- [ ] link item and categories with user etc. **to be tested better with frontend**
 - [x] default values for currency
 
 ---
@@ -100,7 +98,6 @@
   - [x] delete button
   - [x] fields for editItem
   - [x] implement editItem mutation
-  - [ ] hide after item edited
 - [x] category addition(somewhere)
   - [x] input
   - [x] category card
@@ -119,10 +116,14 @@
 - [ ] Statistics per category page
 - [ ] Toggle for hiding of adding items/categories
 - [ ] fix refetchQueries after item is added/edited/deleted
+- [ ] hide popup after item gets edited
 - [ ] uncontrolled component error during item editing
-- [ ] improve the notification placement
-- [ ] check that price contains numbers only
+- [ ] improve the notification placement or maybe change the style itself
+- [ ] check that price contains numbers only? necessary?
+- [ ] popup that asks if item should be edited/deleted
 - [ ] validation for category on backend into separate component
 - [ ] add check that default categories cannot be deleted
+- [ ] some operations with items may be turned into more reducers?
+- [ ] check about linking items with user in an easier way(like in the video course)
 
 ---
