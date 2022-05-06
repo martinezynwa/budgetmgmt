@@ -22,7 +22,6 @@ const CategoryForm = () => {
       [event.target.name]: event.target.value,
     })
   }
-
   const [addCategory] = useMutation(CREATE_CATEGORY, {
     variables: categoryInput,
 
@@ -59,6 +58,7 @@ const CategoryForm = () => {
               name="categoryName"
               onChange={onChange}
             />
+            <span className="error">{errors.categoryName}</span>
             <label className="categoryLabel">Importance(1-5)</label>
             <input
               className="categoryInput"
@@ -68,7 +68,7 @@ const CategoryForm = () => {
               onChange={onChange}
             />
           </div>
-          <span className="error">{errors.category}</span>
+          <span className="error">{errors.importance}</span>
 
           <button variant="primary" type="submit" className="categoryButton">
             Submit

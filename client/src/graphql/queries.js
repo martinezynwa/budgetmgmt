@@ -111,6 +111,15 @@ const GET_ALL_TIME_TOTALS = gql`
   }
 `
 
+const GET_CATEGORY_TOTALS = gql`
+  query getCategoryTotals($selectedMonth: String) {
+    getCategoryTotals(selectedMonth: $selectedMonth) {
+      category
+      total
+    }
+  }
+`
+
 export {
   ALL_ITEMS,
   CURRENT_MONTH,
@@ -119,4 +128,5 @@ export {
   CURRENT_MONTH_BY_USER,
   GET_TOTAL,
   GET_ALL_TIME_TOTALS,
+  GET_CATEGORY_TOTALS,
 }

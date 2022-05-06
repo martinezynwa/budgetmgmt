@@ -75,6 +75,30 @@ const itemsResolvers = {
         throw new Error('Specific month not found')
       }
     },
+    getCategoryTotals: async (_, args) => {
+      try {
+        const allItems = await Item.find({})
+        const items = allItems
+          .filter(item =>
+            args.selectedMonth
+              ? item.itemDate.substring(0, 7) === args.selectedMonth
+              : true,
+          )
+          .reduce(function (c, x) {
+            if (!c[x.itemCategory])
+              c[x.itemCategory] = {
+                category: x.itemCategory,
+                total: 0,
+              }
+            c[x.itemCategory].total += Number(x.itemPrice.price)
+            return c
+          }, [])
+
+        return Object.values(items).sort((a, b) => b.total - a.total)
+      } catch (err) {
+        throw new Error('Specific month not found')
+      }
+    },
     getTotals: async (_, args) => {
       try {
         const allItems = await Item.find({})
@@ -152,7 +176,7 @@ const itemsResolvers = {
       }
 
       itemPrice = {
-        price: itemPrice,
+        price: Number(itemPrice),
         currency: 'Kč',
       }
 
@@ -194,11 +218,13 @@ const itemsResolvers = {
       }
 
       if (itemPrice) {
+        itemPrice = Number(itemPrice)
         itemPrice = {
           ...itemPrice,
           price: itemPrice,
           currency: item.itemPrice.currency,
         }
+        console.log('itemPrice :>> ', itemPrice)
       } else {
         itemPrice = {
           ...itemPrice,

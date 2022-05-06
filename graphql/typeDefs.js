@@ -53,6 +53,7 @@ const typeDefs = gql`
 
   input CategoryInput {
     categoryName: String
+    defaultCategory: Boolean
     importance: String
   }
 
@@ -79,6 +80,11 @@ const typeDefs = gql`
     total: String
   }
 
+  type CategoryTotal {
+    category: String
+    total: String
+  }
+
   type Query {
     getUsers: [User]
     getItems: [Item]
@@ -90,6 +96,7 @@ const typeDefs = gql`
     getCategory(categoryName: String!): Category
     getCurrentMonthByUser(selectedMonth: String!, username: String): [Item]
     getTotals(selectedMonth: String, username: String): [Total]
+    getCategoryTotals(selectedMonth: String): [CategoryTotal]
     getAllTimeTotals: [Total]
   }
 

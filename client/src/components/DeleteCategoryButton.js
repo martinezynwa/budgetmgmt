@@ -11,7 +11,7 @@ const DeleteCategoryButton = ({ id }) => {
   const [deleteItem] = useMutation(DELETE_CATEGORY, {
     variables: id,
     onError(err) {
-      console.log(err)
+      setNotification(err.graphQLErrors[0].message, 5)
     },
     refetchQueries: () => [
       {

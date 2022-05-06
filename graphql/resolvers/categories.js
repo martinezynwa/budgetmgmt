@@ -2,6 +2,8 @@ const Category = require('../../models/Category')
 const { checkAuthorization } = require('../../util/auth')
 const { UserInputError } = require('apollo-server')
 
+const { validateCategoryInput } = require('../../util/validators')
+
 const categoryResolvers = {
   Query: {
     getCategories: async () => {
@@ -26,35 +28,20 @@ const categoryResolvers = {
       context,
     ) => {
       const currentUser = await checkAuthorization(context)
-      if (!categoryName.trim()) {
-        throw new UserInputError('Category name cannot be empty', {
-          errors: {
-            category: 'Category name cannot be empty',
-          },
-        })
+      const { valid, errors } = validateCategoryInput(categoryName, importance)
+      if (!valid) {
+        throw new UserInputError('Errors', { errors })
       }
-      if (!importance) {
-        throw new UserInputError('Importance cannot be empty', {
-          errors: {
-            category: 'Importance cannot be empty',
-          },
-        })
-      }
+
       const categoryCheck = await Category.findOne({ categoryName })
       if (categoryCheck) {
         throw new UserInputError('Category exists already', {
           errors: {
-            category: 'Category exists already',
+            categoryName: 'Category exists already',
           },
         })
       }
-      if (Number(importance) >= 6 || Number(importance) <= 0) {
-        throw new UserInputError('Input between 0-5', {
-          errors: {
-            category: 'Input between 1-5',
-          },
-        })
-      }
+      const defaultCategory = true
 
       const createdBy = {
         username: currentUser.username,
@@ -65,6 +52,7 @@ const categoryResolvers = {
       const newCategory = new Category({
         categoryName,
         importance,
+        defaultCategory,
         createdBy,
       })
 
@@ -75,11 +63,18 @@ const categoryResolvers = {
     deleteCategory: async (_, args, context) => {
       await checkAuthorization(context)
       try {
-        const category = await Category.findByIdAndDelete(args.categoryId)
+        const category = await Category.findById(args.categoryId)
+        if (category.defaultCategory === true) {
+          throw new UserInputError('Default category cannot be deleted', {
+            errors: {
+              categoryName: 'Default category cannot be deleted',
+            },
+          })
+        }
         await category.delete()
         return `ID ${args.categoryId} deleted successfully`
       } catch (err) {
-        throw new Error('ID of category does not exist')
+        throw new Error(err)
       }
     },
   },

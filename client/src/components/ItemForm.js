@@ -5,6 +5,7 @@ import {
   CURRENT_MONTH_BY_USER,
   GET_TOTAL,
   GET_ALL_TIME_TOTALS,
+  GET_CATEGORY_TOTALS,
 } from '../graphql/queries'
 import useAuth from '../context/AuthContext'
 import useNotification from '../context/NotificationContext'
@@ -61,6 +62,7 @@ const ItemForm = () => {
         },
       },
       { query: GET_ALL_TIME_TOTALS },
+      { query: GET_CATEGORY_TOTALS },
     ],
     onCompleted: () => {
       setItemInput(initialState)
@@ -118,7 +120,7 @@ const ItemForm = () => {
           <label className="formLabel">Price</label>
           <input
             className="formInput"
-            type="text"
+            type="number"
             value={itemInput.itemPrice}
             name="itemPrice"
             onChange={onChange}

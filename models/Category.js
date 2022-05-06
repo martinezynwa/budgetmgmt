@@ -11,6 +11,10 @@ const schema = new mongoose.Schema({
     required: true,
   },
 
+  defaultCategory: {
+    type: Boolean,
+  },
+
   createdBy: {
     type: Object,
 

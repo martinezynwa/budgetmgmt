@@ -7,7 +7,7 @@ const AllRecords = () => {
   return (
     <>
       <ItemProvider>
-        <AllRecordsSelection />
+        <AllRecordsSelection records={true} />
         <Items />
       </ItemProvider>
     </>

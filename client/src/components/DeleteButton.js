@@ -1,9 +1,12 @@
 import { useMutation } from '@apollo/client'
-
 import { DELETE_ITEM } from '../graphql/mutations'
-import { CURRENT_MONTH_BY_USER, GET_TOTAL } from '../graphql/queries'
+import {
+  CURRENT_MONTH_BY_USER,
+  GET_TOTAL,
+  GET_ALL_TIME_TOTALS,
+} from '../graphql/queries'
 import useNotification from '../context/NotificationContext'
-import Button from 'react-bootstrap/Button'
+import '../styles/components/ItemForm.css'
 
 const dayjs = require('dayjs')
 
@@ -35,6 +38,7 @@ const DeleteButton = ({ item }) => {
           username: 'allUsers',
         },
       },
+      { query: GET_ALL_TIME_TOTALS },
     ],
     onCompleted: () => {
       setNotification('deleted', 5)
@@ -47,7 +51,9 @@ const DeleteButton = ({ item }) => {
 
   return (
     <div>
-      <Button onClick={() => triggerDeletion(item.id)}>Delete</Button>
+      <button className="modalButton" onClick={() => triggerDeletion(item.id)}>
+        Delete
+      </button>
     </div>
   )
 }

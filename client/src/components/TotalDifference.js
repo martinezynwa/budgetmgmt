@@ -1,11 +1,12 @@
 import '../styles/components/TotalCard.css'
 
 const TotalDifference = ({ username, totals }) => {
-  if (!username || totals.length === 0) {
+  if (!username || totals.length <= 1) {
     return null
   }
 
   let { total } = totals.find(t => t.username === username)
+
   let highestSpender = Math.max(...totals.map(t => t.total))
   const difference = total - highestSpender
 

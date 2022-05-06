@@ -1,17 +1,21 @@
 import React, { useState } from 'react'
 import TotalCard from './TotalCard'
+import StatisticsList from '../components/StatisticsList'
 import useItem from '../context/ItemsContext'
 import '../styles/components/StatSelection.css'
 const dayjs = require('dayjs')
 
-const AllRecordsSelection = () => {
+const AllRecordsSelection = ({ records }) => {
   const initialState = {
     month: '',
     year: '',
   }
   const [dateInput, setDateInput] = useState(initialState)
   const [selectedMonth, setSelectedMonth] = useState('')
-  const [infoText, setInfoText] = useState(`Total spent:`)
+  const [infoTextRecords, setInfoTextRecords] = useState(`Total spent:`)
+  const [infoTextCategories, setInfoTextCategories] = useState(
+    `Spending per category in ${dayjs(new Date()).format('MMM YYYY')}`,
+  )
   const [errors, setErrors] = useState('')
   const { getAllItems } = useItem()
 
@@ -33,10 +37,15 @@ const AllRecordsSelection = () => {
       return
     }
     setSelectedMonth(dateInput.year + '-' + dateInput.month)
-    setInfoText(
+    setInfoTextRecords(
       `Spending in ${dayjs(dateInput.year + dateInput.month).format(
         'MMMM YYYY',
       )}`,
+    )
+    setInfoTextCategories(
+      `Spending per category in ${dayjs(
+        dateInput.year + dateInput.month,
+      ).format('MMMM YYYY')}`,
     )
     getAllItems(dateInput.year + '-' + dateInput.month)
     setErrors('')
@@ -45,7 +54,7 @@ const AllRecordsSelection = () => {
   return (
     <>
       <div>
-        <div className="header">Select filter criteria</div>
+        <div className="infoText">Select filter criteria</div>
         <div className="itemForm">
           <form onSubmit={onSubmit}>
             <div className="formControl">
@@ -91,8 +100,14 @@ const AllRecordsSelection = () => {
           </form>
         </div>
       </div>
-      <div className="infoText">{infoText}</div>
-      <TotalCard selectedMonth={selectedMonth} />
+      <div className="infoText">
+        {records ? infoTextRecords : infoTextCategories}
+      </div>
+      {records ? (
+        <TotalCard selectedMonth={selectedMonth} />
+      ) : (
+        <StatisticsList selectedMonth={selectedMonth} />
+      )}
     </>
   )
 }

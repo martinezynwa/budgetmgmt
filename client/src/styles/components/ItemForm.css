@@ -38,10 +38,15 @@
   width: 100%;
 }
 
-.formEditButton {
-  font-size: 1.55em;
-}
-
 .formEditButton:hover {
   color: grey
+}
+
+.modalButton {
+  margin: 0px;
+  padding: 7px 15px;
+  border: 6px solid rgb(255, 255, 255);
+  border-radius: 11px;
+  background-color: #4586e0;
+  color: #ffffff;
 }

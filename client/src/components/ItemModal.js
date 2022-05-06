@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
 import CategorySelect from './CategorySelect'
 import '../styles/components/ItemForm.css'
 import { FaEdit } from 'react-icons/fa'
@@ -91,10 +90,13 @@ const ItemModal = ({ item }) => {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <button
+            className="modalButton"
+            variant="secondary"
+            onClick={handleClose}>
             Close
-          </Button>
-          <DeleteButton className="formEditButton" item={item} />
+          </button>
+          <DeleteButton item={item} />
           <EditButton
             item={item}
             itemInput={itemInput}
