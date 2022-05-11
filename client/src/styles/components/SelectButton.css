@@ -1,5 +1,5 @@
 .buttons {
-  margin: 15px;
+  margin: 15px 0px;
   text-align: center;
 }
 
@@ -14,7 +14,7 @@
 
 .nonselected {
   display: inline-block;
-  padding: 6px 15px;
+  padding: 6px 17px;
   border: 6px solid rgb(255, 255, 255);
   border-radius: 11px;
   background-color: #9db7c9;

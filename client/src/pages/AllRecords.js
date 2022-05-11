@@ -5,12 +5,12 @@ import Items from '../components/Items'
 
 const AllRecords = () => {
   return (
-    <>
+    <div className="container">
       <ItemProvider>
         <AllRecordsSelection records={true} />
         <Items />
       </ItemProvider>
-    </>
+    </div>
   )
 }
 

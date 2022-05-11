@@ -33,60 +33,58 @@ const ItemModal = ({ item }) => {
           <Modal.Title>Edit item</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body>
-          <div className="itemForm">
-            <form>
-              <div className="formControl">
-                <label className="formLabel">Date</label>
-                <input
-                  className="formInput"
-                  type="date"
-                  name="itemDate"
-                  id="date"
-                  placeholder={item.itemDate}
-                  value={itemInput.itemDate}
-                  onChange={onChange}
-                />
-              </div>
+        <Modal.Body className="modalContainer">
+          <form>
+            <div className="formControl">
+              <label className="formLabel">Date</label>
+              <input
+                className="formInput"
+                type="date"
+                name="itemDate"
+                id="date"
+                placeholder={item.itemDate}
+                value={itemInput.itemDate}
+                onChange={onChange}
+              />
+            </div>
 
-              <div>
-                <label className="formLabel">Item</label>
-                <input
-                  className="formInput"
-                  type="text"
-                  name="itemName"
-                  placeholder={item.itemName}
-                  value={itemInput.itemName}
-                  onChange={onChange}
-                />
-              </div>
+            <div>
+              <label className="formLabel">Item</label>
+              <input
+                className="formInput"
+                type="text"
+                name="itemName"
+                placeholder={item.itemName}
+                value={itemInput.itemName}
+                onChange={onChange}
+              />
+            </div>
 
-              <div>
-                <label className="formLabel">Category</label>
-                <select
-                  className="formSelect"
-                  type="text"
-                  name="itemCategory"
-                  placeholder={item.itemCategory}
-                  value={itemInput.itemCategory}
-                  onChange={onChange}>
-                  <CategorySelect category={item.itemCategory} />
-                </select>
-              </div>
+            <div>
+              <label className="formLabel">Category</label>
+              <select
+                className="formSelect"
+                type="text"
+                name="itemCategory"
+                placeholder={item.itemCategory}
+                value={itemInput.itemCategory}
+                onChange={onChange}>
+                <CategorySelect category={item.itemCategory} />
+              </select>
+            </div>
 
-              <div>
-                <label className="formLabel">Price</label>
-                <input
-                  className="formInput"
-                  type="text"
-                  name="itemPrice"
-                  placeholder={item.itemPrice.price}
-                  value={itemInput.itemPrice}
-                  onChange={onChange}
-                />
-              </div>
-            </form>
-          </div>
+            <div>
+              <label className="formLabel">Price</label>
+              <input
+                className="formInput"
+                type="text"
+                name="itemPrice"
+                placeholder={item.itemPrice.price}
+                value={itemInput.itemPrice}
+                onChange={onChange}
+              />
+            </div>
+          </form>
         </Modal.Body>
 
         <Modal.Footer>

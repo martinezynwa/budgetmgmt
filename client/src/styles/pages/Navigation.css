@@ -1,11 +1,13 @@
 .navbar {
   display: flex;
-  align-items: center;
-  padding: 0px;
-  margin-bottom: 40px;
+  padding: 0px 30px;
+  margin-bottom: 30px;
+  justify-content: space-evenly;
 }
 
 .name {
+  display: flex;
+  align-content: space-between;
   font-size: 20px;
   color: rgb(0, 0, 0);
   text-decoration: none;
@@ -58,9 +60,10 @@
 @media screen and (max-width: 768px) {
   .navbar {
     background: #4586e0;
-    display: flex;
-    padding: 0px;
-    margin: 0px
+    position: fixed;
+    top: 0;
+    width: 100%;
+    justify-content: flex-start;
   }
 
   .name {
@@ -70,7 +73,7 @@
     text-decoration: none;
     font-size: 20px;
     font-weight: 500;
-    transform: translate(35%, 80%);
+    transform: translate(0%, 80%);
   }
 
   .navIcon {

@@ -1,0 +1,48 @@
+.confirmDeleteContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.confirmDelete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  transform: translate(470%, 210%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.confirmDeleteMessage {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.confirmButtonYes {
+  margin: 0px;
+  padding: 7px 15px;
+  border: 6px solid rgb(255, 255, 255);
+  border-radius: 11px;
+  background-color: #4586e0;
+  color: #ffffff;
+}
+
+.confirmButtonNo {
+  margin: 0px;
+  padding: 7px 15px;
+  border: 6px solid rgb(255, 255, 255);
+  border-radius: 11px;
+  background-color: #9db7c9;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 768px) {
+  .confirmDelete {
+    transform: translate(70%, 280%);
+  }
+}

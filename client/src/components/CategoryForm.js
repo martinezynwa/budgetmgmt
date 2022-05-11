@@ -3,6 +3,7 @@ import { CREATE_CATEGORY } from '../graphql/mutations'
 import { ALL_CATEGORIES } from '../graphql/queries'
 import { useMutation } from '@apollo/client'
 import useNotification from '../context/NotificationContext'
+import { useForm } from '../hooks/useForm'
 import '../styles/components/CategoryForm.css'
 
 const CategoryForm = () => {
@@ -12,8 +13,8 @@ const CategoryForm = () => {
     categoryName: '',
     importance: '',
   }
+  const { formVisibility, toggleForm, Toggle } = useForm()
   const [categoryInput, setCategoryInput] = useState(initialState)
-
   const [errors, setErrors] = useState('')
 
   const onChange = event => {
@@ -44,36 +45,43 @@ const CategoryForm = () => {
     event.preventDefault()
     addCategory()
   }
-  return (
-    <div>
-      <div className="header">Add category</div>
-      <div className="itemForm">
-        <form onSubmit={onSubmit}>
-          <div className="formControl">
-            <label className="categoryLabel">Name</label>
-            <input
-              className="categoryInput"
-              type="text"
-              value={categoryInput.categoryName}
-              name="categoryName"
-              onChange={onChange}
-            />
-            <span className="error">{errors.categoryName}</span>
-            <label className="categoryLabel">Importance(1-5)</label>
-            <input
-              className="categoryInput"
-              type="number"
-              value={categoryInput.importance}
-              name="importance"
-              onChange={onChange}
-            />
-          </div>
-          <span className="error">{errors.importance}</span>
 
-          <button variant="primary" type="submit" className="categoryButton">
-            Submit
-          </button>
-        </form>
+  return (
+    <div className="formContainer">
+      <Toggle
+        formVisibility={formVisibility}
+        toggleForm={() => toggleForm()}
+        formName="Add Category"
+      />
+      <div className={formVisibility}>
+        <div className="itemForm">
+          <form onSubmit={onSubmit}>
+            <div className="formControl">
+              <label className="categoryLabel">Name</label>
+              <input
+                className="categoryInput"
+                type="text"
+                value={categoryInput.categoryName}
+                name="categoryName"
+                onChange={onChange}
+              />
+              <span className="error">{errors.categoryName}</span>
+              <label className="categoryLabel">Importance(1-5)</label>
+              <input
+                className="categoryInput"
+                type="number"
+                value={categoryInput.importance}
+                name="importance"
+                onChange={onChange}
+              />
+            </div>
+            <span className="error">{errors.importance}</span>
+
+            <button variant="primary" type="submit" className="categoryButton">
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   )

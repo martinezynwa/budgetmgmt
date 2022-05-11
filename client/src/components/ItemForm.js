@@ -7,6 +7,7 @@ import {
   GET_ALL_TIME_TOTALS,
   GET_CATEGORY_TOTALS,
 } from '../graphql/queries'
+import { useForm } from '../hooks/useForm'
 import useAuth from '../context/AuthContext'
 import useNotification from '../context/NotificationContext'
 import CategorySelect from './CategorySelect'
@@ -25,6 +26,7 @@ const ItemForm = () => {
   }
   const [itemInput, setItemInput] = useState(initialState)
   const [errors, setErrors] = useState({})
+  const { formVisibility, toggleForm, Toggle } = useForm()
 
   const onChange = event => {
     setItemInput({
@@ -77,61 +79,70 @@ const ItemForm = () => {
   }
 
   return (
-    <div className="itemForm">
-      <form onSubmit={onSubmit}>
-        <div className="formControl">
-          <label className="formLabel">Date</label>
-          <input
-            className="formInput"
-            type="date"
-            value={itemInput.itemDate}
-            name="itemDate"
-            onChange={onChange}
-          />
-        </div>
-        <span className="formError">{errors.itemDate}</span>
+    <div className='formContainer'>
+      <Toggle
+        formVisibility={formVisibility}
+        toggleForm={() => toggleForm()}
+        formName="Add item"
+      />
+      <div className={formVisibility}>
+        <div className="itemForm">
+          <form onSubmit={onSubmit}>
+            <div className="formControl">
+              <label className="formLabel">Date</label>
+              <input
+                className="formInput"
+                type="date"
+                value={itemInput.itemDate}
+                name="itemDate"
+                onChange={onChange}
+              />
+            </div>
+            <span className="formError">{errors.itemDate}</span>
 
-        <div className="formControl">
-          <label className="formLabel">Item</label>
-          <input
-            className="formInput"
-            type="text"
-            value={itemInput.itemName}
-            name="itemName"
-            onChange={onChange}
-          />
-        </div>
-        <span className="formError">{errors.itemName}</span>
+            <div className="formControl">
+              <label className="formLabel">Item</label>
+              <input
+                className="formInput"
+                type="text"
+                value={itemInput.itemName}
+                name="itemName"
+                onChange={onChange}
+              />
+            </div>
+            <span className="formError">{errors.itemName}</span>
 
-        <div className="formControl">
-          <label className="formLabel">Category</label>
-          <select
-            className="formSelect"
-            type="text"
-            name="itemCategory"
-            onChange={onChange}
-            value={itemInput.itemCategory}>
-            <CategorySelect />
-          </select>
-        </div>
-        <span className="formError">{errors.itemCategory}</span>
+            <div className="formControl">
+              <label className="formLabel">Category</label>
+              <select
+                className="formSelect"
+                type="text"
+                name="itemCategory"
+                onChange={onChange}
+                value={itemInput.itemCategory}>
+                <CategorySelect />
+              </select>
+            </div>
+            <span className="formError">{errors.itemCategory}</span>
 
-        <div className="formControl">
-          <label className="formLabel">Price</label>
-          <input
-            className="formInput"
-            type="number"
-            value={itemInput.itemPrice}
-            name="itemPrice"
-            onChange={onChange}
-          />
-        </div>
-        <span className="formError">{errors.itemPrice}</span>
+            <div className="formControl">
+              <label className="formLabel">Price</label>
+              <input
+                className="formInput"
+                type="number"
+                value={itemInput.itemPrice}
+                name="itemPrice"
+                onChange={onChange}
+              />
+            </div>
+            <span className="formError">{errors.itemPrice}</span>
 
-        <button variant="primary" type="submit" className="formButton">
-          Submit
-        </button>
-      </form>
+            <button variant="primary" type="submit" className="formButton">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   )
 }

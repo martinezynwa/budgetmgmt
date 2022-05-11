@@ -1,10 +1,19 @@
+.formContainer {
+  background-color: rgb(245, 248, 250);
+  border-radius: 7px;
+  padding: 0px 7px;
+}
+
 .header {
-  font-size: 24px;
-  margin: 10px 10px 20px 10px;
+  margin: 20px 4px;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .itemForm {
-  margin: 0px 10px 35px 10px;
+  background-color: rgb(245, 248, 250);
+  padding-bottom: 18px;
+  margin-top: 10px;
 }
 
 .formControl {
@@ -17,7 +26,6 @@
   margin-top: 2px;
   margin-bottom: 7px;
   padding: 7px;
-  border-radius: 5px;
   border: 1px solid gray;
 }
 
@@ -32,7 +40,6 @@
 .categoryButton {
   background-color: #4586e0;
   border: 2px solid #4586e0;
-  border-radius: 4px;
   color: #ffff;
   display: block;
   font-size: 16px;

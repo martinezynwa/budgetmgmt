@@ -112,13 +112,23 @@
 - [x] add check that default categories cannot be deleted
 - [x] remove unnecessary bootstrap
   - [x] DeleteButton, EditButton, ItemModal - buttons
+### 0.24
+- [x] fixed navbar
+- [x] toggle for hiding of adding items/categories
+  - [x] create toggle that can be re-used between components
+  - [x] toggle function(hook) that can be re-used between components
+  - [x] CSS fixes for above
+- [x] popup that asks if item/category should be edited/deleted
+  - [x] component ConfirmDialog
+  - [x] css styling
+  - [x] custom hook so dialog can be reused anywhere
+- [x] check that only user who created the item can edit/delete it
+---
 ### TBD
-- [ ] popup that asks if item should be edited/deleted
-- [ ] check that only user who created the item can edit/delete it
-- [ ] Toggle for hiding of adding items/categories
-- [ ] improve the notification placement or maybe change the style itself
+- [ ] improve the notification placement and CSS styling
   - [ ] notification fix when item category cannot be deleted
 - [ ] Login/register page design
+- [ ] CSS fixes(containers, folders,...)
 
 - [ ] uncontrolled component error during item editing
 - [ ] fix refetchQueries after item is added/edited/deleted

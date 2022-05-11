@@ -12,7 +12,7 @@ const Home = () => {
   const selectedMonth = dayjs(new Date()).format('YYYY-MM')
 
   return (
-    <>
+    <div className="container">
       <ItemProvider>
         <TotalCard selectedMonth={selectedMonth} showDifference={true} />
         <ItemForm />
@@ -20,7 +20,7 @@ const Home = () => {
         <Notification />
         <Items />
       </ItemProvider>
-    </>
+    </div>
   )
 }
 

@@ -200,17 +200,35 @@ const itemsResolvers = {
     editItem: async (_, args, context) => {
       const currentUser = await checkAuthorization(context)
       let item = {}
-      try {
-        item = await Item.findById(args.itemID)
-      } catch (err) {
-        throw new Error('ID of an item does not exist')
-      }
 
       let { itemDate, itemName, itemCategory, itemPrice, itemUpdated } =
         args.itemInput
 
       if (!itemDate && !itemName && !itemCategory && !itemPrice) {
         throw new Error('At least one field must be edited')
+      }
+
+      try {
+        item = await Item.findById(args.itemID)
+        if (!item) {
+          throw new UserInputError('ID of an item does not exist', {
+            errors: {
+              item: 'ID of an item does not exist',
+            },
+          })
+        }
+        if (item.createdBy.username !== currentUser.username) {
+          throw new UserInputError(
+            'Item can be edited only by an user who created it',
+            {
+              errors: {
+                item: 'Item can be edited only by an user who created it',
+              },
+            },
+          )
+        }
+      } catch (err) {
+        throw new Error(err)
       }
 
       if (itemDate) {
@@ -224,7 +242,6 @@ const itemsResolvers = {
           price: itemPrice,
           currency: item.itemPrice.currency,
         }
-        console.log('itemPrice :>> ', itemPrice)
       } else {
         itemPrice = {
           ...itemPrice,
@@ -258,13 +275,24 @@ const itemsResolvers = {
       }
     },
     removeItem: async (_, args, context) => {
-      await checkAuthorization(context)
+      const currentUser = await checkAuthorization(context)
       try {
+        const itemToBeDeleted = await Item.findById(args.itemId)
+        if (itemToBeDeleted.createdBy.username !== currentUser.username) {
+          throw new UserInputError(
+            'Item can be removed only by an user who created it',
+            {
+              errors: {
+                item: 'Item can be removed only by an user who created it',
+              },
+            },
+          )
+        }
         const item = await Item.findByIdAndDelete(args.itemId)
         await item.delete()
         return `ID ${args.itemId} deleted successfully`
       } catch (err) {
-        throw new Error('ID of an item does not exist')
+        throw new Error(err)
       }
     },
   },

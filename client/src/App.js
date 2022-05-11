@@ -15,27 +15,25 @@ import { PrivateRoute, PublicRoute } from './util/Routes'
 
 const App = () => {
   return (
-    <div className="container">
-      <AuthProvider>
-        <Router>
-          <NotificationProvider>
-            <Navigation />
-            <Routes>
-              <Route path="/" element={<PrivateRoute />}>
-                <Route path="/" element={<Home />} />
-                <Route path="/allrecords" element={<AllRecords />} />
-                <Route path="/statistics" element={<Statistics />} />
-                <Route path="/options" element={<Options />} />
-              </Route>
-              <Route path="/" element={<PublicRoute />}>
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-              </Route>
-            </Routes>
-          </NotificationProvider>
-        </Router>
-      </AuthProvider>
-    </div>
+    <AuthProvider>
+      <Router>
+        <NotificationProvider>
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<PrivateRoute />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/allrecords" element={<AllRecords />} />
+              <Route path="/statistics" element={<Statistics />} />
+              <Route path="/options" element={<Options />} />
+            </Route>
+            <Route path="/" element={<PublicRoute />}>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Route>
+          </Routes>
+        </NotificationProvider>
+      </Router>
+    </AuthProvider>
   )
 }
 

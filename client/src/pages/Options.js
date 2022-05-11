@@ -5,13 +5,13 @@ import { CategoryProvider } from '../context/CategoryContext'
 
 const Options = () => {
   return (
-    <>
+    <div className="container">
       <CategoryProvider>
         <CategoryForm />
         <Notification />
         <Categories />
       </CategoryProvider>
-    </>
+    </div>
   )
 }
 
