@@ -1,6 +1,5 @@
 import React from 'react'
 
-import Notification from '../components/Notification'
 import SelectButton from '../components/SelectButton'
 import TotalCard from '../components/TotalCard'
 import Items from '../components/Items'
@@ -14,10 +13,9 @@ const Home = () => {
   return (
     <div className="container">
       <ItemProvider>
-        <TotalCard selectedMonth={selectedMonth} showDifference={true} />
         <ItemForm />
+        <TotalCard selectedMonth={selectedMonth} showDifference={true} />
         <SelectButton />
-        <Notification />
         <Items />
       </ItemProvider>
     </div>

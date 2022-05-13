@@ -69,7 +69,7 @@ const ItemForm = () => {
     onCompleted: () => {
       setItemInput(initialState)
       setErrors({})
-      setNotification('added', 5)
+      setNotification('Item added', 5)
     },
   })
 

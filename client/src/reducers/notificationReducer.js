@@ -4,6 +4,7 @@ const notificationReducer = (state, action) => {
       return {
         ...state,
         notification: action.data,
+        style: action.style,
       }
     default:
       return state

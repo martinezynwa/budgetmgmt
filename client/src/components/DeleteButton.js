@@ -20,7 +20,7 @@ const DeleteButton = ({ item }) => {
   const [deleteItem] = useMutation(DELETE_ITEM, {
     variables: item.id,
     onError(err) {
-      console.log(err)
+      setNotification(err.graphQLErrors[0].message, 5, 'error')
     },
     refetchQueries: () => [
       {
@@ -46,7 +46,7 @@ const DeleteButton = ({ item }) => {
       { query: GET_ALL_TIME_TOTALS },
     ],
     onCompleted: () => {
-      setNotification('deleted', 5)
+      setNotification('Item deleted', 5)
     },
   })
 

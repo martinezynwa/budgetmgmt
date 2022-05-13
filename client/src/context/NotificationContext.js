@@ -3,6 +3,7 @@ import notificationReducer from '../reducers/notificationReducer'
 
 const initialState = {
   notification: null,
+  style: null,
 }
 
 const NotificationContext = createContext()
@@ -12,7 +13,7 @@ let timer = null
 export const NotificationProvider = ({ children }) => {
   const [state, dispatch] = useReducer(notificationReducer, initialState)
 
-  const setNotification = (message, sec) => {
+  const setNotification = (message, sec, style) => {
     if (timer != null) {
       clearInterval(timer)
     }
@@ -20,18 +21,21 @@ export const NotificationProvider = ({ children }) => {
     dispatch({
       type: 'MESSAGE',
       data: message,
+      style: style,
     })
 
     timer = setTimeout(() => {
       dispatch({
         type: 'MESSAGE',
         data: '',
+        style: '',
       })
-    }, sec * 1000)
+    }, sec * 750)
   }
 
   const value = {
     notification: state.notification,
+    type: state.style,
     setNotification,
   }
 

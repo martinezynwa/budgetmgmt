@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import useAuth from '../context/AuthContext'
 import { LOGIN_USER } from '../graphql/mutations'
-import { Form, Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import '../styles/pages/LoginRegister.css'
 
 const Login = () => {
   const context = useAuth()
@@ -37,34 +38,39 @@ const Login = () => {
   }
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="loginRegisterContainer">
+      <div className="loginRegisterHeader">Login user</div>
       <form onSubmit={onSubmit}>
-        <Form.Group>
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            id="username"
-            name="username"
+        <div className="formControl">
+          <label className="categoryLabel">Username</label>
+          <input
+            className="categoryInput"
             type="text"
+            name="username"
             value={inputValues.username}
             onChange={onChange}
           />
-          <p>{errors.username}</p>
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            id="password"
-            name="password"
+          <span className="error">{errors.username}</span>
+          <label className="categoryLabel">Password</label>
+          <input
+            className="categoryInput"
             type="password"
+            name="password"
             value={inputValues.password}
             onChange={onChange}
           />
-          <p>{errors.password}</p>
-        </Form.Group>
-        <p>{errors.general}</p>
-        <br />
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+        </div>
+        <span className="error">{errors.password || errors.general}</span>
+
+        <button variant="primary" type="submit" className="categoryButton">
+          Login
+        </button>
+        <div className="notAnUser">
+          Not an user?{' '}
+          <Link to="/Register" className="registerLinkText">
+            Register here
+          </Link>
+        </div>
       </form>
     </div>
   )

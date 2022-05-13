@@ -2,9 +2,9 @@ import '../styles/popup.css'
 
 function ConfirmDialog({ message, onDialog }) {
   return (
-    <div onClick={() => onDialog(false)} className="confirmDeleteContainer">
-      <div onClick={e => e.stopPropagation()} className="confirmDelete">
-        <div className="confirmDeleteMessage">{message}</div>
+    <div onClick={() => onDialog(false)} className="confirmContainer">
+      <div onClick={e => e.stopPropagation()} className="confirmAction">
+        <div className="confirmActionMessage">{message}</div>
         <div>
           <button onClick={() => onDialog(true)} className="confirmButtonYes">
             Yes

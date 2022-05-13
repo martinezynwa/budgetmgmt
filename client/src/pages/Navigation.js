@@ -21,6 +21,11 @@ const Navigation = () => {
     }
   }
 
+  const logoutUser = () => {
+    logout()
+    setClick(false)
+  }
+
   const menuBar = user ? (
     <>
       <nav className="navbar">
@@ -28,7 +33,7 @@ const Navigation = () => {
           {loggedUser.name ? loggedUser.name.split(' ')[0] : null}
         </Link>
 
-        <ul className={click ? 'navMenu active' : 'navMenu'}>
+        <ul className={click === true ? 'navMenu active' : 'navMenu'}>
           <li>
             <Link to="/" onClick={handleClick} className="item">
               Home
@@ -50,7 +55,7 @@ const Navigation = () => {
             </Link>
           </li>
           <li>
-            <button onClick={logout} className="logout">
+            <button onClick={logoutUser} className="logout">
               Logout
             </button>
           </li>
@@ -61,12 +66,7 @@ const Navigation = () => {
         </div>
       </nav>
     </>
-  ) : (
-    <div>
-      <Link to="/login">Login</Link>
-      <Link to="/register">Register</Link>
-    </div>
-  )
+  ) : null
 
   return menuBar
 }

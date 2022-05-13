@@ -41,7 +41,7 @@ const categoryResolvers = {
           },
         })
       }
-      const defaultCategory = true
+      const defaultCategory = false
 
       const createdBy = {
         username: currentUser.username,

@@ -1,19 +1,22 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
-import useAuth from '../context/AuthContext'
+//import useAuth from '../context/AuthContext'
+import useNotification from '../context/NotificationContext'
+import { Link } from 'react-router-dom'
 import { REGISTER_USER } from '../graphql/mutations'
-import { Form, Button } from 'react-bootstrap'
+import { ALL_USERS, GET_ALL_TIME_TOTALS } from '../graphql/queries'
 
 const Register = () => {
-  const context = useAuth()
-
-  const [inputValues, setInputValues] = useState({
+  //const context = useAuth()
+  const { setNotification } = useNotification()
+  const initialValues = {
     username: '',
     name: '',
     password: '',
     confirmPassword: '',
     email: '',
-  })
+  }
+  const [inputValues, setInputValues] = useState(initialValues)
 
   const [errors, setErrors] = useState({})
   const onChange = event => {
@@ -23,17 +26,21 @@ const Register = () => {
     })
   }
   const [addUser] = useMutation(REGISTER_USER, {
-    update(_, result) {
-      context.login(result.data.registerUser)
-      if (result) {
-        console.log('registered')
-      }
-    },
-
+    variables: inputValues,
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.errors)
     },
-    variables: inputValues,
+    refetchQueries: () => [
+      { query: ALL_USERS },
+      { query: GET_ALL_TIME_TOTALS },
+    ],
+    onCompleted: () => {
+      setInputValues(initialValues)
+      setNotification('Successfully registered, you may log-in', 5)
+    },
+    /*    update(_, result) {
+      context.login(result.data.registerUser)
+    },*/
   })
 
   const onSubmit = event => {
@@ -42,63 +49,68 @@ const Register = () => {
   }
 
   return (
-    <div>
-      <h2>Register</h2>
+    <div className="loginRegisterContainer">
+      <div className="loginRegisterHeader">Register user</div>
       <form onSubmit={onSubmit}>
-        <Form.Group>
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            id="username"
-            name="username"
+        <div className="formControl">
+          <label className="categoryLabel">Username</label>
+          <input
+            className="categoryInput"
             type="text"
+            name="username"
             value={inputValues.username}
             onChange={onChange}
           />
-          <p>{errors.username}</p>
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            id="name"
+          <span className="error">{errors.username}</span>
+
+          <label className="categoryLabel">Name</label>
+          <input
+            className="categoryInput"
             name="name"
             type="text"
             value={inputValues.name}
             onChange={onChange}
           />
-          <p>{errors.name}</p>
+          <span className="error">{errors.name}</span>
 
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            id="password"
+          <label className="categoryLabel">Password</label>
+          <input
+            className="categoryInput"
             name="password"
             type="password"
             value={inputValues.password}
             onChange={onChange}
           />
-          <p>{errors.password}</p>
+          <span className="error">{errors.password}</span>
 
-          <Form.Label>Confirm password</Form.Label>
-          <Form.Control
-            id="confirmPassword"
+          <label className="categoryLabel">Confirm password</label>
+          <input
+            className="categoryInput"
             name="confirmPassword"
             type="password"
             value={inputValues.confirmPassword}
             onChange={onChange}
           />
-          <p>{errors.confirmPassword}</p>
+          <span className="error">{errors.confirmPassword}</span>
 
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            id="email"
+          <label className="categoryLabel">Email</label>
+          <input
+            className="categoryInput"
             name="email"
             type="email"
             value={inputValues.email}
             onChange={onChange}
           />
-          <p>{errors.email}</p>
-        </Form.Group>
-        <br />
-        <Button variant="primary" type="register">
+          <span className="error">{errors.email}</span>
+        </div>
+        <button variant="primary" type="submit" className="categoryButton">
           Register
-        </Button>
+        </button>
+        <div className="notAnUser">
+          <Link to="/Login" className="registerLinkText">
+            Back to Login
+          </Link>
+        </div>
       </form>
     </div>
   )

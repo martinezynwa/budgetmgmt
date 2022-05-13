@@ -5,9 +5,15 @@ const TotalDifference = ({ username, totals }) => {
     return null
   }
 
-  let { total } = totals.find(t => t.username === username)
+  const totalOfUser = totals.find(t => t.username === username)
 
-  let highestSpender = Math.max(...totals.map(t => t.total))
+  if (!totalOfUser) {
+    return null
+  }
+  const { total } = totalOfUser
+
+  const highestSpender = Math.max(...totals.map(t => t.total))
+
   const difference = total - highestSpender
 
   if (difference >= 0) {

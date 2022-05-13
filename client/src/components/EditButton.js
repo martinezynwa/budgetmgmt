@@ -46,7 +46,7 @@ const EditButton = ({ item, itemInput }) => {
       { query: GET_CATEGORY_TOTALS },
     ],
     onCompleted: () => {
-      setNotification('edited', 5)
+      setNotification('Item edited', 5)
     },
   })
 

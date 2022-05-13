@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import { NotificationProvider } from './context/NotificationContext'
 import Navigation from './pages/Navigation'
+import Notification from './components/Notification'
 import Home from './pages/Home'
 import Register from './pages/Register'
 import Login from './pages/Login'
@@ -19,6 +20,7 @@ const App = () => {
       <Router>
         <NotificationProvider>
           <Navigation />
+          <Notification />
           <Routes>
             <Route path="/" element={<PrivateRoute />}>
               <Route path="/" element={<Home />} />

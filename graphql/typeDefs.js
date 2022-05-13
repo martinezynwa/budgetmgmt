@@ -15,6 +15,7 @@ const typeDefs = gql`
     id: ID!
     categoryName: String!
     importance: String!
+    defaultCategory: Boolean
   }
 
   type Price {

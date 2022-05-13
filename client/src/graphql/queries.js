@@ -80,6 +80,7 @@ const ALL_CATEGORIES = gql`
     getCategories {
       id
       categoryName
+      defaultCategory
     }
   }
 `
