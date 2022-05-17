@@ -20,7 +20,6 @@ const StatisticsList = ({ selectedMonth }) => {
               key={c.category}
               category={c.category}
               total={c.total}
-              selectedMonth={selectedMonth}
             />
           ))
         : null}

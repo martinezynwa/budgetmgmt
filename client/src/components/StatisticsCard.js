@@ -1,12 +1,7 @@
 import CategoryIcon from './CategoryIcon'
 import '../styles/components/StatisticsCard.css'
-const dayjs = require('dayjs')
 
-const StatisticsCard = ({ category, selectedMonth, total }) => {
-  if (!selectedMonth) {
-    selectedMonth = dayjs(new Date()).format('YYYY-MM')
-  }
-
+const StatisticsCard = ({ category, total }) => {
   return (
     <div className="statisticsCard">
       <div className="statisticsIcon">

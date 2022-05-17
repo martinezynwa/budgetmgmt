@@ -16,6 +16,7 @@ import '../styles/components/ItemForm.css'
 const dayjs = require('dayjs')
 
 const ItemForm = () => {
+  const currentMonth = dayjs(new Date()).format('YYYY-MM')
   const { setNotification } = useNotification()
   const { user } = useAuth()
   const initialState = {
@@ -45,21 +46,27 @@ const ItemForm = () => {
       {
         query: CURRENT_MONTH_BY_USER,
         variables: {
-          selectedMonth: dayjs(new Date()).format('YYYY-MM'),
+          selectedMonth: currentMonth,
+        },
+      },
+      {
+        query: CURRENT_MONTH_BY_USER,
+        variables: {
+          selectedMonth: currentMonth,
           username: user.username,
         },
       },
       {
         query: GET_TOTAL,
         variables: {
-          selectedMonth: dayjs(new Date()).format('YYYY-MM'),
+          selectedMonth: currentMonth,
           username: user.username,
         },
       },
       {
         query: GET_TOTAL,
         variables: {
-          selectedMonth: dayjs(new Date()).format('YYYY-MM'),
+          selectedMonth: currentMonth,
           username: 'allUsers',
         },
       },
@@ -79,7 +86,7 @@ const ItemForm = () => {
   }
 
   return (
-    <div className='formContainer'>
+    <div className="formContainer">
       <Toggle
         formVisibility={formVisibility}
         toggleForm={() => toggleForm()}

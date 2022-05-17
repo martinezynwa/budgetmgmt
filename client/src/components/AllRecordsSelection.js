@@ -9,12 +9,13 @@ import '../styles/components/StatSelection.css'
 const dayjs = require('dayjs')
 
 const AllRecordsSelection = ({ records }) => {
+  const currentMonth = dayjs(new Date()).format('YYYY-MM')
   const initialState = {
     month: '',
     year: '',
   }
   const [dateInput, setDateInput] = useState(initialState)
-  const [selectedMonth, setSelectedMonth] = useState('')
+  const [selectedMonth, setSelectedMonth] = useState(currentMonth)
   const [infoTextRecords, setInfoTextRecords] = useState(`Total spent:`)
   const [infoTextCategories, setInfoTextCategories] = useState(
     `Spending per category in ${dayjs(new Date()).format('MMM YYYY')}`,
@@ -41,11 +42,7 @@ const AllRecordsSelection = ({ records }) => {
       return
     }
     setSelectedMonth(dateInput.year + '-' + dateInput.month)
-    setInfoTextRecords(
-      `Spending in ${dayjs(dateInput.year + dateInput.month).format(
-        'MMMM YYYY',
-      )}`,
-    )
+    setInfoTextRecords(`Spending in:`)
     setInfoTextCategories(
       `Spending per category in ${dayjs(
         dateInput.year + dateInput.month,

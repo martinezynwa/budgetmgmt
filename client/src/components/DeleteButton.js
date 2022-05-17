@@ -5,15 +5,15 @@ import {
   CURRENT_MONTH_BY_USER,
   GET_TOTAL,
   GET_ALL_TIME_TOTALS,
+  GET_CATEGORY_TOTALS,
 } from '../graphql/queries'
 import useNotification from '../context/NotificationContext'
 import ConfirmDialog from './ConfirmDialog'
-
 import '../styles/components/ItemForm.css'
-
 const dayjs = require('dayjs')
 
 const DeleteButton = ({ item }) => {
+  const currentMonth = dayjs(new Date()).format('YYYY-MM')
   const { dialog, handleInputMessage, handleActionDialog } = useConfirmDialog()
   const { setNotification } = useNotification()
 
@@ -26,24 +26,30 @@ const DeleteButton = ({ item }) => {
       {
         query: CURRENT_MONTH_BY_USER,
         variables: {
-          selectedMonth: dayjs(new Date()).format('YYYY-MM'),
+          selectedMonth: currentMonth,
         },
       },
       {
         query: GET_TOTAL,
         variables: {
-          selectedMonth: dayjs(new Date()).format('YYYY-MM'),
+          selectedMonth: currentMonth,
           username: item.createdBy.username,
         },
       },
       {
         query: GET_TOTAL,
         variables: {
-          selectedMonth: dayjs(new Date()).format('YYYY-MM'),
+          selectedMonth: currentMonth,
           username: 'allUsers',
         },
       },
       { query: GET_ALL_TIME_TOTALS },
+      {
+        query: GET_CATEGORY_TOTALS,
+        variables: {
+          selectedMonth: currentMonth,
+        },
+      },
     ],
     onCompleted: () => {
       setNotification('Item deleted', 5)

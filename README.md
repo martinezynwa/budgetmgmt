@@ -163,16 +163,28 @@
   - [x] bug fixes on TotalDifference and Navigation when third user is added
 - [x] navbar active when logged-in on mobile, should be hidden
 
+### 0.26
+
+- [x] hide popup after item gets edited
+- [x] show errors when one happens during item editation
+- [x] uncontrolled component error during item editation
+- [x] fix refetchQueries after item is added/edited/deleted
+- [x] remove unused queries and mutations on backend/frontend
+
 ---
 
 ### TBD
 
-- [ ] hide popup after item gets edited
+- [ ] fix mobile navmenu, padding not really responsive
+- [ ] fix mobile navmenu font color
 - [ ] CSS structure fixes(containers, folders,...)
 
-- [ ] uncontrolled component error during item editing
-- [ ] fix refetchQueries after item is added/edited/deleted
 
+### excel --> json
+- [ ] convert excel to csv + structure
+- [ ] tem
+
+### future
 - [ ] some operations with items may be turned into more reducers?
 - [ ] check about linking items with user in an easier way(like in the video course)
 - [ ] auto login after registering

@@ -15,48 +15,6 @@ const itemsResolvers = {
         throw new Error(err)
       }
     },
-    getSingleItem: async (_, args) => {
-      try {
-        const item = await Item.findById(args.itemID)
-        return item
-      } catch (err) {
-        throw new Error('Item not found')
-      }
-    },
-    getCurrentMonth: async () => {
-      try {
-        const currentMonth = dayjs(new Date()).format('YYYY-MM')
-        const allItems = await Item.find({})
-        const items = allItems.filter(
-          item => item.itemDate.substring(0, 7) === currentMonth,
-        )
-        return items
-      } catch (err) {
-        throw new Error('Current month not found')
-      }
-    },
-    getSpecificMonth: async (_, args) => {
-      try {
-        const allItems = await Item.find({})
-        const items = allItems.filter(
-          item => item.itemDate.substring(0, 7) === args.selectedMonth,
-        )
-        return items
-      } catch (err) {
-        throw new Error('Specific month not found')
-      }
-    },
-    getItemsByUser: async (_, args) => {
-      try {
-        const allItems = await Item.find({})
-        const itemsByUser = allItems.filter(
-          item => item.createdBy.username === args.username,
-        )
-        return itemsByUser
-      } catch (err) {
-        throw new Error(err)
-      }
-    },
     getCurrentMonthByUser: async (_, args) => {
       try {
         const allItems = await Item.find({})
@@ -93,7 +51,6 @@ const itemsResolvers = {
             c[x.itemCategory].total += Number(x.itemPrice.price)
             return c
           }, [])
-
         return Object.values(items).sort((a, b) => b.total - a.total)
       } catch (err) {
         throw new Error('Specific month not found')
@@ -200,7 +157,6 @@ const itemsResolvers = {
     editItem: async (_, args, context) => {
       const currentUser = await checkAuthorization(context)
       let item = {}
-
       let { itemDate, itemName, itemCategory, itemPrice, itemUpdated } =
         args.itemInput
 
@@ -233,6 +189,16 @@ const itemsResolvers = {
 
       if (itemDate) {
         itemDate = dayjs(itemDate).format('YYYY-MM-DDTHH:mm:ss')
+      } else {
+        itemDate = item.itemDate
+      }
+
+      if (!itemName) {
+        itemName = item.itemName
+      }
+
+      if (!itemCategory) {
+        itemCategory = item.itemCategory
       }
 
       if (itemPrice) {

@@ -89,10 +89,6 @@ const typeDefs = gql`
   type Query {
     getUsers: [User]
     getItems: [Item]
-    getSingleItem(itemID: ID!): Item
-    getSpecificMonth(selectedMonth: String!): [Item]
-    getCurrentMonth: [Item]
-    getItemsByUser(username: String!): [Item]
     getCategories: [Category]
     getCategory(categoryName: String!): Category
     getCurrentMonthByUser(selectedMonth: String!, username: String): [Item]
