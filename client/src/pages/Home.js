@@ -13,8 +13,8 @@ const Home = () => {
   return (
     <div className="container">
       <ItemProvider>
-        <ItemForm />
         <TotalCard selectedMonth={selectedMonth} showDifference={true} />
+        <ItemForm />
         <SelectButton />
         <Items />
       </ItemProvider>

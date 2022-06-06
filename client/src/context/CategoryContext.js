@@ -6,14 +6,9 @@ import categoryReducer from '../reducers/categoryReducer'
 const CategoryContext = createContext()
 
 export const CategoryProvider = ({ children }) => {
-  let categories = []
   const [state, dispatch] = useReducer(categoryReducer, [])
 
   const result = useQuery(ALL_CATEGORIES)
-
-  if (result.data && result.data.getCategories) {
-    categories = [...result.data.getCategories]
-  }
 
   useEffect(() => {
     if (result.data && result.data.getCategories) {

@@ -23,6 +23,12 @@
   font-size: 18px;
   font-weight: 500;
   margin-bottom: 15px;
+  text-align: center;
+}
+
+.confirmButtons {
+  display: flex;
+  justify-content: center;
 }
 
 .confirmButtonYes {
@@ -44,5 +50,3 @@
   background-color: #9db7c9;
   color: #ffffff;
 }
-
-@media screen and (max-width: 768px) {}

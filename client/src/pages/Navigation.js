@@ -1,15 +1,24 @@
-import React, { useState } from 'react'
+import React from 'react'
 import useAuth from '../context/AuthContext'
+import { useConfirmDialog } from '../hooks/useConfirmDialog'
 import { ALL_USERS } from '../graphql/queries'
 import { useQuery } from '@apollo/client'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import '../styles/pages/Navigation.css'
-import { FaTimes, FaBars } from 'react-icons/fa'
+import ConfirmDialog from '../components/ConfirmDialog'
+
+import {
+  FaUser,
+  FaHouseUser,
+  FaRegListAlt,
+  FaChartBar,
+  FaCog,
+  FaPowerOff,
+  FaFileAlt,
+} from 'react-icons/fa'
 
 const Navigation = () => {
-  const [click, setClick] = useState(false)
-  const handleClick = () => setClick(!click)
-
+  const { dialog, handleInputMessage, handleActionDialog } = useConfirmDialog()
   let loggedUser = {}
   const { user, logout } = useAuth()
   const result = useQuery(ALL_USERS)
@@ -23,48 +32,62 @@ const Navigation = () => {
 
   const logoutUser = () => {
     logout()
-    setClick(false)
   }
 
+  const dialogConfirmation = confirm => {
+    if (confirm) {
+      handleActionDialog('', false)
+      logoutUser()
+    } else {
+      handleActionDialog('', false)
+    }
+  }
   const menuBar = user ? (
     <>
-      <nav className="navbar">
-        <Link to="/" className="name">
-          {loggedUser.name ? loggedUser.name.split(' ')[0] : null}
-        </Link>
-
-        <ul className={click === true ? 'navMenu active' : 'navMenu'}>
-          <li>
-            <Link to="/" onClick={handleClick} className="item">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/allrecords" onClick={handleClick} className="item">
-              All Records
-            </Link>
-          </li>
-          <li>
-            <Link to="/statistics" onClick={handleClick} className="item">
-              Statistics
-            </Link>
-          </li>
-          <li>
-            <Link to="/options" onClick={handleClick} className="item">
-              Options
-            </Link>
-          </li>
-          <li>
-            <button onClick={logoutUser} className="logout">
-              Logout
-            </button>
-          </li>
-        </ul>
-
-        <div className="navIcon" onClick={handleClick}>
-          <i>{click ? <FaTimes /> : <FaBars />}</i>
+      <aside>
+        <div className="navTop">
+          <div className="navTopHeader">
+            <FaUser className="navIcon" />
+            <h2>{loggedUser.name ? loggedUser.name.split(' ')[0] : null}</h2>
+          </div>
         </div>
-      </nav>
+
+        <div className="navMiddle">
+          <NavLink className="navLink" to="/">
+            <FaHouseUser className="navIcon" />
+            <h3>Home</h3>
+          </NavLink>
+          <NavLink className="navLink" to="/statistics">
+            <FaChartBar className="navIcon" />
+            <h3>Statistics</h3>
+          </NavLink>
+          <NavLink className="navLink" to="/allrecords">
+            <FaRegListAlt className="navIcon" />
+            <h3>Records</h3>
+          </NavLink>
+          <NavLink className="navLink" to="/options">
+            <FaCog className="navIcon" />
+            <h3>Options</h3>
+          </NavLink>
+          <NavLink className="navLink" to="/data">
+            <FaFileAlt className="navIcon" />
+            <h3>Data</h3>
+          </NavLink>
+        </div>
+
+        <div className="navBottom">
+          <button
+            className="navLogout"
+            onClick={() => handleInputMessage('Logout user?')}>
+            <FaPowerOff className="navIcon" />
+            <h3 className="navLogoutText">Logout</h3>
+          </button>
+        </div>
+      </aside>
+
+      {dialog.isLoading && (
+        <ConfirmDialog onDialog={dialogConfirmation} message={dialog.message} />
+      )}
     </>
   ) : null
 

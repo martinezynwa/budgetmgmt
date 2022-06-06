@@ -21,7 +21,7 @@ const AllRecordsSelection = ({ records }) => {
     `Spending per category in ${dayjs(new Date()).format('MMM YYYY')}`,
   )
   const [errors, setErrors] = useState('')
-  const { getAllItems } = useItem()
+  const { getItemsByMonth } = useItem()
   const { formVisibility, toggleForm, Toggle } = useForm()
 
   const onChange = event => {
@@ -48,7 +48,9 @@ const AllRecordsSelection = ({ records }) => {
         dateInput.year + dateInput.month,
       ).format('MMMM YYYY')}`,
     )
-    getAllItems(dateInput.year + '-' + dateInput.month)
+    if (records) {
+      getItemsByMonth(dateInput.year + '-' + dateInput.month)
+    }
     setErrors('')
   }
 

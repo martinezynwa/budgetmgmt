@@ -1,22 +1,13 @@
 const itemReducer = (state, action) => {
   switch (action.type) {
-    case 'ALL':
+    case 'CURRENT_MONTH':
       return {
         ...state,
         items: action.items,
       }
-    case 'ALL_ITEMS':
-      let { allItems, selectedMonth } = action.data
-
-      allItems = action.data.allItems.filter(
-        item => item.itemDate.substring(0, 7) === selectedMonth,
-      )
-      return {
-        ...state,
-        items: allItems,
-      }
-    case 'FILTERED':
+    case 'BY_USER':
       let { username, items } = action.data
+
       if (!username) {
         return { items }
       }

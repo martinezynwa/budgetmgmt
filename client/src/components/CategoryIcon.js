@@ -1,6 +1,7 @@
 import {
   FaShoppingBasket,
   FaUtensils,
+  FaGasPump,
   FaCar,
   FaCat,
   FaBeer,
@@ -16,12 +17,14 @@ import {
   FaMusic,
 } from 'react-icons/fa'
 
-const style = { fontSize: '2em' }
+const style = { fontSize: '32px' }
 
 const CategoryIcon = itemCategory => {
   switch (itemCategory.itemCategory) {
     case 'Shopping':
       return <FaShoppingBasket style={style} />
+    case 'Gas':
+      return <FaGasPump style={style} />
     case 'Car':
       return <FaCar style={style} />
     case 'Pets':

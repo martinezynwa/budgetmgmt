@@ -171,22 +171,34 @@
 - [x] fix refetchQueries after item is added/edited/deleted
 - [x] remove unused queries and mutations on backend/frontend
 
+### 0.27
+- [x] popup shown when item cannot be deleted
+- [x] navmenu re-done
+  - [x] normal view - moved to side
+  - [x] mobile view - moved to bottom
+- [x] csv --> json
+  - [x] import CSV on frontend
+  - [x] parse the csv into a better structure 
+  - [x] set-up backend for accepting imported items
+  - [x] cleaner code on frontend
+  - [x] style css
+- [x] fix when refreshed, active button is home
+- [x] data backup to json
+  - [x] add component for file download
+  - [x] figure out why is first downloaded file empty
+  - [x] style css 
+- [x] button styling for import input
+- [x] sort items by time
 ---
 
 ### TBD
 
-- [ ] fix mobile navmenu, padding not really responsive
-- [ ] fix mobile navmenu font color
-- [ ] CSS structure fixes(containers, folders,...)
-
-
-### excel --> json
-- [ ] convert excel to csv + structure
-- [ ] tem
+- [ ] css cleanup
+- [ ] deploy
 
 ### future
-- [ ] some operations with items may be turned into more reducers?
 - [ ] check about linking items with user in an easier way(like in the video course)
 - [ ] auto login after registering
+- [ ] dark mode
 
 ---

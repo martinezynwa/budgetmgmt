@@ -1,58 +1,53 @@
-import React, { useReducer, createContext, useContext, useEffect } from 'react'
+import React, {
+  useState,
+  useReducer,
+  createContext,
+  useContext,
+  useEffect,
+} from 'react'
 import { useQuery } from '@apollo/client'
-import { CURRENT_MONTH_BY_USER, ALL_ITEMS } from '../graphql/queries'
+import { CURRENT_MONTH_BY_USER } from '../graphql/queries'
 import itemReducer from '../reducers/itemReducer'
 const dayjs = require('dayjs')
 
 const ItemContext = createContext()
 
 export const ItemProvider = ({ children }) => {
-  let allItems = []
-  let items = []
-  const selectedMonth = dayjs(new Date()).format('YYYY-MM')
+  const [selectedMonth, setSelectedMonth] = useState(
+    dayjs(new Date()).format('YYYY-MM'),
+  )
   const [state, dispatch] = useReducer(itemReducer, [])
 
   const result = useQuery(CURRENT_MONTH_BY_USER, {
     variables: { selectedMonth },
   })
 
-  if (result.data && result.data.getCurrentMonthByUser) {
-    items = [...result.data.getCurrentMonthByUser]
-  }
-
-  const resultAllItems = useQuery(ALL_ITEMS)
-
-  if (resultAllItems.data && resultAllItems.data.getItems) {
-    allItems = [...resultAllItems.data.getItems]
-  }
+  let items = result?.data?.getCurrentMonthByUser || []
 
   useEffect(() => {
     if (result.data && result.data.getCurrentMonthByUser) {
       dispatch({
-        type: 'ALL',
+        type: 'CURRENT_MONTH',
         items: result.data.getCurrentMonthByUser,
       })
     }
   }, [result.data])
 
-  const getItems = (username, selectedMonth) => {
+  const getItemsByUser = username => {
     dispatch({
-      type: 'FILTERED',
-      data: { items, username, selectedMonth },
+      type: 'BY_USER',
+      data: { items, username },
     })
   }
 
-  const getAllItems = selectedMonth => {
-    dispatch({
-      type: 'ALL_ITEMS',
-      data: { allItems, selectedMonth },
-    })
+  const getItemsByMonth = month => {
+    setSelectedMonth(month)
   }
 
   const value = {
     items: state.items,
-    getItems,
-    getAllItems,
+    getItemsByUser,
+    getItemsByMonth,
   }
   return <ItemContext.Provider value={value}>{children}</ItemContext.Provider>
 }

@@ -91,6 +91,11 @@ const UPDATE_ITEM = gql`
     }
   }
 `
+const IMPORT_ITEM = gql`
+  mutation importItem($importInput: [ImportInput]) {
+    importItem(importInput: $importInput)
+  }
+`
 
 const DELETE_ITEM = gql`
   mutation removeItem($itemId: ID!) {
@@ -123,4 +128,5 @@ export {
   DELETE_ITEM,
   CREATE_CATEGORY,
   DELETE_CATEGORY,
+  IMPORT_ITEM,
 }

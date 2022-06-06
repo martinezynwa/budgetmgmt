@@ -10,7 +10,7 @@ const dayjs = require('dayjs')
 const TotalCard = () => {
   let users = []
   const result = useQuery(ALL_USERS)
-  const { getItems } = useItem()
+  const { getItemsByUser } = useItem()
   const [activeButton, setActiveButton] = useState('')
   const currentMonth = dayjs(new Date()).format('YYYY-MM')
 
@@ -19,7 +19,7 @@ const TotalCard = () => {
   }
 
   const setItems = (username, currentMonth) => {
-    getItems(username, currentMonth)
+    getItemsByUser(username)
     setActiveButton(username)
   }
   

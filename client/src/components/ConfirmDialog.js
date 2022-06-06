@@ -5,7 +5,7 @@ function ConfirmDialog({ message, onDialog }) {
     <div onClick={() => onDialog(false)} className="confirmContainer">
       <div onClick={e => e.stopPropagation()} className="confirmAction">
         <div className="confirmActionMessage">{message}</div>
-        <div>
+        <div className="confirmButtons">
           <button onClick={() => onDialog(true)} className="confirmButtonYes">
             Yes
           </button>

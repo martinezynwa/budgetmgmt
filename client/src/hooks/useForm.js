@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FaAngleDown, FaAngleUp } from 'react-icons/fa'
+import { FaPlus, FaMinus } from 'react-icons/fa'
 import '../styles/components/Toggle.css'
 
 export const useForm = () => {
@@ -12,9 +12,9 @@ export const useForm = () => {
           {formName}
         </button>
         {formVisibility ? (
-          <FaAngleDown className="toggleArrow" />
+          <FaPlus className="toggleSign" />
         ) : (
-          <FaAngleUp className="toggleArrow" />
+          <FaMinus className="toggleSign" />
         )}
       </div>
     )

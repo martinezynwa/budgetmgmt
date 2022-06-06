@@ -9,7 +9,12 @@ const itemsResolvers = {
   Query: {
     getItems: async () => {
       try {
-        const items = await Item.find({})
+        const allItems = await Item.find({})
+        const items = allItems.sort(
+          (a, b) =>
+            b.createdBy.date.replaceAll(/[-T:]/g, '') -
+            a.createdBy.date.replaceAll(/[-T:]/g, ''),
+        )
         return items
       } catch (err) {
         throw new Error(err)
@@ -25,8 +30,8 @@ const itemsResolvers = {
           )
           .sort(
             (a, b) =>
-              new Date(...b.itemDate.split('-').reverse()) -
-              new Date(...a.itemDate.split('-').reverse()),
+              b.createdBy.date.replaceAll(/[-T:]/g, '') -
+              a.createdBy.date.replaceAll(/[-T:]/g, ''),
           )
         return items
       } catch (err) {
@@ -258,6 +263,55 @@ const itemsResolvers = {
         await item.delete()
         return `ID ${args.itemId} deleted successfully`
       } catch (err) {
+        throw new Error(err)
+      }
+    },
+    importItem: async (_, args, context) => {
+      const currentUser = await checkAuthorization(context)
+      try {
+        const { importInput } = args
+        importInput.map(i => {
+          let tempDate = (
+            i.Year +
+            '-' +
+            i.Date.replace(/\.$/, '').replace('.', '-')
+          ).split('-')
+          const itemDate = tempDate[0] + '-' + tempDate[2] + '-' + tempDate[1]
+
+          const itemName =
+            i.Transaction.charAt(0).toUpperCase() + i.Transaction.slice(1)
+          const itemCategory = i.Type
+          let itemPrice = i.Price.slice(0, -3)
+          itemPrice = Number(itemPrice.replace(/\s/g, ''))
+          itemPrice = {
+            ...itemPrice,
+            price: itemPrice,
+            currency: 'Kč',
+          }
+          const createdBy = {
+            username: i.Name === 'Martin' ? 'martinmgs' : 'miluskazostravy',
+            name: i.Name,
+            date: dayjs(itemDate).format('YYYY-MM-DDTHH:mm:ss'),
+          }
+          const itemUpdated = {
+            isUpdated: false,
+            updatedBy: null,
+            updateStamp: null,
+          }
+
+          const item = new Item({
+            itemDate,
+            itemName,
+            itemCategory,
+            itemPrice,
+            itemUpdated,
+            createdBy,
+          })
+          item.save()
+        })
+        return 'Items imported'
+      } catch (err) {
+        console.log('err :>> ', err)
         throw new Error(err)
       }
     },

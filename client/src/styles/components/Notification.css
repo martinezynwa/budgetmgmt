@@ -43,15 +43,17 @@
 
   .notificationSuccess {
     padding: 10px;
-    width: 90%;
-    bottom: 15px;
+    width: 95%;
+    top: 12px;
+    bottom: unset;
     right: auto;
   }
 
   .notificationError {
     padding: 10px;
-    width: 90%;
-    bottom: 15px;
+    width: 95%;
+    top: 12px;
+    bottom: unset;
     right: auto;
   }
 

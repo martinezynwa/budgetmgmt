@@ -1,16 +1,32 @@
 import React, { useState } from 'react'
+import useAuth from '../context/AuthContext'
 import Modal from 'react-bootstrap/Modal'
 import CategorySelect from './CategorySelect'
 import { FaEdit } from 'react-icons/fa'
 import EditButton from './EditButton'
 import DeleteButton from './DeleteButton'
+import useNotification from '../context/NotificationContext'
 import '../styles/components/ItemForm.css'
 
 const ItemModal = ({ item }) => {
+  const { setNotification } = useNotification()
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
 
   const handleShow = () => setShow(true)
+  const { user } = useAuth()
+
+  const checkBeforeEditing = () => {
+    if (user.username !== item.createdBy.username) {
+      setNotification(
+        'Item can be edited or deleted only by an user who created it',
+        5,
+        'error',
+      )
+    } else {
+      handleShow()
+    }
+  }
 
   const initialState = {
     itemDate: '',
@@ -27,10 +43,7 @@ const ItemModal = ({ item }) => {
   }
   return (
     <div>
-      <FaEdit
-        className="formEditButton"
-        variant="primary"
-        onClick={() => handleShow()}>
+      <FaEdit className="formEditButton" onClick={() => checkBeforeEditing()}>
         Edit
       </FaEdit>
 
@@ -70,7 +83,6 @@ const ItemModal = ({ item }) => {
               <label className="formLabel">Category</label>
               <select
                 className="formSelect"
-                type="text"
                 name="itemCategory"
                 placeholder={item.itemCategory}
                 value={itemInput.itemCategory}

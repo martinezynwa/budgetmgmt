@@ -52,6 +52,15 @@ const typeDefs = gql`
     itemUpdated: UpdatedInput
   }
 
+  input ImportInput {
+    Name: String
+    Year: String
+    Date: String
+    Transaction: String
+    Price: String
+    Type: String
+  }
+
   input CategoryInput {
     categoryName: String
     defaultCategory: Boolean
@@ -105,6 +114,7 @@ const typeDefs = gql`
     deleteCategory(categoryId: ID!): String!
     registerUser(registerInput: RegisterInput): User!
     loginUser(username: String!, password: String!): User!
+    importItem(importInput: [ImportInput]): String!
   }
 `
 

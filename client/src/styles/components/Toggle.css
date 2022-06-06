@@ -10,15 +10,21 @@
   display: flex;
   background-color: rgb(245, 248, 250);
   border: 0px solid #ffffff;
-  margin: 8px 0px;
+  margin: 8px 11px;
   font-size: 20px;
   font-weight: 600;
   width: 100%;
 }
 
-.toggleArrow {
+.toggleSign {
   background-color: rgb(245, 248, 250);
   display: flex;
-  margin: 11px 6px 0px 0px;
-  font-size: 29px;
+  margin: 11px 11px;
+  font-size: 24px;
+}
+
+@media screen and (max-width: 768px) {
+  .toggleButton {
+    margin: 8px 0px;
+  }
 }
