@@ -12,24 +12,15 @@
   box-shadow: -4px 6px 12px 3px rgba(0, 0, 0, 0.12);
 }
 
-.loginRegisterHeader {
-  margin-bottom: 15px;
-  font-size: 30px;
-  text-align: center;
-}
 
-.notAnUser {
-  text-align: center;
-  color: #000000;
-  font-size: 19px;
-  margin-top: 30px;
-}
-
-.registerLinkText {
-  color: #000000;
-  font-size: 19px;
-  font-weight: 500;
-  text-decoration: none;
+.customButton {
+  display: flex;
+  padding: 6px 6px;
+  margin: 0px 10px;
+  border: 6px solid transparent;
+  border-radius: 11px;
+  background-color: #4586e0;
+  color: #ffffff;
 }
 
 @media screen and (max-width: 576px) {

@@ -1,40 +1,13 @@
 import { gql } from 'graphql-tag'
 
-const REGISTER_USER = gql`
-  mutation registerUser(
-    $username: String!
-    $name: String!
-    $password: String!
-    $confirmPassword: String!
-    $email: String!
-  ) {
-    registerUser(
-      registerInput: {
-        username: $username
-        name: $name
-        password: $password
-        confirmPassword: $confirmPassword
-        email: $email
-      }
-    ) {
+const GOOGLE_AUTH = gql`
+  mutation googleAuth($idToken: String!) {
+    googleAuth(idToken: $idToken) {
       id
-      username
-      name
       email
-      token
-      registeredAt
-    }
-  }
-`
-
-const LOGIN_USER = gql`
-  mutation loginUser($username: String!, $password: String!) {
-    loginUser(username: $username, password: $password) {
-      id
-      username
       name
-      email
       token
+      username
       registeredAt
     }
   }
@@ -121,8 +94,7 @@ const DELETE_CATEGORY = gql`
 `
 
 export {
-  REGISTER_USER,
-  LOGIN_USER,
+  GOOGLE_AUTH,
   ADD_ITEM,
   UPDATE_ITEM,
   DELETE_ITEM,

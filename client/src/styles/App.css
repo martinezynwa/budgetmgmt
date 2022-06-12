@@ -70,21 +70,17 @@ b {
   color: var(--color-primary)
 }
 
-.container {
-  margin-top: 30px;
-  width: 60%;
-}
-
 .app {
-  width: 100%;
-  height: 100%;
-  background: #ffff;
+  width: min(60%, 1000px);
+  padding: 16px;
+  margin-top: 35px;
+  margin-inline: auto;
   overflow-x: hidden;
 }
 
 @media screen and (max-width: 768px) {
-  .container {
-    margin-top: 70px;
+  .app {
+    margin-top: -8px;
     padding: 8px;
     width: 100%;
     margin-bottom: 50px;

@@ -5,13 +5,11 @@ import AllRecordsSelection from '../components/AllRecordsSelection'
 
 const Statistics = () => {
   return (
-    <div className="container">
-      <ItemProvider>
-        <CategoryProvider>
-          <AllRecordsSelection />
-        </CategoryProvider>
-      </ItemProvider>
-    </div>
+    <ItemProvider>
+      <CategoryProvider>
+        <AllRecordsSelection />
+      </CategoryProvider>
+    </ItemProvider>
   )
 }
 

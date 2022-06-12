@@ -7,7 +7,6 @@ import { NotificationProvider } from './context/NotificationContext'
 import Navigation from './pages/Navigation'
 import Notification from './components/Notification'
 import Home from './pages/Home'
-import Register from './pages/Register'
 import Login from './pages/Login'
 import AllRecords from './pages/AllRecords'
 import Statistics from './pages/Statistics'
@@ -17,11 +16,11 @@ import { PrivateRoute, PublicRoute } from './util/Routes'
 
 const App = () => {
   return (
-    <div className='app'>
-      <AuthProvider>
-        <Router>
-          <NotificationProvider>
-            <Navigation />
+    <AuthProvider>
+      <Router>
+        <NotificationProvider>
+          <Navigation />
+          <div className="app">
             <Notification />
             <Routes>
               <Route path="/" element={<PrivateRoute />}>
@@ -33,13 +32,12 @@ const App = () => {
               </Route>
               <Route path="/" element={<PublicRoute />}>
                 <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
               </Route>
             </Routes>
-          </NotificationProvider>
-        </Router>
-      </AuthProvider>
-    </div>
+          </div>
+        </NotificationProvider>
+      </Router>
+    </AuthProvider>
   )
 }
 

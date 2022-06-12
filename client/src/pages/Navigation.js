@@ -25,11 +25,11 @@ const Navigation = () => {
 
   if (result.data && result.data.getUsers) {
     const users = [...result.data.getUsers]
-    if (user) {
+
+    if (user.username) {
       loggedUser = users.find(u => u.username === user.username)
     }
   }
-
   const logoutUser = () => {
     logout()
   }
@@ -42,7 +42,7 @@ const Navigation = () => {
       handleActionDialog('', false)
     }
   }
-  const menuBar = user ? (
+  const menuBar = user.username ? (
     <>
       <aside>
         <div className="navTop">

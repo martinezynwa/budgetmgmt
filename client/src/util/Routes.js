@@ -5,14 +5,13 @@ import useAuth from '../context/AuthContext'
 
 const PrivateRoute = () => {
   const { user } = useAuth()
-
-  return user ? <Outlet /> : <Navigate to="/login" />
+  return user.username ? <Outlet /> : <Navigate to="/login" />
 }
 
 const PublicRoute = () => {
   const { user } = useAuth()
 
-  return user ? <Navigate to="/" /> : <Outlet />
+  return user.username ? <Navigate to="/" /> : <Outlet />
 }
 
 export { PrivateRoute, PublicRoute }

@@ -11,14 +11,12 @@ const Home = () => {
   const selectedMonth = dayjs(new Date()).format('YYYY-MM')
 
   return (
-    <div className="container">
-      <ItemProvider>
-        <TotalCard selectedMonth={selectedMonth} showDifference={true} />
-        <ItemForm />
-        <SelectButton />
-        <Items />
-      </ItemProvider>
-    </div>
+    <ItemProvider>
+      <TotalCard selectedMonth={selectedMonth} showDifference={true} />
+      <ItemForm />
+      <SelectButton />
+      <Items />
+    </ItemProvider>
   )
 }
 
