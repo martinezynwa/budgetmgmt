@@ -1,9 +1,7 @@
-import React from 'react'
-
-import SelectButton from '../components/SelectButton'
-import TotalCard from '../components/TotalCard'
-import Items from '../components/Items'
-import ItemForm from '../components/ItemForm'
+import SelectButton from '../components/Item/SelectItemsButton'
+import TotalCard from '../components/Total/TotalCard'
+import Items from '../components/Item/Items'
+import ItemForm from '../components/Item/ItemForm'
 import { ItemProvider } from '../context/ItemsContext'
 const dayjs = require('dayjs')
 

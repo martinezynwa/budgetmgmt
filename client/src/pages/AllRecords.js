@@ -1,12 +1,11 @@
-import React from 'react'
 import { ItemProvider } from '../context/ItemsContext'
-import AllRecordsSelection from '../components/AllRecordsSelection'
-import Items from '../components/Items'
+import AllItemsSelection from '../components/Item/AllItemsSelection'
+import Items from '../components/Item/Items'
 
 const AllRecords = () => {
   return (
     <ItemProvider>
-      <AllRecordsSelection records={true} />
+      <AllItemsSelection />
       <Items />
     </ItemProvider>
   )

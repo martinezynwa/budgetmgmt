@@ -1,23 +1,16 @@
 :root {
-  --color-primary: #4c59ce;
-  --color-white: #ffff;
-  --color-info-dark: #3e444d;
-  --color-info-light: #dce1eb;
-  --color-dark: #363949;
-  --color-light: rgba(132, 139, 200, 0.18);
-  --color-primary-variant: #111e88;
-  --color-dark-variant: #677483;
-  --color-background: #f6f6f9;
+  --color-primary: #404ec5;
+  --color-dark: #000;
+  --color-card-bg: rgb(245, 248, 250);
+  --color-button-bg: #4586e0;
+  --color-button-in: #fff;
+  --color-modal: #fff;
 
-  --card-border-radius: 2rem;
-  --border-radius-1: 0.4rem;
-  --border-radius-2: 0.8rem;
-  --border-radius-3: 1.2rem;
+  --menuIconSize: 28px;
+}
 
-  --card-padding: 1.8rem;
-  --padding-1: 1.2rem;
-
-  --box-shadow: 0 2rem 3rem var(--color-light);
+body, html {
+  height: 100%;
 }
 
 div * {
@@ -34,8 +27,8 @@ div * {
   box-sizing: border-box;
 }
 
-a {
-  color: var(--color-dark);
+h1 {
+  font-size: 24px;
 }
 
 h2 {
@@ -50,39 +43,27 @@ h4 {
   font-size: 12px;
 }
 
-small {
-  font-size: 0.75rem;
-}
-
-.text-muted {
-  color: var(--color-info-dark);
-}
-
-p {
-  color: var(--color-dark-variant)
-}
-
-b {
-  color: var(--color-dark)
-}
-
-.primary {
-  color: var(--color-primary)
+h5 {
+  font-size: 10px;
 }
 
 .app {
   width: min(60%, 1000px);
-  padding: 16px;
-  margin-top: 35px;
+  padding: 30px;
   margin-inline: auto;
   overflow-x: hidden;
 }
 
 @media screen and (max-width: 768px) {
+
+  :root {
+    --menuIconSize: 31px;
+  }
+
   .app {
-    margin-top: -8px;
-    padding: 8px;
+    padding: 100px 8px 70px 8px;
     width: 100%;
     margin-bottom: 50px;
   }
+
 }

@@ -127,6 +127,7 @@ const itemsResolvers = {
         itemCategory,
         itemPrice,
       )
+
       if (!valid) {
         throw new UserInputError('Errors', { errors })
       }
@@ -192,11 +193,9 @@ const itemsResolvers = {
         throw new Error(err)
       }
 
-      if (itemDate) {
-        itemDate = dayjs(itemDate).format('YYYY-MM-DDTHH:mm:ss')
-      } else {
-        itemDate = item.itemDate
-      }
+      itemDate
+        ? (itemDate = dayjs(itemDate).format('YYYY-MM-DDTHH:mm:ss'))
+        : (itemDate = item.itemDate)
 
       if (!itemName) {
         itemName = item.itemName
@@ -267,7 +266,8 @@ const itemsResolvers = {
       }
     },
     importItem: async (_, args, context) => {
-      const currentUser = await checkAuthorization(context)
+      //const currentUser = await checkAuthorization(context)
+      console.log('args :>> ', args)
       try {
         const { importInput } = args
         importInput.map(i => {
@@ -289,7 +289,7 @@ const itemsResolvers = {
             currency: 'Kč',
           }
           const createdBy = {
-            username: i.Name === 'Martin' ? 'martinmgs' : 'miluskazostravy',
+            username: i.Name === 'Martin' ? process.env.MG : process.env.MK,
             name: i.Name,
             date: dayjs(itemDate).format('YYYY-MM-DDTHH:mm:ss'),
           }
@@ -311,7 +311,6 @@ const itemsResolvers = {
         })
         return 'Items imported'
       } catch (err) {
-        console.log('err :>> ', err)
         throw new Error(err)
       }
     },

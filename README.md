@@ -189,16 +189,30 @@
   - [x] style css 
 - [x] button styling for import input
 - [x] sort items by time
+
+### 0.28
+- [x] google sign-in instead of custom login/registering
+ - [x] find suitable solution
+ - [x] implement additions/changes on frontend
+ - [x] implement additions/changes on backend
+ - [x] remove old components etc
+ - [x] fix code that relied on old user type
+ - [x] figure out .env on frontend
+
+### 0.29
+- [x] possibility of changing name of user
+- [x] hide data tab on mobile
+- [x] change design of error on item form
+- [x] re-do all records / statistics selection pages so they aren't in one component
+- [x] css clean-up/refactoring of whole app
+
 ---
 
 ### TBD
-
-- [ ] css cleanup
 - [ ] deploy
 
 ### future
-- [ ] check about linking items with user in an easier way(like in the video course)
-- [ ] auto login after registering
 - [ ] dark mode
+- [ ] statistics page - comparison with previous month(s)
 
 ---

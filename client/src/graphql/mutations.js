@@ -93,6 +93,12 @@ const DELETE_CATEGORY = gql`
   }
 `
 
+const CHANGE_NAME = gql`
+  mutation changeName($name: String!) {
+    changeName(name: $name)
+  }
+`
+
 export {
   GOOGLE_AUTH,
   ADD_ITEM,
@@ -101,4 +107,5 @@ export {
   CREATE_CATEGORY,
   DELETE_CATEGORY,
   IMPORT_ITEM,
+  CHANGE_NAME,
 }

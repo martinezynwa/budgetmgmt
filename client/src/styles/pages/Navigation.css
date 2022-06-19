@@ -2,101 +2,109 @@ aside {
   position: fixed;
 }
 
-.navTop {
+.nav-top {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 35px 33px;
-}
-
-.navTopHeader {
-  display: flex;
+  flex-direction: row;
   gap: 24px;
-  align-items: center;
+  margin: 35px 32px;
 }
 
-.navIcon {
-  font-size: 28px;
+.nav-top .nav-user-icon {
+  font-size: var(--menuIconSize);
 }
 
-.navMiddle {
+.nav-icon {
+  font-size: var(--menuIconSize);
+}
+
+.nav-bar {
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
-.navLink {
+.nav-bar a {
   display: flex;
   position: relative;
   align-items: center;
-  color: var(--color-info-dark);
+  color: var(--color-dark);
   padding: 32px;
   height: 24px;
   gap: 27px;
   transition: all 300ms ease;
 }
 
-.navLink.active {
-  color: var(--color-primary);
+.nav-bar a.active {
+  color: #404ec5;
 }
 
-.navLink:hover {
-  color: var(--color-primary);
-  cursor: pointer;
+.nav-bar a:hover {
+  color: #6672df;
 }
 
-.navBottom {
-  display: flex;
-  flex-direction: column;
-}
-
-.navLogout {
+.logout-button {
   display: flex;
   flex-direction: row;
-  background: transparent;
   align-items: center;
+  background: transparent;
   margin-top: 16px;
   padding-left: 32px;
   gap: 27px;
-  color: var(--color-info-dark);
   transition: all 300ms ease;
+  color: var(--color-info-dark);
 }
 
-.navLogout:hover {
+.logout-button:hover {
   color: var(--color-primary);
 }
 
 @media screen and (max-width: 768px) {
 
-  .navTop {
+  .nav-top {
     display: flex;
     flex-direction: row;
+    align-items: center;
     position: fixed;
-    margin: 0px;
-    left: 0px;
-    background: var(--color-white);
+    margin: 0;
+    background: #fff;
     width: 100%;
-    height: 8%;
+    height: 10%;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   }
 
-  .navTopHeader {
+  .nav-user-icon {
+    font-size: var(--menuIconSize);
     margin-left: 15px;
   }
 
-  .navMiddle {
+  .logout-button {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    height: 6%;
+    right: -52px;
+  }
+
+  .logout-button h3 {
+    visibility: hidden;
+  }
+
+  .nav-bar {
     display: flex;
     flex-direction: row;
     position: fixed;
     justify-content: center;
-    bottom: 0px;
+    bottom: -1px;
     width: 100%;
-    background: var(--color-white);
-    height: 60px;
+    background: #fff;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   }
 
-  .navLink {
+  .nav-bar a:last-child {
+    display: none;
+  }
+
+  .nav-bar a {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -105,15 +113,4 @@ aside {
     gap: 3px;
     margin-top: 2px;
   }
-
-  .navLogout {
-    position: fixed;
-    top: 5px;
-    right: -52px;
-  }
-
-  .navLogoutText {
-    visibility: hidden;
-  }
-
 }

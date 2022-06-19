@@ -1,6 +1,5 @@
-import LoginUser from '../components/LoginUser'
+import LoginUser from '../components/Login/LoginUser'
 import { GoogleOAuthProvider } from '@react-oauth/google'
-import '../styles/pages/LoginRegister.css'
 
 const Login = () => {
   return (

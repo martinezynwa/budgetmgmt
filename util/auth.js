@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken')
+const jwt_decode = require('jwt-decode')
+
 const { AuthenticationError } = require('apollo-server')
 const User = require('../models/User')
 
@@ -6,8 +8,9 @@ const checkAuthorization = async context => {
   const auth = context ? context.req.headers.authorization : null
   if (auth && auth.toLowerCase().startsWith('bearer ')) {
     try {
-      const decodedToken = jwt.verify(auth.substring(7), process.env.SECRET_KEY)
-      const currentUser = await User.findById(decodedToken.id)
+      const decodedToken = jwt_decode(auth.substring(7))
+      const { email } = decodedToken
+      const currentUser = await User.findOne({ email })
       return currentUser
     } catch (err) {
       throw new AuthenticationError('Invalid/Expired token')
@@ -18,17 +21,4 @@ const checkAuthorization = async context => {
   )
 }
 
-const generateToken = user => {
-  const SECRET_KEY = process.env.SECRET_KEY
-  return jwt.sign(
-    {
-      id: user.id,
-      username: user.username,
-      email: user.email,
-    },
-    SECRET_KEY,
-    { expiresIn: '1h' },
-  )
-}
-
-module.exports = { generateToken, checkAuthorization }
+module.exports = { checkAuthorization }

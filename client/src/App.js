@@ -1,18 +1,22 @@
-import './styles/App.css'
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-
 import { AuthProvider } from './context/AuthContext'
 import { NotificationProvider } from './context/NotificationContext'
-import Navigation from './pages/Navigation'
-import Notification from './components/Notification'
-import Home from './pages/Home'
-import Login from './pages/Login'
-import AllRecords from './pages/AllRecords'
-import Statistics from './pages/Statistics'
-import Options from './pages/Options'
-import Data from './pages/Data'
 import { PrivateRoute, PublicRoute } from './util/Routes'
+import Login from './pages/Login'
+import Navigation from './pages/Navigation'
+import Home from './pages/Home'
+import Statistics from './pages/Statistics'
+import AllRecords from './pages/AllRecords'
+import Options from './pages/Options'
+import ImportExport from './pages/ImportExport'
+import Notification from './components/Notification/Notification'
+import './styles/App.css'
+import './styles/components/Cards.css'
+import './styles/components/ItemForm.css'
+import './styles/components/Notification.css'
+import './styles/components/Popup.css'
+import './styles/components/SelectButton.css'
+import './styles/components/Toggle.css'
 
 const App = () => {
   return (
@@ -28,7 +32,7 @@ const App = () => {
                 <Route path="/allrecords" element={<AllRecords />} />
                 <Route path="/statistics" element={<Statistics />} />
                 <Route path="/options" element={<Options />} />
-                <Route path="/data" element={<Data />} />
+                <Route path="/data" element={<ImportExport />} />
               </Route>
               <Route path="/" element={<PublicRoute />}>
                 <Route path="/login" element={<Login />} />

@@ -1,31 +1,19 @@
-.buttons {
-  margin: 15px 0px;
-  text-align: center;
+.select-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 25px;
 }
 
-.selected {
-  display: inline-block;
-  padding: 6px 6px;
-  margin: 0px 10px;
+.select-buttons .button {
+  padding: 10px 21px;
+  margin: 0px 6px;
   border: 6px solid transparent;
   border-radius: 11px;
-  background-color: #4586e0;
-  color: #ffffff;
+  background-color: var(--color-button-bg);
+  color: var(--color-button-in);
 }
 
-.nonselected {
-  display: inline-block;
-  padding: 6px 6px;
-  margin: 0px 10px;
-  border: 6px solid transparent;
-  border-radius: 11px;
+.select-buttons .nonselected {
   background-color: #9db7c9;
-  color: #ffffff;
-}
-
-.button {
-  color: #ffffff;
-  border: 0px solid rgb(255, 255, 255);
-  background-color: transparent;
-  padding: 6px 15px;
 }

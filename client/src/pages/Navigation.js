@@ -1,11 +1,10 @@
-import React from 'react'
 import useAuth from '../context/AuthContext'
 import { useConfirmDialog } from '../hooks/useConfirmDialog'
 import { ALL_USERS } from '../graphql/queries'
 import { useQuery } from '@apollo/client'
 import { NavLink } from 'react-router-dom'
+import ConfirmDialog from '../util/ConfirmDialog'
 import '../styles/pages/Navigation.css'
-import ConfirmDialog from '../components/ConfirmDialog'
 
 import {
   FaUser,
@@ -42,47 +41,44 @@ const Navigation = () => {
       handleActionDialog('', false)
     }
   }
+
   const menuBar = user.username ? (
     <>
       <aside>
-        <div className="navTop">
-          <div className="navTopHeader">
-            <FaUser className="navIcon" />
-            <h2>{loggedUser.name ? loggedUser.name.split(' ')[0] : null}</h2>
-          </div>
+        <div className="nav-top">
+          <FaUser className="nav-user-icon" />
+          <h1>{loggedUser.name ? loggedUser.name.split(' ')[0] : null}</h1>
         </div>
 
-        <div className="navMiddle">
-          <NavLink className="navLink" to="/">
-            <FaHouseUser className="navIcon" />
+        <div className="nav-bar">
+          <NavLink to="/">
+            <FaHouseUser className="nav-icon" />
             <h3>Home</h3>
           </NavLink>
-          <NavLink className="navLink" to="/statistics">
-            <FaChartBar className="navIcon" />
+          <NavLink to="/statistics">
+            <FaChartBar className="nav-icon" />
             <h3>Statistics</h3>
           </NavLink>
-          <NavLink className="navLink" to="/allrecords">
-            <FaRegListAlt className="navIcon" />
+          <NavLink to="/allrecords">
+            <FaRegListAlt className="nav-icon" />
             <h3>Records</h3>
           </NavLink>
-          <NavLink className="navLink" to="/options">
-            <FaCog className="navIcon" />
+          <NavLink to="/options">
+            <FaCog className="nav-icon" />
             <h3>Options</h3>
           </NavLink>
-          <NavLink className="navLink" to="/data">
-            <FaFileAlt className="navIcon" />
+          <NavLink to="/data">
+            <FaFileAlt className="nav-icon" />
             <h3>Data</h3>
           </NavLink>
         </div>
 
-        <div className="navBottom">
-          <button
-            className="navLogout"
-            onClick={() => handleInputMessage('Logout user?')}>
-            <FaPowerOff className="navIcon" />
-            <h3 className="navLogoutText">Logout</h3>
-          </button>
-        </div>
+        <button
+          className="logout-button"
+          onClick={() => handleInputMessage('Logout user?')}>
+          <FaPowerOff className="nav-icon" />
+          <h3>Logout</h3>
+        </button>
       </aside>
 
       {dialog.isLoading && (

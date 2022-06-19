@@ -1,76 +1,41 @@
-.notificationSuccess {
+.notification {
   position: fixed;
   border-radius: 10px;
   bottom: 25px;
   right: 30px;
   padding: 15px 25px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.success {
   background: #bdf7cf;
 }
 
-.notificationError {
-  position: fixed;
-  border-radius: 10px;
-  bottom: 25px;
-  right: 30px;
-  padding: 15px 25px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+.error {
   background: rgb(255, 151, 151);
 }
 
-.notificationContent {
+.notification-content {
   display: flex;
   align-items: center;
 }
 
-.notificationIcon {
-  margin-top: 2px;
-  font-size: 14px;
-}
-
-.notificationText {
+.notification-text {
   margin-left: 20px;
   font-weight: 500;
 }
 
 @media screen and (max-width: 768px) {
-  .notificationContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 4px;
-  }
-
-  .notificationSuccess {
-    padding: 10px;
+  .notification {
+    padding: 15px;
     width: 95%;
     top: 12px;
     bottom: unset;
     right: auto;
   }
 
-  .notificationError {
-    padding: 10px;
-    width: 95%;
-    top: 12px;
-    bottom: unset;
-    right: auto;
-  }
-
-  .notificationContent {
-    display: flex;
-    align-items: center;
-  }
-
-  .notificationIcon {
-    margin-left: 20px;
-    font-size: 22px;
-  }
-
-  .notificationText {
-    width: 67%;
-    font-size: 16px;
-    font-weight: 500;
+  .notification-text {
+    width: 85%;
     text-align: center;
   }
 }

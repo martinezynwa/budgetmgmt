@@ -1,17 +1,17 @@
 const itemsResolvers = require('./items')
-const usersResolvers = require('./users')
 const categoryResolvers = require('./categories')
+const userResolvers = require('./user')
 
 const indexOfResolvers = {
   Query: {
     ...itemsResolvers.Query,
-    ...usersResolvers.Query,
     ...categoryResolvers.Query,
+    ...userResolvers.Query,
   },
   Mutation: {
     ...itemsResolvers.Mutation,
-    ...usersResolvers.Mutation,
     ...categoryResolvers.Mutation,
+    ...userResolvers.Mutation,
   },
 }
 

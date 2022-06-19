@@ -37,10 +37,10 @@ const typeDefs = gql`
 
   type User {
     id: ID
-    username: String
-    name: String
     email: String
-    token: String!
+    name: String
+    token: String
+    username: String
     registeredAt: String
   }
 
@@ -115,6 +115,8 @@ const typeDefs = gql`
     registerUser(registerInput: RegisterInput): User!
     loginUser(username: String!, password: String!): User!
     importItem(importInput: [ImportInput]): String!
+    googleAuth(idToken: String!): User
+    changeName(name: String!): String!
   }
 `
 

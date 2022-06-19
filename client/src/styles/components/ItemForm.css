@@ -1,18 +1,28 @@
-.formNotVisible {
+.form-invisible {
   display: none;
 }
 
 .modalContainer {
-  background-color: rgb(255, 255, 255);
+  background-color: var(--color-modal);
 }
 
-.formControl {
+.form-container {
+  background-color: rgb(245, 248, 250);
+  border-radius: 7px;
+  margin-bottom: 25px;
+}
+
+.item-form {
+  margin: 0px 16px;
+}
+
+.form-option {
   display: flex;
   flex-direction: column;
+  margin: 2px;
 }
 
-.formInput,
-.formSelect {
+.form-option input, select {
   margin-top: 2px;
   margin-bottom: 7px;
   padding: 7px;
@@ -21,50 +31,42 @@
   width: 100%;
 }
 
-.formLabel {
+.form-option label {
   font-weight: 500;
 }
 
-.formError {
+.form-error {
   color: red;
+  font-weight: 600;
 }
 
-.formButton {
-  background-color: #4586e0;
-  border: 2px solid #4586e0;
-  border-radius: 4px;
-  color: #ffff;
-  display: block;
-  font-size: 16px;
-  padding: 10px;
-  margin-top: 20px;
+.item-form .form-submit {
   width: 100%;
+  margin: 10px 0px;
+  padding: 10px 12px;
+  background-color: var(--color-button-bg);
+  border-radius: 10px;
+  color: var(--color-button-in);
 }
 
-.formEditButton:hover {
+.form-edit-button:hover {
   color: grey
 }
 
-.modalButton {
-  margin: 0px;
+.modal-button {
   padding: 7px 15px;
   border: 6px solid rgb(255, 255, 255);
-  border-radius: 11px;
-  background-color: #4586e0;
-  color: #ffffff;
+  border-radius: 10px;
+  background-color: var(--color-button-bg);
+  color: var(--color-button-in);
 }
 
 @media screen and (max-width: 768px) {
-  .formLabel {
-    font-size: 17px;
+  .item-form {
+    margin: 0px 5px;
   }
 
-  .modalButton {
-    margin: 0px;
+  .modal-button {
     padding: 14px 25px;
-    border: 6px solid rgb(255, 255, 255);
-    border-radius: 11px;
-    background-color: #4586e0;
-    color: #ffffff;
   }
 }
