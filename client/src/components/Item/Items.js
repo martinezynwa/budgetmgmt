@@ -1,6 +1,7 @@
 import ItemCard from './ItemCard'
 import useItem from '../../context/ItemsContext'
 
+//displaying all items from database
 const Items = () => {
   const { items } = useItem()
   return (

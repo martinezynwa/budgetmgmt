@@ -1,11 +1,16 @@
 import { useState } from 'react'
 const dayjs = require('dayjs')
 
-export const useStatsAndRecordsForm = () => {
+/*
+used specifically for Statistics and Items pages
+adding the search selection form for years and months
+*/
+
+export const useStatsAndItemsForm = () => {
   const currentMonth = dayjs(new Date()).format('YYYY-MM')
   const [selectedMonth, setSelectedMonth] = useState(currentMonth)
 
-  const StatsAndRecordsForm = ({ formVisibility }) => {
+  const StatsAndItemsForm = ({ formVisibility }) => {
     const initialState = {
       month: '',
       year: '',
@@ -14,6 +19,7 @@ export const useStatsAndRecordsForm = () => {
     let years = []
     const [errors, setErrors] = useState('')
 
+    //adds available years into the filter
     const availableYears = () => {
       for (let i = 2020; i <= currentMonth.substring(0, 4); i++) {
         years.push(i)
@@ -31,6 +37,7 @@ export const useStatsAndRecordsForm = () => {
 
     const onSubmit = event => {
       event.preventDefault()
+      //check that every single filter is applied
       if (
         !dateInput.month ||
         !dateInput.year ||
@@ -44,9 +51,11 @@ export const useStatsAndRecordsForm = () => {
       setErrors('')
     }
 
+    //form not visible by default, with help of useToggle
     if (formVisibility) {
       return null
     }
+    console.log('dateInput :>> ', dateInput)
 
     return (
       <>
@@ -91,7 +100,7 @@ export const useStatsAndRecordsForm = () => {
   }
 
   return {
-    StatsAndRecordsForm,
+    StatsAndItemsForm,
     selectedMonth,
   }
 }

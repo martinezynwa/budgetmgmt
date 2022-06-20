@@ -1,5 +1,6 @@
 import CategoryIcon from '../Category/CategoryIcon'
 
+//for statistics card
 const StatisticsCard = ({ category, total }) => {
   return (
     <div className="statistics-card">

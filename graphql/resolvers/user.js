@@ -6,6 +6,7 @@ const { UserInputError } = require('apollo-server')
 const userResolvers = {
   Query: {
     getUsers: async () => {
+      //get all users
       const users = await User.find({})
       if (users) {
         return users
@@ -14,9 +15,12 @@ const userResolvers = {
   },
   Mutation: {
     googleAuth: async (_, { idToken }) => {
+      //google login
       const { data, token } = await googleAuth(idToken)
       const { email, name } = data
       const user = await User.findOne({ email })
+      //if user exists, only token is passed to frontend
+      //if user does not exist, new one is created
       if (!user) {
         const newUser = new User({
           email,
@@ -38,9 +42,9 @@ const userResolvers = {
       }
     },
     changeName: async (_, args, context) => {
+      //change of user name
       const currentUser = await checkAuthorization(context)
       if (!args.name) {
-        console.log('test :>> ')
         throw new UserInputError('Name cannot be empty', {
           errors: 'Name cannot be empty',
         })

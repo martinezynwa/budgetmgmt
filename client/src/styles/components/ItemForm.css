@@ -1,72 +1,77 @@
-.form-invisible {
-  display: none;
-}
+ /*-------For any form within the app-------*/
 
-.modalContainer {
-  background-color: var(--color-modal);
-}
+ /*hiding the form*/
+ .form-invisible {
+   display: none;
+ }
 
-.form-container {
-  background-color: rgb(245, 248, 250);
-  border-radius: 7px;
-  margin-bottom: 25px;
-}
+ .form-container {
+   background-color: rgb(245, 248, 250);
+   border-radius: 7px;
+   margin-bottom: 25px;
+ }
 
-.item-form {
-  margin: 0px 16px;
-}
+ .item-form {
+   margin: 0px 11px;
+ }
 
-.form-option {
-  display: flex;
-  flex-direction: column;
-  margin: 2px;
-}
+ /*form elements*/
+ .form-option {
+   display: flex;
+   flex-direction: column;
+   margin: 2px;
+ }
 
-.form-option input, select {
-  margin-top: 2px;
-  margin-bottom: 7px;
-  padding: 7px;
-  border-radius: 5px;
-  border: 1px solid gray;
-  width: 100%;
-}
+ .form-option input, select {
+   margin-top: 2px;
+   margin-bottom: 7px;
+   padding: 7px;
+   border-radius: 5px;
+   border: 1px solid gray;
+   width: 100%;
+ }
 
-.form-option label {
-  font-weight: 500;
-}
+ .form-option label {
+   font-weight: 500;
+ }
 
-.form-error {
-  color: red;
-  font-weight: 600;
-}
+ .form-error {
+   color: red;
+   font-weight: 600;
+ }
 
-.item-form .form-submit {
-  width: 100%;
-  margin: 10px 0px;
-  padding: 10px 12px;
-  background-color: var(--color-button-bg);
-  border-radius: 10px;
-  color: var(--color-button-in);
-}
+ .item-form .form-submit {
+   width: 100%;
+   margin: 10px 0px;
+   padding: 10px 12px;
+   background-color: var(--color-button-bg);
+   border-radius: 10px;
+   color: var(--color-button-in);
+ }
 
-.form-edit-button:hover {
-  color: grey
-}
+ .form-edit-button:hover {
+   color: grey
+ }
 
-.modal-button {
-  padding: 7px 15px;
-  border: 6px solid rgb(255, 255, 255);
-  border-radius: 10px;
-  background-color: var(--color-button-bg);
-  color: var(--color-button-in);
-}
+ /*modal design*/
+ .modalContainer {
+   background-color: var(--color-modal);
+ }
 
-@media screen and (max-width: 768px) {
-  .item-form {
-    margin: 0px 5px;
-  }
+ .modal-button {
+   padding: 7px 15px;
+   border: 6px solid rgb(255, 255, 255);
+   border-radius: 10px;
+   background-color: var(--color-button-bg);
+   color: var(--color-button-in);
+ }
 
-  .modal-button {
-    padding: 14px 25px;
-  }
-}
+ @media screen and (max-width: 768px) {
+   .item-form {
+     margin: 0px 5px;
+   }
+
+   .modal-button {
+     padding: 14px 25px;
+   }
+ }

@@ -209,7 +209,18 @@
 ---
 
 ### TBD
-- [ ] deploy
+
+- [ ] test version
+  - [ ] different repository
+  - [ ] prepare mongodb
+  - [ ] login only for 2 persons max
+  - [ ] test data
+  - [ ] limit for adding items
+  - [ ] limit for adding categories
+  - [ ] clean-up of data after logout
+  - [ ] delete user after logout
+  - [ ] limit for uploaded file
+  - [ ] deploy
 
 ### future
 - [ ] dark mode

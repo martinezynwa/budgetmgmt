@@ -1,28 +1,23 @@
 const Category = require('../../models/Category')
 const { checkAuthorization } = require('../../util/auth')
 const { UserInputError } = require('apollo-server')
-
 const { validateCategoryInput } = require('../../util/validators')
 
 const categoryResolvers = {
   Query: {
     getCategories: async () => {
+      //get All categories
       const allCategories = await Category.find({})
       const categories = allCategories.sort(
         (a, b) => a.importance - b.importance,
       )
       return categories
     },
-    getCategory: async (_, args) => {
-      const categories = await Category.find({})
-      const category = categories.filter(
-        category => category.categoryName === args.categoryName,
-      )
-      return category[0]
-    },
   },
   Mutation: {
     createCategory: async (
+      //create category
+      //importance useful when sorting(1-most used, 5-less used)
       _,
       { categoryInput: { categoryName, importance } },
       context,
@@ -41,7 +36,7 @@ const categoryResolvers = {
           },
         })
       }
-      const defaultCategory = true
+      const defaultCategory = true //default categories cannot be deleted
 
       const createdBy = {
         username: currentUser.username,

@@ -1,18 +1,19 @@
 import React, { useReducer, createContext, useContext } from 'react'
 import notificationReducer from '../reducers/notificationReducer'
 
-const initialState = {
-  notification: null,
-  style: null,
-}
-
+//context for notifications
 const NotificationContext = createContext()
 
-let timer = null
-
 export const NotificationProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(notificationReducer, initialState)
+  const notificationState = {
+    notification: null,
+    style: null,
+  }
+  let timer = null
+  const [state, dispatch] = useReducer(notificationReducer, notificationState)
 
+  //show notification for a specific period of time with required style
+  //linked to component Notification that handles the displaying
   const setNotification = (message, sec, style) => {
     if (timer != null) {
       clearInterval(timer)
@@ -24,6 +25,7 @@ export const NotificationProvider = ({ children }) => {
       style: style,
     })
 
+    //hide notification after some time
     timer = setTimeout(() => {
       dispatch({
         type: 'MESSAGE',

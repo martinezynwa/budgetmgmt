@@ -1,5 +1,6 @@
 import { gql } from 'graphql-tag'
 
+//for google login
 const GOOGLE_AUTH = gql`
   mutation googleAuth($idToken: String!) {
     googleAuth(idToken: $idToken) {
@@ -13,6 +14,7 @@ const GOOGLE_AUTH = gql`
   }
 `
 
+//adding item
 const ADD_ITEM = gql`
   mutation addItem(
     $itemDate: String
@@ -50,6 +52,7 @@ const ADD_ITEM = gql`
   }
 `
 
+//updating existing item
 const UPDATE_ITEM = gql`
   mutation editItem($itemId: ID!, $itemInput: ItemInput) {
     editItem(itemID: $itemId, itemInput: $itemInput) {
@@ -64,18 +67,15 @@ const UPDATE_ITEM = gql`
     }
   }
 `
-const IMPORT_ITEM = gql`
-  mutation importItem($importInput: [ImportInput]) {
-    importItem(importInput: $importInput)
-  }
-`
 
+//deleting existing item
 const DELETE_ITEM = gql`
   mutation removeItem($itemId: ID!) {
     removeItem(itemId: $itemId)
   }
 `
 
+//creating of category
 const CREATE_CATEGORY = gql`
   mutation createCategory($categoryName: String!, $importance: String!) {
     createCategory(
@@ -87,15 +87,25 @@ const CREATE_CATEGORY = gql`
     }
   }
 `
+
+//deleting an existing category
 const DELETE_CATEGORY = gql`
   mutation deleteCategory($categoryId: ID!) {
     deleteCategory(categoryId: $categoryId)
   }
 `
 
+//change of user name
 const CHANGE_NAME = gql`
   mutation changeName($name: String!) {
     changeName(name: $name)
+  }
+`
+
+//import of custom CSV
+const IMPORT_ITEM = gql`
+  mutation importItem($importInput: [ImportInput]) {
+    importItem(importInput: $importInput)
   }
 `
 
@@ -106,6 +116,6 @@ export {
   DELETE_ITEM,
   CREATE_CATEGORY,
   DELETE_CATEGORY,
-  IMPORT_ITEM,
   CHANGE_NAME,
+  IMPORT_ITEM,
 }

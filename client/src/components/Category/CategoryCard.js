@@ -1,6 +1,7 @@
 import CategoryIcon from './CategoryIcon'
 import CategoryDeleteButton from './CategoryDeleteButton'
 
+//card for a category
 const CategoryCard = ({ category }) => {
   return (
     <div className='category-container'>

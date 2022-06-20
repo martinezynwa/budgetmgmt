@@ -6,14 +6,15 @@ const itemReducer = (state, action) => {
         items: action.items,
       }
     case 'BY_USER':
-      let { username, items } = action.data
+      let { username } = action.data
+      let items = action.data.data.getCurrentMonthByUser
 
       if (!username) {
         return { items }
       }
-      items = action.data.items.filter(
-        item => item.createdBy.username === username,
-      )
+
+      items = items.filter(item => item.createdBy.username === username)
+
       return {
         ...state,
         items: items,

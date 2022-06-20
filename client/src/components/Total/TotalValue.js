@@ -1,6 +1,7 @@
 import { GET_TOTAL } from '../../graphql/queries'
 import { useQuery } from '@apollo/client'
 
+//displaying total price spent of selected user in the selected month
 const TotalValue = ({ username, selectedMonth }) => {
   let total = []
   const resultTotal = useQuery(GET_TOTAL, {

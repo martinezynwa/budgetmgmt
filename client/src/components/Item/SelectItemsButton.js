@@ -4,6 +4,7 @@ import useItem from '../../context/ItemsContext'
 import { useQuery } from '@apollo/client'
 const dayjs = require('dayjs')
 
+//buttons on home page that allow switching between items per user in the current month + all items
 const SelectButton = () => {
   let users = []
   const result = useQuery(ALL_USERS)

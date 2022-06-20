@@ -1,8 +1,10 @@
-import CategoryCard from './CategoryCard'
 import useCategory from '../../context/CategoryContext'
+import CategoryCard from './CategoryCard'
 
+//for displaying all categories from database
 const Categories = () => {
   const { categories } = useCategory()
+
   return (
     <>
       {categories

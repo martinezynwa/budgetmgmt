@@ -8,19 +8,22 @@ import {
   GET_CATEGORY_TOTALS,
 } from '../../graphql/queries'
 import useNotification from '../../context/NotificationContext'
-import ConfirmDialog from '../../util/ConfirmDialog'
+import ConfirmDialog from '../Dialog/ConfirmDialog'
 const dayjs = require('dayjs')
 
+//for deleting a single item
 const DeleteButton = ({ item }) => {
   const currentMonth = dayjs(new Date()).format('YYYY-MM')
   const { dialog, handleInputMessage, handleActionDialog } = useConfirmDialog()
   const { setNotification } = useNotification()
 
+  //mutation for deletion of an item
   const [deleteItem] = useMutation(DELETE_ITEM, {
     variables: item.id,
     onError(err) {
       setNotification(err.graphQLErrors[0].message, 5, 'error')
     },
+    //refetching all values so pages get updated immediately
     refetchQueries: () => [
       {
         query: CURRENT_MONTH_BY_USER,

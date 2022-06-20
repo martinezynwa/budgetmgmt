@@ -2,13 +2,15 @@ import { useEffect } from 'react'
 import TotalCard from '../Total/TotalCard'
 import useItem from '../../context/ItemsContext'
 import { useToggle } from '../../hooks/useToggle'
-import { useStatsAndRecordsForm } from '../../hooks/useStatsAndRecordsForm'
+import { useStatsAndItemsForm } from '../../hooks/useStatsAndItemsForm'
 
-const AllRecordsSelection = () => {
+//component of AllItems' page, displaying all items according to a filter
+const AllItems = () => {
   const { getItemsByMonth } = useItem()
   const { formVisibility, toggleForm, Toggle } = useToggle()
-  const { StatsAndRecordsForm, selectedMonth } = useStatsAndRecordsForm()
+  const { StatsAndItemsForm, selectedMonth } = useStatsAndItemsForm()
 
+  //loading items according to a filter, current month is default
   useEffect(() => {
     getItemsByMonth(selectedMonth)
   }, [selectedMonth, getItemsByMonth])
@@ -21,11 +23,11 @@ const AllRecordsSelection = () => {
           formVisibility={formVisibility}
           formName="Filter by month"
         />
-        <StatsAndRecordsForm formVisibility={formVisibility} />
+        <StatsAndItemsForm formVisibility={formVisibility} />
       </div>
       <TotalCard selectedMonth={selectedMonth} />
     </>
   )
 }
 
-export default AllRecordsSelection
+export default AllItems

@@ -2,18 +2,24 @@ import React, { useReducer, createContext, useContext } from 'react'
 import jwtDecode from 'jwt-decode'
 import authReducer from '../reducers/authReducer'
 
-let initialState = {
+//context for authorization purposes(login, logout)
+
+let userState = {
   username: null,
   name: null,
 }
+
+//checking if token hasn't expired yet, during every render of AuthContext
 if (localStorage.getItem('jwtToken')) {
+  //decoded token from local storage
   const decodedToken = jwtDecode(localStorage.getItem('jwtToken'))
 
   if (decodedToken.exp * 1000 < Date.now()) {
     localStorage.removeItem('jwtToken')
   } else {
-    initialState = {
-      ...initialState,
+    //setting up context with user info
+    userState = {
+      ...userState,
       username: decodedToken.email,
       name: decodedToken.name,
     }
@@ -22,13 +28,14 @@ if (localStorage.getItem('jwtToken')) {
 
 const AuthContext = createContext({
   user: null,
-  login: userData => {},
+  login: () => {},
   logout: () => {},
 })
 
 export const AuthProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, initialState)
+  const [state, dispatch] = useReducer(authReducer, userState)
 
+  //for logging-in
   const login = data => {
     localStorage.setItem('jwtToken', data.token)
     dispatch({
@@ -37,12 +44,14 @@ export const AuthProvider = ({ children }) => {
     })
   }
 
+  //for log-out
   const logout = () => {
     localStorage.removeItem('jwtToken')
     dispatch({
       type: 'LOGOUT',
     })
   }
+
   const value = {
     user: state,
     login,

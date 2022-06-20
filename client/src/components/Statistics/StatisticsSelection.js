@@ -1,10 +1,11 @@
 import StatisticsList from './StatisticsList'
 import { useToggle } from '../../hooks/useToggle'
-import { useStatsAndRecordsForm } from '../../hooks/useStatsAndRecordsForm'
+import { useStatsAndItemsForm } from '../../hooks/useStatsAndItemsForm'
 
+//allows selection of spending statistics per requested month
 const StatisticsSelection = () => {
   const { formVisibility, toggleForm, Toggle } = useToggle()
-  const { StatsAndRecordsForm, selectedMonth } = useStatsAndRecordsForm()
+  const { StatsAndItemsForm, selectedMonth } = useStatsAndItemsForm()
 
   return (
     <>
@@ -14,7 +15,7 @@ const StatisticsSelection = () => {
           formVisibility={formVisibility}
           formName="Filter by month"
         />
-        <StatsAndRecordsForm formVisibility={formVisibility} />
+        <StatsAndItemsForm formVisibility={formVisibility} />
       </div>
       <StatisticsList selectedMonth={selectedMonth} />
     </>

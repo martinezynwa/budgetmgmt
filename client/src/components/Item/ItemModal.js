@@ -7,14 +7,22 @@ import useNotification from '../../context/NotificationContext'
 import { FaEdit } from 'react-icons/fa'
 import Modal from 'react-bootstrap/Modal'
 
+//modal window that is shown when item edition is triggered
 const ItemModal = ({ item }) => {
+  const initialState = {
+    itemDate: '',
+    itemName: '',
+    itemCategory: '',
+    itemPrice: '',
+  }
   const { setNotification } = useNotification()
+  const [itemInput, setItemInput] = useState(initialState)
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
-
   const handleShow = () => setShow(true)
   const { user } = useAuth()
 
+  //check assuring that item can be edited only by an item creator
   const checkBeforeEditing = () => {
     if (user.username !== item.createdBy.username) {
       setNotification(
@@ -23,23 +31,17 @@ const ItemModal = ({ item }) => {
         'error',
       )
     } else {
-      handleShow()
+      handleShow() //modal shown
     }
   }
 
-  const initialState = {
-    itemDate: '',
-    itemName: '',
-    itemCategory: '',
-    itemPrice: '',
-  }
-  const [itemInput, setItemInput] = useState(initialState)
   const onChange = event => {
     setItemInput({
       ...itemInput,
       [event.target.name]: event.target.value,
     })
   }
+
   return (
     <div>
       <FaEdit className="form-edit-button" onClick={() => checkBeforeEditing()}>

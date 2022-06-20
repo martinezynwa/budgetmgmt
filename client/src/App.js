@@ -6,7 +6,7 @@ import Login from './pages/Login'
 import Navigation from './pages/Navigation'
 import Home from './pages/Home'
 import Statistics from './pages/Statistics'
-import AllRecords from './pages/AllRecords'
+import AllItems from './pages/AllItems'
 import Options from './pages/Options'
 import ImportExport from './pages/ImportExport'
 import Notification from './components/Notification/Notification'
@@ -29,7 +29,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<PrivateRoute />}>
                 <Route path="/" element={<Home />} />
-                <Route path="/allrecords" element={<AllRecords />} />
+                <Route path="/allitems" element={<AllItems />} />
                 <Route path="/statistics" element={<Statistics />} />
                 <Route path="/options" element={<Options />} />
                 <Route path="/data" element={<ImportExport />} />

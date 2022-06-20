@@ -5,9 +5,9 @@ import { useMutation } from '@apollo/client'
 import useNotification from '../../context/NotificationContext'
 import { useToggle } from '../../hooks/useToggle'
 
+//component allowing changing of username
 const NameChange = () => {
   const { setNotification } = useNotification()
-
   const initialState = {
     name: '',
   }
@@ -21,6 +21,8 @@ const NameChange = () => {
       [event.target.name]: event.target.value,
     })
   }
+
+  //mutation to change an username
   const [changeName] = useMutation(CHANGE_NAME, {
     variables: nameInput,
 
@@ -43,6 +45,7 @@ const NameChange = () => {
     event.preventDefault()
     changeName()
   }
+  
   return (
     <div className="form-container">
       <Toggle

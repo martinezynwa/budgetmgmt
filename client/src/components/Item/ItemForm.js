@@ -11,9 +11,9 @@ import { useToggle } from '../../hooks/useToggle'
 import useAuth from '../../context/AuthContext'
 import useNotification from '../../context/NotificationContext'
 import CategorySelect from '../Category/CategorySelect'
-
 const dayjs = require('dayjs')
 
+//for adding an item
 const ItemForm = () => {
   const currentMonth = dayjs(new Date()).format('YYYY-MM')
   const { setNotification } = useNotification()
@@ -35,12 +35,14 @@ const ItemForm = () => {
     })
   }
 
+  //mutation for creating a single item
   const [addItem] = useMutation(ADD_ITEM, {
     variables: itemInput,
 
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.errors)
     },
+    //refetching all values so pages get updated immediately
     refetchQueries: () => [
       {
         query: CURRENT_MONTH_BY_USER,
@@ -96,6 +98,7 @@ const ItemForm = () => {
         toggleForm={() => toggleForm()}
         formName="Add item"
       />
+      {/* item form is hidden until form is toggled */}
       <div className={formVisibility}>
         <form className="item-form" onSubmit={onSubmit}>
           <div className="form-option">

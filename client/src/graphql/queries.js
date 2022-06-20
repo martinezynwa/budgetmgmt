@@ -1,5 +1,6 @@
 import { gql } from 'graphql-tag'
 
+//getting all items from databse
 const ALL_ITEMS = gql`
   query getItems {
     getItems {
@@ -25,6 +26,7 @@ const ALL_ITEMS = gql`
   }
 `
 
+//getting items from current month with filter options
 const CURRENT_MONTH_BY_USER = gql`
   query getCurrentMonthByUser($selectedMonth: String!, $username: String) {
     getCurrentMonthByUser(selectedMonth: $selectedMonth, username: $username) {
@@ -50,6 +52,7 @@ const CURRENT_MONTH_BY_USER = gql`
   }
 `
 
+//getting all categories
 const ALL_CATEGORIES = gql`
   query getCategories {
     getCategories {
@@ -60,6 +63,7 @@ const ALL_CATEGORIES = gql`
   }
 `
 
+//getting all registered users
 const ALL_USERS = gql`
   query getUsers {
     getUsers {
@@ -69,6 +73,7 @@ const ALL_USERS = gql`
   }
 `
 
+//getting totals per user using specific month/username
 const GET_TOTAL = gql`
   query getTotals($selectedMonth: String, $username: String) {
     getTotals(selectedMonth: $selectedMonth, username: $username) {
@@ -78,6 +83,7 @@ const GET_TOTAL = gql`
   }
 `
 
+//getting all time totals for every user
 const GET_ALL_TIME_TOTALS = gql`
   query getAllTimeTotals {
     getAllTimeTotals {
@@ -87,6 +93,7 @@ const GET_ALL_TIME_TOTALS = gql`
   }
 `
 
+//getting totals per category using specific month
 const GET_CATEGORY_TOTALS = gql`
   query getCategoryTotals($selectedMonth: String) {
     getCategoryTotals(selectedMonth: $selectedMonth) {

@@ -1,50 +1,52 @@
-.confirm-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
+ /*-------Confirmation popup-------*/
 
-.confirm-action {
-  position: absolute;
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  transform: translateY(250%);
-}
+ .confirm-container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color: rgba(0, 0, 0, 0.5);
+   z-index: 1;
+ }
 
-.confirm-action-message {
-  color: #333232;
-  font-size: 18px;
-  font-weight: 500;
-  margin-bottom: 15px;
-  text-align: center;
-}
+ .confirm-action {
+   position: absolute;
+   background-color: white;
+   padding: 20px;
+   border-radius: 8px;
+   transform: translateY(250%);
+ }
 
-.confirm-buttons {
-  display: flex;
-  justify-content: center;
-}
+ .confirm-action-message {
+   color: #333232;
+   font-size: 18px;
+   font-weight: 500;
+   margin-bottom: 15px;
+   text-align: center;
+ }
 
-.confirm {
-  font-size: 20px;
-  margin: 0px;
-  padding: 7px 15px;
-  border: 6px solid rgb(255, 255, 255);
-  border-radius: 11px;
-  color: #ffffff;
-}
+ .confirm-buttons {
+   display: flex;
+   justify-content: center;
+ }
 
-.confirm-yes {
-  background-color: #4586e0;
-}
+ .confirm {
+   font-size: 20px;
+   margin: 0px;
+   padding: 7px 15px;
+   border: 6px solid rgb(255, 255, 255);
+   border-radius: 11px;
+   color: #ffffff;
+ }
 
-.confirm-no {
-  background-color: #9db7c9;
-}
+ .confirm-yes {
+   background-color: #4586e0;
+ }
+
+ .confirm-no {
+   background-color: #9db7c9;
+ }

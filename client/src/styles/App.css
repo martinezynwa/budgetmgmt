@@ -1,69 +1,71 @@
-:root {
-  --color-primary: #404ec5;
-  --color-dark: #000;
-  --color-card-bg: rgb(245, 248, 250);
-  --color-button-bg: #4586e0;
-  --color-button-in: #fff;
-  --color-modal: #fff;
+ /*-------CSS defaults of whole app-------*/
 
-  --menuIconSize: 28px;
-}
+ :root {
+   --color-primary: #404ec5;
+   --color-dark: #000;
+   --color-card-bg: rgb(245, 248, 250);
+   --color-button-bg: #4586e0;
+   --color-button-in: #fff;
+   --color-modal: #fff;
 
-body, html {
-  height: 100%;
-}
+   --menuIconSize: 28px;
+ }
 
-div * {
-  margin: 0px;
-  padding: 0px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  outline: 0;
-  appearance: none;
-  border: 0;
-  text-decoration: none;
-  list-style: none;
-  box-sizing: border-box;
-}
+ body, html {
+   height: 100%;
+ }
 
-h1 {
-  font-size: 24px;
-}
+ div * {
+   margin: 0px;
+   padding: 0px;
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   outline: 0;
+   appearance: none;
+   border: 0;
+   text-decoration: none;
+   list-style: none;
+   box-sizing: border-box;
+ }
 
-h2 {
-  font-size: 20px;
-}
+ h1 {
+   font-size: 24px;
+ }
 
-h3 {
-  font-size: 15px;
-}
+ h2 {
+   font-size: 20px;
+ }
 
-h4 {
-  font-size: 12px;
-}
+ h3 {
+   font-size: 15px;
+ }
 
-h5 {
-  font-size: 10px;
-}
+ h4 {
+   font-size: 12px;
+ }
 
-.app {
-  width: min(60%, 1000px);
-  padding: 30px;
-  margin-inline: auto;
-  overflow-x: hidden;
-}
+ h5 {
+   font-size: 10px;
+ }
 
-@media screen and (max-width: 768px) {
+ .app {
+   width: min(60%, 1000px);
+   padding: 30px;
+   margin-inline: auto;
+   overflow-x: hidden;
+ }
 
-  :root {
-    --menuIconSize: 31px;
-  }
+ @media screen and (max-width: 768px) {
 
-  .app {
-    padding: 100px 8px 70px 8px;
-    width: 100%;
-    margin-bottom: 50px;
-  }
+   :root {
+     --menuIconSize: 31px;
+   }
 
-}
+   .app {
+     padding: 100px 8px 70px 8px;
+     width: 100%;
+     margin-bottom: 50px;
+   }
+
+ }

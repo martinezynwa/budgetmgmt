@@ -2,14 +2,15 @@ const { checkAuthorization } = require('../../util/auth')
 const { UserInputError } = require('apollo-server')
 const dayjs = require('dayjs')
 const Item = require('../../models/Item')
-
 const { validateItemInput } = require('../../util/validators')
 
 const itemsResolvers = {
   Query: {
     getItems: async () => {
+      //get all items
       try {
         const allItems = await Item.find({})
+        //sorting by date + time, newest on top
         const items = allItems.sort(
           (a, b) =>
             b.createdBy.date.replaceAll(/[-T:]/g, '') -
@@ -21,14 +22,17 @@ const itemsResolvers = {
       }
     },
     getCurrentMonthByUser: async (_, args) => {
+      //get items from current month
       try {
         const allItems = await Item.find({})
+        //posssible filter by month + username
         const items = allItems
           .filter(item => item.itemDate.substring(0, 7) === args.selectedMonth)
           .filter(item =>
             args.username ? item.createdBy.username === args.username : true,
           )
           .sort(
+            //sorting by date + time, newest on top
             (a, b) =>
               b.createdBy.date.replaceAll(/[-T:]/g, '') -
               a.createdBy.date.replaceAll(/[-T:]/g, ''),
@@ -39,6 +43,7 @@ const itemsResolvers = {
       }
     },
     getCategoryTotals: async (_, args) => {
+      //totals of current month per category
       try {
         const allItems = await Item.find({})
         const items = allItems
@@ -48,6 +53,7 @@ const itemsResolvers = {
               : true,
           )
           .reduce(function (c, x) {
+            //filtering each category + its total value
             if (!c[x.itemCategory])
               c[x.itemCategory] = {
                 category: x.itemCategory,
@@ -62,6 +68,7 @@ const itemsResolvers = {
       }
     },
     getTotals: async (_, args) => {
+      //getting totals per user using specific month/username
       try {
         const allItems = await Item.find({})
         const items = allItems.filter(item =>
@@ -70,6 +77,7 @@ const itemsResolvers = {
             : true,
         )
         const groupAndAdd = items =>
+          //filtering totals per each user + for all
           Object.values(
             items.reduce(
               (acc, { createdBy: { username }, itemPrice: { price } }) => {
@@ -91,9 +99,11 @@ const itemsResolvers = {
       }
     },
     getAllTimeTotals: async () => {
+      //all time totals
       try {
         const items = await Item.find({})
         const groupAndAdd = items =>
+          //filtering totals per each user
           Object.values(
             items.reduce(
               (acc, { createdBy: { username }, itemPrice: { price } }) => {
@@ -116,6 +126,7 @@ const itemsResolvers = {
 
   Mutation: {
     addItem: async (
+      //adding item into database
       _,
       { itemInput: { itemDate, itemName, itemCategory, itemPrice } },
       context,
@@ -161,6 +172,7 @@ const itemsResolvers = {
       return item
     },
     editItem: async (_, args, context) => {
+      //edition of an existing item
       const currentUser = await checkAuthorization(context)
       let item = {}
       let { itemDate, itemName, itemCategory, itemPrice, itemUpdated } =
@@ -193,18 +205,22 @@ const itemsResolvers = {
         throw new Error(err)
       }
 
+      //formatting of date into correct structure or re-using existing
       itemDate
         ? (itemDate = dayjs(itemDate).format('YYYY-MM-DDTHH:mm:ss'))
         : (itemDate = item.itemDate)
 
+      //re-use of existing name if necessary
       if (!itemName) {
         itemName = item.itemName
       }
 
+      //re-use of existing category if necessary
       if (!itemCategory) {
         itemCategory = item.itemCategory
       }
 
+      //re-use of existing price if necessary
       if (itemPrice) {
         itemPrice = Number(itemPrice)
         itemPrice = {
@@ -245,6 +261,7 @@ const itemsResolvers = {
       }
     },
     removeItem: async (_, args, context) => {
+      //removing item
       const currentUser = await checkAuthorization(context)
       try {
         const itemToBeDeleted = await Item.findById(args.itemId)
@@ -266,11 +283,13 @@ const itemsResolvers = {
       }
     },
     importItem: async (_, args, context) => {
-      //const currentUser = await checkAuthorization(context)
-      console.log('args :>> ', args)
+      //import of custom CSV into database
+      await checkAuthorization(context)
       try {
         const { importInput } = args
+        //reading every line from CSV
         importInput.map(i => {
+          //correct date format
           let tempDate = (
             i.Year +
             '-' +
@@ -278,9 +297,14 @@ const itemsResolvers = {
           ).split('-')
           const itemDate = tempDate[0] + '-' + tempDate[2] + '-' + tempDate[1]
 
+          //correct naming format
           const itemName =
             i.Transaction.charAt(0).toUpperCase() + i.Transaction.slice(1)
+
+          //category
           const itemCategory = i.Type
+
+          //correct price formatf
           let itemPrice = i.Price.slice(0, -3)
           itemPrice = Number(itemPrice.replace(/\s/g, ''))
           itemPrice = {
@@ -288,11 +312,14 @@ const itemsResolvers = {
             price: itemPrice,
             currency: 'Kč',
           }
+
+          //needed in order to pair with existing emails
           const createdBy = {
             username: i.Name === 'Martin' ? process.env.MG : process.env.MK,
             name: i.Name,
             date: dayjs(itemDate).format('YYYY-MM-DDTHH:mm:ss'),
           }
+
           const itemUpdated = {
             isUpdated: false,
             updatedBy: null,

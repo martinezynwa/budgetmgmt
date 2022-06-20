@@ -3,21 +3,23 @@ import { useQuery } from '@apollo/client'
 import { ALL_CATEGORIES } from '../graphql/queries'
 import categoryReducer from '../reducers/categoryReducer'
 
+//context for categories from database
 const CategoryContext = createContext()
 
 export const CategoryProvider = ({ children }) => {
   const [state, dispatch] = useReducer(categoryReducer, [])
 
-  const result = useQuery(ALL_CATEGORIES)
+  const { data } = useQuery(ALL_CATEGORIES)
 
+  //getting all categories on load
   useEffect(() => {
-    if (result.data && result.data.getCategories) {
+    if (data && data.getCategories) {
       dispatch({
         type: 'ALL',
-        categories: result.data.getCategories,
+        categories: data.getCategories,
       })
     }
-  }, [result.data])
+  }, [data])
 
   const value = {
     categories: state.categories,

@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { CREATE_CATEGORY } from '../../graphql/mutations'
-import { ALL_CATEGORIES } from '../../graphql/queries'
 import { useMutation } from '@apollo/client'
-import useNotification from '../../context/NotificationContext'
 import { useToggle } from '../../hooks/useToggle'
+import useNotification from '../../context/NotificationContext'
+import { ALL_CATEGORIES } from '../../graphql/queries'
+import { CREATE_CATEGORY } from '../../graphql/mutations'
 
+//category addition
 const CategoryForm = () => {
   const { setNotification } = useNotification()
 
@@ -22,6 +23,8 @@ const CategoryForm = () => {
       [event.target.name]: event.target.value,
     })
   }
+
+  //mutation for category addition
   const [addCategory] = useMutation(CREATE_CATEGORY, {
     variables: categoryInput,
 
@@ -29,6 +32,7 @@ const CategoryForm = () => {
       setErrors(err.graphQLErrors[0].extensions.errors)
     },
     refetchQueries: () => [
+      //refresh of category list
       {
         query: ALL_CATEGORIES,
       },
@@ -80,7 +84,6 @@ const CategoryForm = () => {
               onChange={onChange}
             />
           </div>
-
           <button className="form-submit">Submit</button>
         </form>
       </div>

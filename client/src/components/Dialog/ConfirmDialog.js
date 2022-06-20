@@ -1,7 +1,14 @@
+/*
+dialog requiring confirmation of a specific action
+onDialog handling the confirmation of message that either triggers action of a component
+or clears the dialog when confirmation dialog is dismissed
+*/
+
 const ConfirmDialog = ({ message, onDialog }) => {
   return (
+    //clicking outside of the box dismisses the dialog
     <div onClick={() => onDialog(false)} className="confirm-container">
-      <div onClick={e => e.stopPropagation()} className="confirm-action">
+      <div className="confirm-action">
         <div className="confirm-action-message">{message}</div>
         <div className="confirm-buttons">
           <button

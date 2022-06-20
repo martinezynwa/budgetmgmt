@@ -11,7 +11,6 @@ const authReducer = (state, action) => {
         ...state,
         username: null,
         name: null,
-        picture: null,
       }
     default:
       return state

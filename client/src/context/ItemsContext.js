@@ -10,6 +10,7 @@ import { CURRENT_MONTH_BY_USER } from '../graphql/queries'
 import itemReducer from '../reducers/itemReducer'
 const dayjs = require('dayjs')
 
+//context for items from database
 const ItemContext = createContext()
 
 export const ItemProvider = ({ children }) => {
@@ -18,28 +19,30 @@ export const ItemProvider = ({ children }) => {
   )
   const [state, dispatch] = useReducer(itemReducer, [])
 
-  const result = useQuery(CURRENT_MONTH_BY_USER, {
-    variables: { selectedMonth },
-  })
-
-  let items = result?.data?.getCurrentMonthByUser || []
+  //loads items from current month by default
+  const { data } =
+    useQuery(CURRENT_MONTH_BY_USER, {
+      variables: { selectedMonth },
+    }) || []
 
   useEffect(() => {
-    if (result.data && result.data.getCurrentMonthByUser) {
+    if (data && data.getCurrentMonthByUser) {
       dispatch({
         type: 'CURRENT_MONTH',
-        items: result.data.getCurrentMonthByUser,
+        items: data.getCurrentMonthByUser,
       })
     }
-  }, [result.data])
+  }, [data])
 
+  //for getting items from current month filtered by username
   const getItemsByUser = username => {
     dispatch({
       type: 'BY_USER',
-      data: { items, username },
+      data: { data, username },
     })
   }
 
+  //for getting items by specific month
   const getItemsByMonth = month => {
     setSelectedMonth(month)
   }
@@ -49,6 +52,7 @@ export const ItemProvider = ({ children }) => {
     getItemsByUser,
     getItemsByMonth,
   }
+
   return <ItemContext.Provider value={value}>{children}</ItemContext.Provider>
 }
 

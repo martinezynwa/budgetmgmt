@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useConfirmDialog } from '../../hooks/useConfirmDialog'
-import ConfirmDialog from '../../util/ConfirmDialog'
-import { FaDownload } from 'react-icons/fa'
+import ConfirmDialog from '../Dialog/ConfirmDialog'
 import DownloadData from './DownloadData'
+import { FaDownload } from 'react-icons/fa'
 
+//for triggering component DownloadData that downloads all items from database
 const ExportData = () => {
   const [download, setDownload] = useState(false)
   const { dialog, handleInputMessage, handleActionDialog } = useConfirmDialog()

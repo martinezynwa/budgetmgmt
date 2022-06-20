@@ -3,6 +3,7 @@ import CategoryIcon from '../Category/CategoryIcon'
 import ItemModal from './ItemModal'
 const dayjs = require('dayjs')
 
+//card for an item
 const ItemCard = ({ item }) => {
   return (
     <div className="item-card">

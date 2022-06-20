@@ -16,9 +16,9 @@ import {
   FaHotel,
   FaMusic,
 } from 'react-icons/fa'
-
 const style = { fontSize: '32px' }
 
+//icons for categories
 const CategoryIcon = itemCategory => {
   switch (itemCategory.itemCategory) {
     case 'Shopping':

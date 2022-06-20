@@ -1,11 +1,7 @@
 import useAuth from '../context/AuthContext'
 import { useConfirmDialog } from '../hooks/useConfirmDialog'
-import { ALL_USERS } from '../graphql/queries'
-import { useQuery } from '@apollo/client'
 import { NavLink } from 'react-router-dom'
-import ConfirmDialog from '../util/ConfirmDialog'
-import '../styles/pages/Navigation.css'
-
+import ConfirmDialog from '../components/Dialog/ConfirmDialog'
 import {
   FaUser,
   FaHouseUser,
@@ -15,20 +11,13 @@ import {
   FaPowerOff,
   FaFileAlt,
 } from 'react-icons/fa'
+import '../styles/pages/Navigation.css'
 
+//side navigation bar
 const Navigation = () => {
   const { dialog, handleInputMessage, handleActionDialog } = useConfirmDialog()
-  let loggedUser = {}
   const { user, logout } = useAuth()
-  const result = useQuery(ALL_USERS)
 
-  if (result.data && result.data.getUsers) {
-    const users = [...result.data.getUsers]
-
-    if (user.username) {
-      loggedUser = users.find(u => u.username === user.username)
-    }
-  }
   const logoutUser = () => {
     logout()
   }
@@ -42,12 +31,14 @@ const Navigation = () => {
     }
   }
 
+  //navbar displayed only when user is logged-in
+  //using navLink as link to each page
   const menuBar = user.username ? (
     <>
       <aside>
         <div className="nav-top">
           <FaUser className="nav-user-icon" />
-          <h1>{loggedUser.name ? loggedUser.name.split(' ')[0] : null}</h1>
+          <h1>{user.name.split(' ')[0]}</h1>
         </div>
 
         <div className="nav-bar">
@@ -59,9 +50,9 @@ const Navigation = () => {
             <FaChartBar className="nav-icon" />
             <h3>Statistics</h3>
           </NavLink>
-          <NavLink to="/allrecords">
+          <NavLink to="/allitems">
             <FaRegListAlt className="nav-icon" />
-            <h3>Records</h3>
+            <h3>Items</h3>
           </NavLink>
           <NavLink to="/options">
             <FaCog className="nav-icon" />

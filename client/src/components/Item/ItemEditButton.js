@@ -8,21 +8,24 @@ import {
   GET_CATEGORY_TOTALS,
 } from '../../graphql/queries'
 import useNotification from '../../context/NotificationContext'
-import ConfirmDialog from '../../util/ConfirmDialog'
+import ConfirmDialog from '../Dialog/ConfirmDialog'
 
 const dayjs = require('dayjs')
 
+//for editing a single item
 const EditButton = ({ item, itemInput, handleClose }) => {
   const currentMonth = dayjs(new Date()).format('YYYY-MM')
   const { dialog, handleInputMessage, handleActionDialog } = useConfirmDialog()
   const { setNotification } = useNotification()
 
+  //mutation for editing an item
   const [editItem] = useMutation(UPDATE_ITEM, {
     variables: { itemId: item.id, itemInput: itemInput },
     onError(err) {
       handleClose()
       setNotification(err.graphQLErrors[0].message, 5, 'error')
     },
+    //refetching all values so pages get updated immediately
     refetchQueries: () => [
       {
         query: CURRENT_MONTH_BY_USER,
