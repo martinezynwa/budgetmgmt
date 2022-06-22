@@ -55,7 +55,6 @@ export const useStatsAndItemsForm = () => {
     if (formVisibility) {
       return null
     }
-    console.log('dateInput :>> ', dateInput)
 
     return (
       <>

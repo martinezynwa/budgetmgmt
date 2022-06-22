@@ -1,6 +1,7 @@
 import useAuth from '../context/AuthContext'
 import { useConfirmDialog } from '../hooks/useConfirmDialog'
 import { NavLink } from 'react-router-dom'
+import { useQuery } from '@apollo/client'
 import ConfirmDialog from '../components/Dialog/ConfirmDialog'
 import {
   FaUser,
@@ -11,12 +12,23 @@ import {
   FaPowerOff,
   FaFileAlt,
 } from 'react-icons/fa'
+import { ALL_USERS } from '../graphql/queries'
 import '../styles/pages/Navigation.css'
 
 //side navigation bar
 const Navigation = () => {
+  let loggedUser = {}
   const { dialog, handleInputMessage, handleActionDialog } = useConfirmDialog()
   const { user, logout } = useAuth()
+  const result = useQuery(ALL_USERS)
+
+  if (result.data && result.data.getUsers) {
+    const users = [...result.data.getUsers]
+
+    if (user.username) {
+      loggedUser = users.find(u => u.username === user.username)
+    }
+  }
 
   const logoutUser = () => {
     logout()
@@ -38,7 +50,7 @@ const Navigation = () => {
       <aside>
         <div className="nav-top">
           <FaUser className="nav-user-icon" />
-          <h1>{user.name.split(' ')[0]}</h1>
+          <h1>{loggedUser.name ? loggedUser.name.split(' ')[0] : null}</h1>
         </div>
 
         <div className="nav-bar">
