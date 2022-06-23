@@ -210,6 +210,8 @@
 
 ### TBD
 
+- [ ] on mobile - longer item name length increases card size
+
 - [ ] test version
   - [ ] different repository
   - [ ] prepare mongodb
