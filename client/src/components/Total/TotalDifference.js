@@ -2,7 +2,11 @@
 displays difference in spending between users
 it is shown only on an user that has spent less historically than the highest spender
 */
-const TotalDifference = ({ username, totals }) => {
+const TotalDifference = ({ username, totals, show }) => {
+  if (!show) {
+    return null
+  }
+
   if (!username || totals.length <= 1) {
     return null
   }

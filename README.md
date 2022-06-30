@@ -206,16 +206,18 @@
 - [x] re-do all records / statistics selection pages so they aren't in one component
 - [x] css clean-up/refactoring of whole app
 
+### 0.30
+- [x] select buttons have draggable scroll when more users registered
+- [x] on mobile - longer item name length increases card size
+- [x] hide historical differences on demand
+
 ---
 
 ### TBD
 
-- [ ] on mobile - longer item name length increases card size
 
 - [ ] test version
-  - [ ] different repository
-  - [ ] prepare mongodb
-  - [ ] login only for 2 persons max
+  - [ ] login only for 5 persons max
   - [ ] test data
   - [ ] limit for adding items
   - [ ] limit for adding categories

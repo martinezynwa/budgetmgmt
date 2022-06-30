@@ -9,6 +9,9 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({ req }) => ({ req }),
+  fetchOptions: {
+    mode: 'no-cors',
+  },
 })
 
 mongoose

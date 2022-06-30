@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { ALL_USERS } from '../../graphql/queries'
 import useItem from '../../context/ItemsContext'
 import { useQuery } from '@apollo/client'
+import ScrollContainer from 'react-indiana-drag-scroll'
 const dayjs = require('dayjs')
 
 //buttons on home page that allow switching between items per user in the current month + all items
@@ -22,23 +23,28 @@ const SelectButton = () => {
   }
 
   return (
-    <div className="select-buttons">
-      <button
-        className={activeButton === '' ? 'button' : 'button nonselected'}
-        onClick={() => setItems('', currentMonth)}>
-        All items
-      </button>
-      {users.map(user => (
+    <>
+      <ScrollContainer
+        className={
+          users.length <= 2 ? 'select-buttons centered' : 'select-buttons'
+        }>
         <button
-          key={user.name}
-          className={
-            activeButton === user.username ? 'button' : 'button nonselected'
-          }
-          onClick={() => setItems(user.username, currentMonth)}>
-          {user.name.split(' ')[0]}
+          className={activeButton === '' ? 'button' : 'button nonselected'}
+          onClick={() => setItems('', currentMonth)}>
+          Everything
         </button>
-      ))}
-    </div>
+        {users.map(user => (
+          <button
+            key={user.name}
+            className={
+              activeButton === user.username ? 'button' : 'button nonselected'
+            }
+            onClick={() => setItems(user.username, currentMonth)}>
+            {user.name.split(' ')[0]}
+          </button>
+        ))}
+      </ScrollContainer>
+    </>
   )
 }
 
