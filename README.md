@@ -1,5 +1,7 @@
 ---
 ### MAIN CONCEPTS ###
+https://budget-mgmt-1.netlify.app
+
 - web-app tracking expenses between 2 or more people(first version for two)
 - basically a family/couples' home budget web-app
 - each person inputs what they paid for in order to see who pays for what

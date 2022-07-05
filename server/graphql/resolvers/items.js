@@ -148,8 +148,8 @@ const itemsResolvers = {
       const items = allItems
         .filter(
           item =>
-            item.createdBy.username !== process.env.U1 &&
-            item.createdBy.username !== process.env.U2,
+            item.createdBy.username !== 'U1' &&
+            item.createdBy.username !== 'U2',
         )
         .sort(
           (a, b) =>
