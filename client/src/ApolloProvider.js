@@ -7,7 +7,7 @@ import {
 } from '@apollo/client'
 import { setContext } from 'apollo-link-context'
 
-const httpLink = new HttpLink({ uri: 'https://budgetmgmt.herokuapp.com/' })
+const httpLink = new HttpLink({ uri: 'https://limitless-escarpment-24945.herokuapp.com/' })
 
 const authLink = setContext(() => {
   const token = localStorage.getItem('jwtToken')
