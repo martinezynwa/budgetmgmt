@@ -27,7 +27,7 @@ const TotalCard = ({ selectedMonth }) => {
       ? setDifferenceVisibility(false)
       : setDifferenceVisibility(true)
   }
-
+  
   return (
     <>
       <div className="total-card">
@@ -52,7 +52,7 @@ const TotalCard = ({ selectedMonth }) => {
         </div>
         {/* listing each user and displaying total spent per month */}
         {users.map(user => (
-          <div key={user.name} className="total">
+          <div key={user.username} className="total">
             <h2>{user.name.split(' ')[0]}</h2>
             <div className="amount">
               <TotalValue

@@ -2,15 +2,17 @@ const Category = require('../../models/Category')
 const { checkAuthorization } = require('../../util/auth')
 const { UserInputError } = require('apollo-server')
 const { validateCategoryInput } = require('../../util/validators')
+const dayjs = require('dayjs')
 
 const categoryResolvers = {
   Query: {
     getCategories: async () => {
       //get All categories
       const allCategories = await Category.find({})
-      const categories = allCategories.sort(
-        (a, b) => a.importance - b.importance,
-      )
+      const categories = allCategories
+        .sort((a, b) => a.categoryName.localeCompare(b.categoryName))
+        .sort((a, b) => a.importance - b.importance)
+
       return categories
     },
   },
@@ -36,12 +38,27 @@ const categoryResolvers = {
           },
         })
       }
-      const defaultCategory = true //default categories cannot be deleted
+      //DEMO - check number of items in database
+      const allCategories = await Category.find({})
+      const categories = allCategories
+        .filter(category => category.defaultCategory !== true)
+        .sort(
+          (a, b) =>
+            a.createdBy.date.replaceAll(/[-T:]/g, '') -
+            b.createdBy.date.replaceAll(/[-T:]/g, ''),
+        )
+      if (categories.length >= 10) {
+        const category = await Category.findByIdAndDelete(categories[0]._id)
+        await category.delete()
+      }
+      //DEMO end
+
+      const defaultCategory = false //default categories cannot be deleted
 
       const createdBy = {
         username: currentUser.username,
         name: currentUser.name,
-        date: new Date().toISOString(),
+        date: dayjs(new Date()).format('YYYY-MM-DDTHH:mm:ss'),
       }
 
       const newCategory = new Category({

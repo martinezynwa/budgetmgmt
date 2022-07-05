@@ -64,7 +64,6 @@ const EditButton = ({ item, itemInput, handleClose }) => {
   const dialogConfirmation = confirm => {
     if (confirm) {
       handleActionDialog('', false)
-      console.log('itemInput :>> ', itemInput)
       editItem(item.id, itemInput)
     } else {
       handleActionDialog('', false)

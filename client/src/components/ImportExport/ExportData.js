@@ -19,7 +19,7 @@ const ExportData = () => {
   }
 
   return (
-    <div>
+    <>
       <div className="upload-form">
         <h2>Export to JSON</h2>
         <FaDownload className="icon" />
@@ -32,7 +32,7 @@ const ExportData = () => {
         <ConfirmDialog onDialog={dialogConfirmation} message={dialog.message} />
       )}
       {download ? <DownloadData /> : null}
-    </div>
+    </>
   )
 }
 

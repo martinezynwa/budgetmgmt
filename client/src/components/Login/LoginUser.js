@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import useAuth from '../../context/AuthContext'
 import { GOOGLE_AUTH } from '../../graphql/mutations'
+import { ALL_USERS } from '../../graphql/queries'
 import { useGoogleLogin } from '@react-oauth/google'
 import GoogleButton from 'react-google-button'
 import mainLogo from '../../assets/img/mainlogo.png'
@@ -26,6 +27,11 @@ const LoginUser = () => {
       context.login(result.data.googleAuth)
     },
     variables: { idToken: token },
+    refetchQueries: () => [
+      {
+        query: ALL_USERS,
+      },
+    ],
   })
 
   const triggerLogin = useGoogleLogin({

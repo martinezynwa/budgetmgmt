@@ -1,8 +1,8 @@
 const { checkAuthorization } = require('../../util/auth')
 const { UserInputError } = require('apollo-server')
-const dayjs = require('dayjs')
 const Item = require('../../models/Item')
 const { validateItemInput } = require('../../util/validators')
+const dayjs = require('dayjs')
 
 const itemsResolvers = {
   Query: {
@@ -13,8 +13,8 @@ const itemsResolvers = {
         //sorting by date + time, newest on top
         const items = allItems.sort(
           (a, b) =>
-            b.createdBy.date.replaceAll(/[-T:]/g, '') -
-            a.createdBy.date.replaceAll(/[-T:]/g, ''),
+            b.itemDate.replaceAll(/[-T:]/g, '') -
+            a.itemDate.replaceAll(/[-T:]/g, ''),
         )
         return items
       } catch (err) {
@@ -34,8 +34,8 @@ const itemsResolvers = {
           .sort(
             //sorting by date + time, newest on top
             (a, b) =>
-              b.createdBy.date.replaceAll(/[-T:]/g, '') -
-              a.createdBy.date.replaceAll(/[-T:]/g, ''),
+              b.itemDate.replaceAll(/[-T:]/g, '') -
+              a.itemDate.replaceAll(/[-T:]/g, ''),
           )
         return items
       } catch (err) {
@@ -143,10 +143,36 @@ const itemsResolvers = {
         throw new UserInputError('Errors', { errors })
       }
 
+      //DEMO - check number of items in database
+      const allItems = await Item.find({})
+      const items = allItems
+        .filter(
+          item =>
+            item.createdBy.username !== process.env.U1 &&
+            item.createdBy.username !== process.env.U2,
+        )
+        .sort(
+          (a, b) =>
+            a.itemDate.replaceAll(/[-T:]/g, '') -
+            b.itemDate.replaceAll(/[-T:]/g, ''),
+        )
+      if (items.length >= 30) {
+        const item = await Item.findByIdAndDelete(items[0]._id)
+        await item.delete()
+      }
+      //DEMO end
+
+      const currentDate = dayjs(new Date()).format('YYYY-MM-DDTHH:mm:ss')
+      itemDate = dayjs(itemDate).format('YYYY-MM-DDTHH:mm:ss')
+
+      if (itemDate.substring(0, 10) === currentDate.substring(0, 10)) {
+        itemDate = currentDate
+      }
+
       const createdBy = {
         username: currentUser.username,
         name: currentUser.name,
-        date: dayjs(new Date()).format('YYYY-MM-DDTHH:mm:ss'),
+        date: itemDate,
       }
 
       itemPrice = {

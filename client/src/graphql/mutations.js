@@ -109,6 +109,12 @@ const IMPORT_ITEM = gql`
   }
 `
 
+const CLEANUP_AFTER_LOGOUT = gql`
+  mutation cleanupAfterLogout($username: String!) {
+    cleanupAfterLogout(username: $username)
+  }
+`
+
 export {
   GOOGLE_AUTH,
   ADD_ITEM,
@@ -118,4 +124,5 @@ export {
   DELETE_CATEGORY,
   CHANGE_NAME,
   IMPORT_ITEM,
+  CLEANUP_AFTER_LOGOUT,
 }

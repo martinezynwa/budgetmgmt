@@ -117,6 +117,7 @@ const typeDefs = gql`
     importItem(importInput: [ImportInput]): String!
     googleAuth(idToken: String!): User
     changeName(name: String!): String!
+    cleanupAfterLogout(username: String!): String!
   }
 `
 

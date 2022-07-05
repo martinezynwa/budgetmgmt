@@ -25,3 +25,5 @@
  .select-buttons .nonselected {
    background-color: #9db7c9;
  }
+
+ @media screen and (max-width: 768px) {}

@@ -1,8 +1,9 @@
 import useAuth from '../context/AuthContext'
+import { useMutation } from '@apollo/client'
 import { useConfirmDialog } from '../hooks/useConfirmDialog'
 import { NavLink } from 'react-router-dom'
-import { useQuery } from '@apollo/client'
 import ConfirmDialog from '../components/Dialog/ConfirmDialog'
+import User from '../components/Navbar/User'
 import {
   FaUser,
   FaHouseUser,
@@ -12,25 +13,16 @@ import {
   FaPowerOff,
   FaFileAlt,
 } from 'react-icons/fa'
-import { ALL_USERS } from '../graphql/queries'
+import { CLEANUP_AFTER_LOGOUT } from '../graphql/mutations'
 import '../styles/pages/Navigation.css'
 
 //side navigation bar
 const Navigation = () => {
-  let loggedUser = {}
   const { dialog, handleInputMessage, handleActionDialog } = useConfirmDialog()
   const { user, logout } = useAuth()
-  const result = useQuery(ALL_USERS)
-
-  if (result.data && result.data.getUsers) {
-    const users = [...result.data.getUsers]
-
-    if (user.username) {
-      loggedUser = users.find(u => u.username === user.username)
-    }
-  }
 
   const logoutUser = () => {
+    cleanupAfterLogout(user.username)
     logout()
   }
 
@@ -43,6 +35,11 @@ const Navigation = () => {
     }
   }
 
+  //DEMO mutation to delete all user data after logout
+  const [cleanupAfterLogout] = useMutation(CLEANUP_AFTER_LOGOUT, {
+    variables: { username: user.username },
+  })
+
   //navbar displayed only when user is logged-in
   //using navLink as link to each page
   const menuBar = user.username ? (
@@ -50,7 +47,7 @@ const Navigation = () => {
       <aside>
         <div className="nav-top">
           <FaUser className="nav-user-icon" />
-          <h1>{loggedUser.name ? loggedUser.name.split(' ')[0] : null}</h1>
+          {user ? <User loggedUser={user} /> : null}
         </div>
 
         <div className="nav-bar">

@@ -2,6 +2,7 @@ const User = require('../../models/User')
 const { googleAuth } = require('../../util/authorization')
 const { checkAuthorization } = require('../../util/auth')
 const { UserInputError } = require('apollo-server')
+const dayjs = require('dayjs')
 
 const userResolvers = {
   Query: {
@@ -18,6 +19,20 @@ const userResolvers = {
       //google login
       const { data, token } = await googleAuth(idToken)
       const { email, name } = data
+
+      //DEMO - check number of users in database
+      const users = await User.find({})
+      users.sort(
+        (a, b) =>
+          a.registeredAt.replaceAll(/[-T:]/g, '') -
+          b.registeredAt.replaceAll(/[-T:]/g, ''),
+      )
+      if (users.length >= 5) {
+        const userToBeDeleted = await User.findByIdAndDelete(users[2]._id)
+        await userToBeDeleted.delete()
+      }
+      //DEMO end
+
       const user = await User.findOne({ email })
       //if user exists, only token is passed to frontend
       //if user does not exist, new one is created
@@ -26,7 +41,7 @@ const userResolvers = {
           email,
           name,
           username: email,
-          registeredAt: new Date().toISOString(),
+          registeredAt: dayjs(new Date()).format('YYYY-MM-DDTHH:mm:ss'),
         })
         await newUser.save()
         return {

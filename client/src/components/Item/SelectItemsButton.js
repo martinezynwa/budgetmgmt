@@ -31,11 +31,11 @@ const SelectButton = () => {
         <button
           className={activeButton === '' ? 'button' : 'button nonselected'}
           onClick={() => setItems('', currentMonth)}>
-          Everything
+          All
         </button>
         {users.map(user => (
           <button
-            key={user.name}
+            key={user.username}
             className={
               activeButton === user.username ? 'button' : 'button nonselected'
             }

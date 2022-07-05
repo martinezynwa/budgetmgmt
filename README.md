@@ -211,20 +211,18 @@
 - [x] on mobile - longer item name length increases card size
 - [x] hide historical differences on demand
 
+### 0.31
+- [x] demo version
+  - [x] login only for 5 persons max
+  - [x] test data
+  - [x] limit for adding items
+  - [x] limit for adding categories
+  - [x] clean-up of data after logout
+  - [x] delete user after logout
+  - [x] limit for uploaded file
+  - [x] deploy
+
 ---
-
-### TBD
-
-
-- [ ] test version
-  - [ ] login only for 5 persons max
-  - [ ] test data
-  - [ ] limit for adding items
-  - [ ] limit for adding categories
-  - [ ] clean-up of data after logout
-  - [ ] delete user after logout
-  - [ ] limit for uploaded file
-  - [ ] deploy
 
 ### future
 - [ ] dark mode
