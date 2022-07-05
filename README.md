@@ -1,7 +1,7 @@
 ---
-### MAIN CONCEPTS ###
 https://budget-mgmt-1.netlify.app
 
+### MAIN CONCEPTS ###
 - web-app tracking expenses between 2 or more people(first version for two)
 - basically a family/couples' home budget web-app
 - each person inputs what they paid for in order to see who pays for what
@@ -12,7 +12,7 @@ https://budget-mgmt-1.netlify.app
     - division by categories(groceries, lunch, gas, etc..)
 ---
 
-### TO-DO WORK
+### PROGRESS
 
 ### 0.1
 
@@ -174,13 +174,14 @@ https://budget-mgmt-1.netlify.app
 - [x] remove unused queries and mutations on backend/frontend
 
 ### 0.27
+
 - [x] popup shown when item cannot be deleted
 - [x] navmenu re-done
   - [x] normal view - moved to side
   - [x] mobile view - moved to bottom
 - [x] csv --> json
   - [x] import CSV on frontend
-  - [x] parse the csv into a better structure 
+  - [x] parse the csv into a better structure
   - [x] set-up backend for accepting imported items
   - [x] cleaner code on frontend
   - [x] style css
@@ -188,20 +189,22 @@ https://budget-mgmt-1.netlify.app
 - [x] data backup to json
   - [x] add component for file download
   - [x] figure out why is first downloaded file empty
-  - [x] style css 
+  - [x] style css
 - [x] button styling for import input
 - [x] sort items by time
 
 ### 0.28
+
 - [x] google sign-in instead of custom login/registering
- - [x] find suitable solution
- - [x] implement additions/changes on frontend
- - [x] implement additions/changes on backend
- - [x] remove old components etc
- - [x] fix code that relied on old user type
- - [x] figure out .env on frontend
+- [x] find suitable solution
+- [x] implement additions/changes on frontend
+- [x] implement additions/changes on backend
+- [x] remove old components etc
+- [x] fix code that relied on old user type
+- [x] figure out .env on frontend
 
 ### 0.29
+
 - [x] possibility of changing name of user
 - [x] hide data tab on mobile
 - [x] change design of error on item form
@@ -209,11 +212,13 @@ https://budget-mgmt-1.netlify.app
 - [x] css clean-up/refactoring of whole app
 
 ### 0.30
+
 - [x] select buttons have draggable scroll when more users registered
 - [x] on mobile - longer item name length increases card size
 - [x] hide historical differences on demand
 
 ### 0.31
+
 - [x] demo version
   - [x] login only for 5 persons max
   - [x] test data
@@ -227,6 +232,7 @@ https://budget-mgmt-1.netlify.app
 ---
 
 ### future
+
 - [ ] dark mode
 - [ ] statistics page - comparison with previous month(s)
 
