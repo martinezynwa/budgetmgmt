@@ -1,45 +1,32 @@
  /*-------Toggle for forms-------*/
 
-.toggle-bar {
-  display: flex;
-  margin-top: 10px;
-  border-radius: 7px;
-  background-color: var(--color-card-bg);
-}
+ .toggle-bar {
+   display: flex;
+   cursor: pointer;
+ }
 
-.toggle-button {
-  display: flex;
-  position: relative;
-  margin: 8px 13px;
-  width: 100%;
-  background-color: var(--color-card-bg);
-  font-size: 20px;
-  font-weight: 600;
-}
-
- /*increasing clickable area*/
-.toggle-button::after {
-  position: absolute;
-  content: "";
-  left: 0px;
-  right: -60px;
-  bottom: 0px;
-  top: 0px;
-}
+ .toggle-name {
+   display: flex;
+   margin: 8px 13px;
+   width: 100%;
+   background-color: var(--color-card-bg);
+   font-size: 20px;
+   font-weight: 600;
+ }
 
  /*logo sign*/
-.toggle-sign {
-  margin: 11px 11px;
-  background-color: var(--color-card-bg);
-  font-size: 24px;
-}
+ .toggle-sign {
+   margin: 11px;
+   background-color: var(--color-card-bg);
+   font-size: 24px;
+ }
 
-@media screen and (max-width: 768px) {
-  .toggle-bar {
-    padding: 0px 5px;
-  }
+ @media screen and (max-width: 768px) {
+   .toggle-bar {
+     padding: 0px 5px;
+   }
 
-  .toggle-button {
-    margin: 8px 2px;
-  }
-}
+   .toggle-name {
+     margin: 6px 2px;
+   }
+ }

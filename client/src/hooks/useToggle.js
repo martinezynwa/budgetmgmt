@@ -15,10 +15,8 @@ export const useToggle = () => {
   //formName for header of the toggle for form
   const Toggle = ({ formVisibility, toggleForm, formName }) => {
     return (
-      <div className="toggle-bar">
-        <button className="toggle-button" onClick={() => toggleForm()}>
-          {formName}
-        </button>
+      <div onClick={() => toggleForm()} className="toggle-bar">
+        <div className="toggle-name">{formName}</div>
         {formVisibility ? (
           <FaPlus className="toggle-sign" />
         ) : (
