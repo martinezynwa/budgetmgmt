@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { FaPlus, FaMinus } from 'react-icons/fa'
-import '../styles/components/Toggle.css'
 
 /*
 used for every input/search form

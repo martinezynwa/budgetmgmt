@@ -229,11 +229,16 @@ https://budget-mgmt-1.netlify.app
   - [x] limit for uploaded file
   - [x] deploy
 
+### 0.31
+- [x] loading spinner on login page
+
 ---
 
 ### future
 
-- [ ] dark mode
+- [ ] longer login time
+- [ ] migration to tailwind
 - [ ] statistics page - comparison with previous month(s)
+- [ ] dark mode
 
 ---

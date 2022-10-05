@@ -20,11 +20,13 @@ token is sent to backend for further handling of login
 const LoginUser = () => {
   const context = useAuth()
   const [token, setToken] = useState('')
+  const [loading, setLoading] = useState(false)
 
   //mutation for google login, token sent to backend
   const [loginViaGoogle] = useMutation(GOOGLE_AUTH, {
     update(_, result) {
       context.login(result.data.googleAuth)
+      setLoading(false)
     },
     variables: { idToken: token },
     refetchQueries: () => [
@@ -33,6 +35,11 @@ const LoginUser = () => {
       },
     ],
   })
+
+  const loginButtonClick = () => {
+    setLoading(true)
+    triggerLogin()
+  }
 
   const triggerLogin = useGoogleLogin({
     onSuccess: ({ code }) => {
@@ -48,10 +55,11 @@ const LoginUser = () => {
         <div className="items">
           <img src={mainLogo} alt="mainlogo" />
           <h2>Expense tracker</h2>
-          <GoogleButton
-            className="login-button"
-            onClick={() => triggerLogin()}
-          />
+          {loading ? (
+            <span class="loader"></span>
+          ) : (
+            <GoogleButton onClick={() => loginButtonClick()} />
+          )}
         </div>
       </div>
     </>
