@@ -3,7 +3,6 @@ import { useMutation } from '@apollo/client'
 import { useConfirmDialog } from '../hooks/useConfirmDialog'
 import { NavLink } from 'react-router-dom'
 import ConfirmDialog from '../components/Dialog/ConfirmDialog'
-import User from '../components/Navbar/User'
 import {
   FaUser,
   FaHouseUser,
@@ -47,7 +46,7 @@ const Navigation = () => {
       <aside>
         <div className="nav-top">
           <FaUser className="nav-user-icon" />
-          {user ? <User loggedUser={user} /> : null}
+          {user ? <h1>{user.name.split(' ')[0]}</h1> : null}
         </div>
 
         <div className="nav-bar">

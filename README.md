@@ -236,7 +236,6 @@ https://budget-mgmt-1.netlify.app
 
 ### future
 
-- [ ] longer login time
 - [ ] migration to tailwind
 - [ ] statistics page - comparison with previous month(s)
 - [ ] dark mode
