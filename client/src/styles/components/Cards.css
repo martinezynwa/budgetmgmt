@@ -18,8 +18,8 @@
  }
 
  .difference-button {
-  margin-top: 5px;
-  font-size: 22px;
+   margin-top: 5px;
+   font-size: 22px;
  }
 
  .difference-button:hover {
@@ -124,6 +124,11 @@
  }
 
  /*-------Statistics Card-------*/
+ .statistics-header {
+   font-size: 24px;
+   margin: 0px 0px 28px 10px;
+ }
+
  .statistics-card {
    display: flex;
    box-shadow: -4px 6px 12px 3px rgba(0, 0, 0, 0.12);
@@ -162,6 +167,11 @@
  }
 
  @media screen and (max-width: 768px) {
+  .statistics-header {
+    font-size: 24px;
+    margin: 0px 0px 28px 4px;
+  }
+
    .statistics-info {
      margin-right: 13px;
    }

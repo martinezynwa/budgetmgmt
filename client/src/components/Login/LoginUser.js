@@ -44,7 +44,7 @@ const LoginUser = () => {
   const triggerLogin = useGoogleLogin({
     onSuccess: ({ code }) => {
       setToken(code)
-      loginViaGoogle()
+      setTimeout(() => loginViaGoogle(), 0)
     },
     flow: 'auth-code',
   })
@@ -56,7 +56,7 @@ const LoginUser = () => {
           <img src={mainLogo} alt="mainlogo" />
           <h2>Expense tracker</h2>
           {loading ? (
-            <span class="loader"></span>
+            <span className="loader"></span>
           ) : (
             <GoogleButton onClick={() => loginButtonClick()} />
           )}

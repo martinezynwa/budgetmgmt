@@ -50,6 +50,7 @@ const userResolvers = {
           token,
         }
       }
+      console.log('token :>> ', token)
       return {
         ...user._doc,
         id: user._id,

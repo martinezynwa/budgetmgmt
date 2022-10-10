@@ -1,6 +1,7 @@
 import StatisticsCard from './StatisticsCard'
 import { useQuery } from '@apollo/client'
 import { GET_CATEGORY_TOTALS } from '../../graphql/queries'
+import dayjs from 'dayjs'
 
 //component of statistics page displaying spending per category
 const StatisticsList = ({ selectedMonth }) => {
@@ -16,6 +17,7 @@ const StatisticsList = ({ selectedMonth }) => {
 
   return (
     <div>
+      <h2 className='statistics-header'>Spending in {dayjs(selectedMonth).format('MMMM YYYY')}</h2>
       {categoryTotals
         ? categoryTotals.map(c => (
             <StatisticsCard
