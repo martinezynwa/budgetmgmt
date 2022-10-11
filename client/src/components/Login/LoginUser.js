@@ -44,7 +44,7 @@ const LoginUser = () => {
   const triggerLogin = useGoogleLogin({
     onSuccess: ({ code }) => {
       setToken(code)
-      setTimeout(() => loginViaGoogle(), 0)
+      setTimeout(() => loginViaGoogle(), 100)
     },
     flow: 'auth-code',
   })
