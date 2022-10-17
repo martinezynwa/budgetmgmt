@@ -6,7 +6,6 @@ import { ALL_USERS } from '../../graphql/queries'
 import { useGoogleLogin } from '@react-oauth/google'
 import GoogleButton from 'react-google-button'
 import mainLogo from '../../assets/img/mainlogo.png'
-import '../../styles/pages/Login.css'
 
 /*
 component for Login page

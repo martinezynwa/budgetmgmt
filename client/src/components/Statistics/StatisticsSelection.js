@@ -9,7 +9,7 @@ const StatisticsSelection = () => {
 
   return (
     <>
-      <div className="form-container">
+      <div className="flex flex-col justify-between p-4 rounded-xl bg-container cursor-pointer">
         <Toggle
           toggleForm={() => toggleForm()}
           formVisibility={formVisibility}

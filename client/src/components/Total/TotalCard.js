@@ -27,7 +27,58 @@ const TotalCard = ({ selectedMonth }) => {
       ? setDifferenceVisibility(false)
       : setDifferenceVisibility(true)
   }
-  
+
+  return (
+    <>
+      <div className="p-4 sm:p-6 rounded-xl bg-container">
+        <div className='text-lg sm:text-xl'>
+          <div className="flex flex-row justify-between w-full">
+            <h2 className="text-xl sm:text-[28px] mb-6 mr-4 font-semibold">
+              {selectedMonth
+                ? `Spending in ${dayjs(selectedMonth).format('MMMM YYYY')}`
+                : null}
+            </h2>
+            <FaInfoCircle
+              className="cursor-pointer"
+              onClick={() => hideDifferences()}>
+              Differences
+            </FaInfoCircle>
+          </div>
+          <div className="flex flex-col space-y-2">
+            <div className="flex flex-row items-center justify-between">
+              <h2 className="font-semibold">Total</h2>
+              <div className="flex flex-col items-center font-semibold">
+                <TotalValue username="allUsers" selectedMonth={selectedMonth} />{' '}
+                Kč
+              </div>
+            </div>
+            {/* listing each user and displaying total spent per month */}
+            {users.map(user => (
+              <div
+                key={user.username}
+                className="flex flex-row items-center justify-between">
+                <h2 className="font-semibold ">{user.name.split(' ')[0]}</h2>
+                <div className="flex flex-col items-center  font-semibold">
+                  <TotalValue
+                    username={user.username}
+                    selectedMonth={selectedMonth}
+                  />{' '}
+                  Kč
+                  {/* historical difference between users */}
+                  <TotalDifference
+                    username={user.username}
+                    totals={totals}
+                    show={differenceVisibility}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
+  )
+
   return (
     <>
       <div className="total-card">

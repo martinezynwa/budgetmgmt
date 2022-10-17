@@ -236,7 +236,18 @@ https://budget-mgmt-1.netlify.app
 
 ### future
 
-- [ ] migration to tailwind
+- [ ] migration to tailwind & re-design
+ - [x] Navbar
+ - [x] Home
+ - [x] Statistics
+ - [x] Items
+ - [x] Options
+ - [x] Data
+ - [ ] Login
+ - [ ] Modal
+ - [ ] Notifications
+ - [ ] confirmation of actions
+
 - [ ] statistics page - comparison with previous month(s)
 - [ ] dark mode
 

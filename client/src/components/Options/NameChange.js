@@ -45,29 +45,29 @@ const NameChange = () => {
     event.preventDefault()
     changeName()
   }
-  
+
   return (
-    <div className="form-container">
+    <div className="flex flex-col gap-4 justify-between p-4 rounded-xl bg-container cursor-pointer">
       <Toggle
         formVisibility={formVisibility}
         toggleForm={() => toggleForm()}
         formName="Change name"
       />
       <div className={formVisibility}>
-        <form className="item-form" onSubmit={onSubmit}>
-          <div className="form-option">
-            <label>
-              Name <span className="form-error">{errors ? errors : null}</span>
-            </label>
-            <input
-              type="text"
-              value={nameInput.name}
-              name="name"
-              onChange={onChange}
-            />
-          </div>
-          <button className="form-submit">Change</button>
+        <form className="flex flex-col gap-3" onSubmit={onSubmit}>
+          <input
+            className="w-full p-2 bg-slate-50 rounded-md"
+            type="text"
+            value={nameInput.name}
+            name="name"
+            placeholder="Name"
+            onChange={onChange}
+          />
+          <button className="w-full p-2 rounded-lg text-lg font-semibold bg-sidebarActive">
+            Change
+          </button>
         </form>
+        {errors ? <div className="p-1 text-red-600">{errors}</div> : null}
       </div>
     </div>
   )

@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer base {
+
+  html,
+  body,
+  #root {
+    @apply bg-backdrop text-black font-poppins;
+  }
+
+  select[type="text"] {
+    -webkit-appearance: none;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+}

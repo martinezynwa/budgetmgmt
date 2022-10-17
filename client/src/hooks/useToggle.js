@@ -8,14 +8,14 @@ on clicking displaying the form of specific component
 */
 
 export const useToggle = () => {
-  const [formVisibility, setFormVisibility] = useState('form-invisible')
+  const [formVisibility, setFormVisibility] = useState('hidden ')
 
   //formVisibility false by default
   //formName for header of the toggle for form
   const Toggle = ({ formVisibility, toggleForm, formName }) => {
     return (
-      <div onClick={() => toggleForm()} className="toggle-bar">
-        <div className="toggle-name">{formName}</div>
+      <div onClick={() => toggleForm()} className="flex items-center w-full justify-between">
+        <p className="text-xl font-semibold">{formName}</p>
         {formVisibility ? (
           <FaPlus className="toggle-sign" />
         ) : (
@@ -26,7 +26,7 @@ export const useToggle = () => {
   }
 
   const toggleForm = () => {
-    formVisibility ? setFormVisibility('') : setFormVisibility('form-invisible')
+    formVisibility ? setFormVisibility('') : setFormVisibility('hidden ')
   }
 
   return {

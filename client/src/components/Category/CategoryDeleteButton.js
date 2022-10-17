@@ -41,7 +41,7 @@ const DeleteCategoryButton = ({ id }) => {
   return (
     <div>
       <FaTrashAlt
-        className="delete-category"
+        className="text-2xl"
         onClick={() => handleInputMessage('Delete category?')}></FaTrashAlt>
       {dialog.isLoading && (
         <ConfirmDialog onDialog={dialogConfirmation} message={dialog.message} />

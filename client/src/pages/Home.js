@@ -1,4 +1,3 @@
-import SelectButton from '../components/Item/SelectItemsButton'
 import TotalCard from '../components/Total/TotalCard'
 import Items from '../components/Item/Items'
 import ItemForm from '../components/Item/ItemForm'
@@ -11,10 +10,11 @@ const Home = () => {
 
   return (
     <ItemProvider>
-      <TotalCard selectedMonth={selectedMonth} />
-      <ItemForm />
-      <SelectButton />
-      <Items />
+      <div className="flex flex-col sm:w-full lg:w-3/4 xl:w-3/5 px-2 sm:ml-12 sm:my-4 gap-8">
+        <TotalCard selectedMonth={selectedMonth} />
+        <ItemForm />
+        <Items />
+      </div>
     </ItemProvider>
   )
 }

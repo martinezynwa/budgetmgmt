@@ -7,11 +7,14 @@ const Categories = () => {
 
   return (
     <>
-      {categories
-        ? categories.map(category => (
-            <CategoryCard key={category.categoryName} category={category} />
-          ))
-        : null}
+      <div className="p-4 sm:p-6 rounded-xl bg-container">
+        <h2 className="text-2xl sm:text-[28px] mb-4 font-semibold">Categories</h2>
+        {categories
+          ? categories.map(category => (
+              <CategoryCard key={category.categoryName} category={category} />
+            ))
+          : null}
+      </div>
     </>
   )
 }

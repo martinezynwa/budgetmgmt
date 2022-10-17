@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import useNotification from '../../context/NotificationContext'
 import { FaCheck, FaTimes } from 'react-icons/fa'
-import '../../styles/components/Notification.css'
 
 const Notification = () => {
   const { notification, type } = useNotification()

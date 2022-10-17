@@ -20,10 +20,13 @@ const ExportData = () => {
 
   return (
     <>
-      <div className="upload-form">
-        <h2>Export to JSON</h2>
-        <FaDownload className="icon" />
+      <div className="flex flex-col gap-4 items-center p-4 rounded-xl bg-container cursor-pointer">
+        <h2 className="text-xl sm:text-2xl mb-6 mr-4 font-semibold">
+          Export to JSON
+        </h2>
+        <FaDownload className="text-4xl" />
         <button
+          className="w-full mt-3 p-2 rounded-lg text-lg font-semibold bg-sidebarActive"
           onClick={() => handleInputMessage('Export all items into json?')}>
           Export
         </button>

@@ -5,7 +5,6 @@ import EditButton from './ItemEditButton'
 import DeleteButton from './ItemDeleteButton'
 import useNotification from '../../context/NotificationContext'
 import { FaEdit } from 'react-icons/fa'
-import Modal from 'react-bootstrap/Modal'
 
 //modal window that is shown when item edition is triggered
 const ItemModal = ({ item }) => {
@@ -42,6 +41,12 @@ const ItemModal = ({ item }) => {
     })
   }
 
+  return (
+    <>
+      <FaEdit />
+    </>
+  )
+  /*
   return (
     <div>
       <FaEdit className="form-edit-button" onClick={() => checkBeforeEditing()}>
@@ -115,7 +120,7 @@ const ItemModal = ({ item }) => {
         </Modal.Footer>
       </Modal>
     </div>
-  )
+  )*/
 }
 
 export default ItemModal

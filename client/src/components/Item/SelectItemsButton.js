@@ -21,15 +21,21 @@ const SelectButton = () => {
     getItemsByUser(username)
     setActiveButton(username)
   }
-  
+
   return (
     <>
       <ScrollContainer
         className={
-          users.length <= 2 ? 'select-buttons centered' : 'select-buttons'
+          users.length <= 2
+            ? 'flex flex-row gap-2 mb-4'
+            : 'flex flex-row gap-2 mb-4'
         }>
         <button
-          className={activeButton === '' ? 'button' : 'button nonselected'}
+          className={
+            activeButton === ''
+              ? 'bg-sidebarActive p-2 rounded-xl font-semibold'
+              : 'bg-sidebarActive p-2 rounded-xl'
+          }
           onClick={() => setItems('', currentMonth)}>
           All
         </button>
@@ -37,7 +43,9 @@ const SelectButton = () => {
           <button
             key={user.username}
             className={
-              activeButton === user.username ? 'button' : 'button nonselected'
+              activeButton === user.username
+                ? 'bg-sidebarActive p-2 rounded-xl font-semibold'
+                : 'bg-sidebarActive p-2 rounded-xl'
             }
             onClick={() => setItems(user.username, currentMonth)}>
             {user.name.split(' ')[0]}

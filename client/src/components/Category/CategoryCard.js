@@ -4,18 +4,10 @@ import CategoryDeleteButton from './CategoryDeleteButton'
 //card for a category
 const CategoryCard = ({ category }) => {
   return (
-    <div className='category-container'>
-      <div className="category-card">
-        <div className="category-icon">
-          <CategoryIcon itemCategory={category.categoryName} />
-        </div>
-        <div className="category-info">
-          <div className="category-name">{category.categoryName}</div>
-        </div>
-        <div className="delete-category">
-          <CategoryDeleteButton id={category.id} />
-        </div>
-      </div>
+    <div className="flex flex-row w-full items-center justify-between py-2 sm:border-b-[1px]">
+      <CategoryIcon itemCategory={category.categoryName} />
+      <p className="text-xl">{category.categoryName}</p>
+      <CategoryDeleteButton id={category.id} />
     </div>
   )
 }

@@ -7,10 +7,10 @@ import {
   GET_ALL_TIME_TOTALS,
   GET_CATEGORY_TOTALS,
 } from '../../graphql/queries'
-import { useToggle } from '../../hooks/useToggle'
 import useAuth from '../../context/AuthContext'
 import useNotification from '../../context/NotificationContext'
 import CategorySelect from '../Category/CategorySelect'
+import { FaCalendarAlt, FaFileAlt, FaListAlt, FaCoins } from 'react-icons/fa'
 const dayjs = require('dayjs')
 
 //for adding an item
@@ -26,7 +26,6 @@ const ItemForm = () => {
   }
   const [itemInput, setItemInput] = useState(initialState)
   const [errors, setErrors] = useState({})
-  const { formVisibility, toggleForm, Toggle } = useToggle()
 
   const onChange = event => {
     setItemInput({
@@ -91,75 +90,80 @@ const ItemForm = () => {
     addItem()
   }
 
-  return (
-    <div className="form-container">
-      <Toggle
-        formVisibility={formVisibility}
-        toggleForm={() => toggleForm()}
-        formName="Add item"
-      />
-      {/* item form is hidden until form is toggled */}
-      <div className={formVisibility}>
-        <form className="item-form" onSubmit={onSubmit}>
-          <div className="form-option">
-            <label>
-              Date{' '}
-              <span className="form-error">
-                {errors ? errors.itemDate : null}
-              </span>
-            </label>
-            <input
-              type="date"
-              name="itemDate"
-              value={itemInput.itemDate}
-              onChange={onChange}
-            />
-          </div>
-          <div className="form-option">
-            <label>
-              Item{' '}
-              <span className="form-error">
-                {errors ? errors.itemName : null}
-              </span>
-            </label>
-            <input
-              type="text"
-              name="itemName"
-              value={itemInput.itemName}
-              onChange={onChange}
-            />
-          </div>
+  const itemForm = [
+    {
+      label: 'Date',
+      value: itemInput.itemDate,
+      type: 'date',
+      icon: <FaCalendarAlt />,
+    },
+    {
+      label: 'Name',
+      value: itemInput.itemName,
+      type: 'text',
+      placeholder: 'Item name',
+      icon: <FaFileAlt />,
+    },
+    {
+      label: 'Category',
+      value: itemInput.itemCategory,
+      type: 'text',
+      icon: <FaListAlt />,
+    },
+    {
+      label: 'Price',
+      value: itemInput.itemPrice,
+      type: 'number',
+      placeholder: 'Item price',
+      icon: <FaCoins />,
+    },
+  ]
 
-          <div className="form-option">
-            <label>
-              Category{' '}
-              <span className="form-error">
-                {errors ? errors.itemCategory : null}
-              </span>
-            </label>
-            <select
-              type="text"
-              name="itemCategory"
-              onChange={onChange}
-              value={itemInput.itemCategory}>
-              <CategorySelect />
-            </select>
-          </div>
-          <div className="form-option">
-            <label>
-              Price{' '}
-              <span className="form-error">
-                {errors ? errors.itemPrice : null}
-              </span>
-            </label>
-            <input
-              type="number"
-              name="itemPrice"
-              value={itemInput.itemPrice}
-              onChange={onChange}
-            />
-          </div>
-          <button className="form-submit">Submit</button>
+  return (
+    <div className="flex flex-col p-3 rounded-xl bg-container">
+      <div className="flex flex-col">
+        <h2 className="text-2xl sm:ml-3 sm:text-[28px] py-3 font-semibold">
+          Add Item
+        </h2>
+        <form className="" onSubmit={onSubmit}>
+          {itemForm.map(i => (
+            <div
+              key={i.label}
+              className="flex flex-row items-center py-2 sm:py-0">
+              <i className="text-3xl pr-3 sm:p-3">{i.icon}</i>
+              <div className="flex flex-col w-full">
+                {i.label !== 'Category' ? (
+                  <input
+                    className="pl-1 h-10 w-full bg-slate-50 rounded-md"
+                    type={i.type}
+                    name={`item${i.label}`}
+                    value={i.value}
+                    placeholder={i.placeholder}
+                    onChange={onChange}
+                    required
+                    maxLength="20"
+                    max={`${i.type === 'number' ? '99999' : ''}`}
+                  />
+                ) : (
+                  <select
+                    className={` pl-1 h-10 w-full bg-slate-50 rounded-md ${
+                      i.value === '' ? 'text-gray-400' : 'text-black'
+                    }`}
+                    type={i.type}
+                    name={`item${i.label}`}
+                    value={i.value}
+                    onChange={onChange}
+                    required>
+                    <CategorySelect />
+                  </select>
+                )}
+              </div>
+            </div>
+          ))}
+
+          <button className="w-full mt-3 p-2 rounded-lg text-lg font-semibold bg-sidebarActive">
+            Add Item
+          </button>
         </form>
       </div>
     </div>

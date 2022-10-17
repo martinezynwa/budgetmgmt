@@ -50,41 +50,34 @@ const CategoryForm = () => {
   }
 
   return (
-    <div className="form-container">
+    <div className="flex flex-col gap-4 justify-between p-4 rounded-xl bg-container cursor-pointer">
       <Toggle
         formVisibility={formVisibility}
         toggleForm={() => toggleForm()}
         formName="Add Category"
       />
       <div className={formVisibility}>
-        <form className="item-form" onSubmit={onSubmit}>
-          <div className="form-option">
-            <label>
-              Name{' '}
-              <span className="form-error">
-                {errors ? errors.categoryName : null}
-              </span>
-            </label>
-            <input
-              type="text"
-              value={categoryInput.categoryName}
-              name="categoryName"
-              onChange={onChange}
-            />
-            <label>
-              Importance(1-5){' '}
-              <span className="form-error">
-                {errors ? errors.importance : null}
-              </span>
-            </label>
-            <input
-              type="number"
-              value={categoryInput.importance}
-              name="importance"
-              onChange={onChange}
-            />
-          </div>
-          <button className="form-submit">Submit</button>
+        <form className="flex flex-col gap-3 rounded-md" onSubmit={onSubmit}>
+          <input
+            className="w-full p-2 bg-slate-50 rounded-md"
+            type="text"
+            value={categoryInput.categoryName}
+            name="categoryName"
+            placeholder="Name"
+            onChange={onChange}
+          />
+          <input
+            className="w-full p-2 bg-slate-50 rounded-md"
+            type="number"
+            value={categoryInput.importance}
+            name="importance"
+            placeholder="Importance"
+            onChange={onChange}
+          />
+          <button className="w-full p-2 rounded-lg text-lg font-semibold bg-sidebarActive">
+            Add
+          </button>
+          {errors ? <div className="p-1 text-red-600">{errors}</div> : null}
         </form>
       </div>
     </div>

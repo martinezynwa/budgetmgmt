@@ -10,34 +10,30 @@ import AllItems from './pages/AllItems'
 import Options from './pages/Options'
 import ImportExport from './pages/ImportExport'
 import Notification from './components/Notification/Notification'
-import './styles/App.css'
-import './styles/components/Cards.css'
-import './styles/components/ItemForm.css'
-import './styles/components/Notification.css'
-import './styles/components/Popup.css'
-import './styles/components/SelectButton.css'
-import './styles/components/Toggle.css'
+import './style.css'
 
 const App = () => {
   return (
     <AuthProvider>
       <Router>
         <NotificationProvider>
-          <Navigation />
-          <div className="app">
-            <Notification />
-            <Routes>
-              <Route path="/" element={<PrivateRoute />}>
-                <Route path="/" element={<Home />} />
-                <Route path="/allitems" element={<AllItems />} />
-                <Route path="/statistics" element={<Statistics />} />
-                <Route path="/options" element={<Options />} />
-                <Route path="/data" element={<ImportExport />} />
-              </Route>
-              <Route path="/" element={<PublicRoute />}>
-                <Route path="/login" element={<Login />} />
-              </Route>
-            </Routes>
+          <div className='flex flex-col h-full relative'>
+            <Navigation />
+            <div className="sm:ml-80 my-24 sm:my-0">
+              <Notification />
+              <Routes>
+                <Route path="/" element={<PrivateRoute />}>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/allitems" element={<AllItems />} />
+                  <Route path="/statistics" element={<Statistics />} />
+                  <Route path="/options" element={<Options />} />
+                  <Route path="/data" element={<ImportExport />} />
+                </Route>
+                <Route path="/" element={<PublicRoute />}>
+                  <Route path="/login" element={<Login />} />
+                </Route>
+              </Routes>
+            </div>
           </div>
         </NotificationProvider>
       </Router>

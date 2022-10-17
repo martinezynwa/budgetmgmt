@@ -19,11 +19,11 @@ const CategorySelect = ({ category }) => {
       {category ? (
         <option value>{category}</option>
       ) : (
-        <option value>Choose category</option>
+        <option value="">Choose category</option>
       )}
 
       {categories.map(category => (
-        <option key={category.categoryName} value={category.categoryName}>
+        <option className='text-black' key={category.categoryName} value={category.categoryName}>
           {category.categoryName}
         </option>
       ))}

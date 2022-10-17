@@ -16,7 +16,7 @@ import {
   FaHotel,
   FaMusic,
 } from 'react-icons/fa'
-const style = { fontSize: '32px' }
+const style = { fontSize: '32px', color: 'black' }
 
 //icons for categories
 const CategoryIcon = itemCategory => {

@@ -7,11 +7,13 @@ import { CategoryProvider } from '../context/CategoryContext'
 const Options = () => {
   return (
     <>
-      <NameChange />
-      <CategoryProvider>
-        <CategoryForm />
-        <Categories />
-      </CategoryProvider>
+      <div className="flex flex-col sm:w-full lg:w-3/4 xl:w-3/5 px-2 sm:ml-12 sm:my-4 gap-8">
+        <NameChange />
+        <CategoryProvider>
+          <CategoryForm />
+          <Categories />
+        </CategoryProvider>
+      </div>
     </>
   )
 }
