@@ -1,7 +1,5 @@
 import { useMutation } from '@apollo/client'
-import { useConfirmDialog } from '../../hooks/useConfirmDialog'
 import useNotification from '../../context/NotificationContext'
-import ConfirmDialog from '../Dialog/ConfirmDialog'
 import { ALL_CATEGORIES } from '../../graphql/queries'
 import { DELETE_CATEGORY } from '../../graphql/mutations'
 import { FaTrashAlt } from 'react-icons/fa'
@@ -9,7 +7,6 @@ import { FaTrashAlt } from 'react-icons/fa'
 //button for category deletion
 const DeleteCategoryButton = ({ id }) => {
   const { setNotification } = useNotification()
-  const { dialog, handleInputMessage, handleActionDialog } = useConfirmDialog()
 
   //mutation for deletion of a single category
   const [deleteItem] = useMutation(DELETE_CATEGORY, {
@@ -28,24 +25,12 @@ const DeleteCategoryButton = ({ id }) => {
     },
   })
 
-  //dialog for confirmation of deletion
-  const dialogConfirmation = confirm => {
-    if (confirm) {
-      handleActionDialog('', false)
-      deleteItem({ variables: { categoryId: id } })
-    } else {
-      handleActionDialog('', false)
-    }
-  }
-
   return (
-    <div>
+    <div className="text-2xl hover:text-gray-500 cursor-pointer">
       <FaTrashAlt
-        className="text-2xl"
-        onClick={() => handleInputMessage('Delete category?')}></FaTrashAlt>
-      {dialog.isLoading && (
-        <ConfirmDialog onDialog={dialogConfirmation} message={dialog.message} />
-      )}
+        onClick={() =>
+          deleteItem({ variables: { categoryId: id } })
+        }></FaTrashAlt>
     </div>
   )
 }

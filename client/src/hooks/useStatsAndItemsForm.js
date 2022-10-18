@@ -96,7 +96,7 @@ export const useStatsAndItemsForm = () => {
             {errors ? (
               <div className="p-1 text-red-600">{errors}</div>
             ) : null}
-            <button className="w-full p-2 rounded-lg text-lg font-semibold bg-sidebarActive">
+            <button className="w-full p-2 rounded-lg text-lg font-semibold bg-button hover:bg-hoverButton">
               Filter
             </button>
           </form>

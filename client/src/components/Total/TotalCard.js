@@ -31,18 +31,18 @@ const TotalCard = ({ selectedMonth }) => {
   return (
     <>
       <div className="p-4 sm:p-6 rounded-xl bg-container">
-        <div className='text-lg sm:text-xl'>
+        <div className="text-lg sm:text-xl">
           <div className="flex flex-row justify-between w-full">
             <h2 className="text-xl sm:text-[28px] mb-6 mr-4 font-semibold">
               {selectedMonth
                 ? `Spending in ${dayjs(selectedMonth).format('MMMM YYYY')}`
                 : null}
             </h2>
-            <FaInfoCircle
-              className="cursor-pointer"
-              onClick={() => hideDifferences()}>
-              Differences
-            </FaInfoCircle>
+            <div className="cursor-pointer hover:text-gray-500">
+              <FaInfoCircle onClick={() => hideDifferences()}>
+                Differences
+              </FaInfoCircle>
+            </div>
           </div>
           <div className="flex flex-col space-y-2">
             <div className="flex flex-row items-center justify-between">

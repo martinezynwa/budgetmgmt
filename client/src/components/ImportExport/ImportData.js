@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import { useMutation } from '@apollo/client'
-import { useConfirmDialog } from '../../hooks/useConfirmDialog'
 import useNotification from '../../context/NotificationContext'
-import ConfirmDialog from '../Dialog/ConfirmDialog'
 import { IMPORT_ITEM } from '../../graphql/mutations'
 import Papa from 'papaparse'
 import { FaUpload } from 'react-icons/fa'
@@ -17,7 +15,6 @@ example of items: Name;2022;01.01;Transaction;9 CZK;Type
 const ImportData = () => {
   const { setNotification } = useNotification()
   const [importedData, setImportedData] = useState([])
-  const { dialog, handleInputMessage, handleActionDialog } = useConfirmDialog()
   let objectWithImportedData = {}
 
   const changeHandler = event => {
@@ -65,14 +62,9 @@ const ImportData = () => {
     },
   })
 
-  const dialogConfirmation = confirm => {
-    if (confirm) {
-      handleActionDialog('', false)
-      objectWithImportedData['importInput'] = importedData //naming the object for backend purposes
-      importItem(objectWithImportedData)
-    } else {
-      handleActionDialog('', false)
-    }
+  const triggerImport = () => {
+    objectWithImportedData['importInput'] = importedData //naming the object for backend purposes
+    importItem(objectWithImportedData)
   }
 
   return (
@@ -87,7 +79,7 @@ const ImportData = () => {
             <FaUpload className="text-4xl" />
             <label
               htmlFor="upload-form"
-              className="w-full mt-3 p-2 rounded-lg text-lg font-semibold bg-sidebarActive text-center">
+              className="w-full mt-3 p-2 rounded-lg text-lg font-semibold text-center bg-button hover:bg-hoverButton cursor-pointer">
               Import
             </label>
             <input
@@ -102,16 +94,11 @@ const ImportData = () => {
         {importedData.length !== 0 ? (
           <div>
             <h3>{`${importedData.length} items ready to be imported`}</h3>
-            <button onClick={() => handleInputMessage('Import items?')}>
-              Import
-            </button>
+            <button onClick={() => triggerImport()}>Import</button>
             <button onClick={() => setImportedData([])}>Cancel</button>
           </div>
         ) : null}
       </div>
-      {dialog.isLoading && (
-        <ConfirmDialog onDialog={dialogConfirmation} message={dialog.message} />
-      )}
     </>
   )
 }

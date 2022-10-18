@@ -130,11 +130,11 @@ const ItemForm = () => {
             <div
               key={i.label}
               className="flex flex-row items-center py-2 sm:py-0">
-              <i className="text-3xl pr-3 sm:p-3">{i.icon}</i>
+              <div className="text-3xl pr-3 sm:p-3">{i.icon}</div>
               <div className="flex flex-col w-full">
                 {i.label !== 'Category' ? (
                   <input
-                    className="pl-1 h-10 w-full bg-slate-50 rounded-md"
+                    className="pl-1 h-10 w-full bg-white rounded-md"
                     type={i.type}
                     name={`item${i.label}`}
                     value={i.value}
@@ -146,7 +146,7 @@ const ItemForm = () => {
                   />
                 ) : (
                   <select
-                    className={` pl-1 h-10 w-full bg-slate-50 rounded-md ${
+                    className={` pl-1 h-10 w-full bg-white rounded-md ${
                       i.value === '' ? 'text-gray-400' : 'text-black'
                     }`}
                     type={i.type}
@@ -161,7 +161,7 @@ const ItemForm = () => {
             </div>
           ))}
 
-          <button className="w-full mt-3 p-2 rounded-lg text-lg font-semibold bg-sidebarActive">
+          <button className="w-full mt-3 p-2 rounded-lg text-lg font-semibold bg-button hover:bg-hoverButton">
             Add Item
           </button>
         </form>

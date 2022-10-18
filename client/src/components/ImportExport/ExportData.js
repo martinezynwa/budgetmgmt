@@ -1,22 +1,10 @@
 import { useState } from 'react'
-import { useConfirmDialog } from '../../hooks/useConfirmDialog'
-import ConfirmDialog from '../Dialog/ConfirmDialog'
 import DownloadData from './DownloadData'
 import { FaDownload } from 'react-icons/fa'
 
 //for triggering component DownloadData that downloads all items from database
 const ExportData = () => {
   const [download, setDownload] = useState(false)
-  const { dialog, handleInputMessage, handleActionDialog } = useConfirmDialog()
-
-  const dialogConfirmation = confirm => {
-    if (confirm) {
-      setDownload(true)
-      handleActionDialog('', false)
-    } else {
-      handleActionDialog('', false)
-    }
-  }
 
   return (
     <>
@@ -26,14 +14,11 @@ const ExportData = () => {
         </h2>
         <FaDownload className="text-4xl" />
         <button
-          className="w-full mt-3 p-2 rounded-lg text-lg font-semibold bg-sidebarActive"
-          onClick={() => handleInputMessage('Export all items into json?')}>
+          className="w-full mt-3 p-2 rounded-lg text-lg font-semibold bg-button hover:bg-hoverButton"
+          onClick={() => setDownload(true)}>
           Export
         </button>
       </div>
-      {dialog.isLoading && (
-        <ConfirmDialog onDialog={dialogConfirmation} message={dialog.message} />
-      )}
       {download ? <DownloadData /> : null}
     </>
   )

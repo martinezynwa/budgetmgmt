@@ -1,5 +1,4 @@
 import { useMutation } from '@apollo/client'
-import { useConfirmDialog } from '../../hooks/useConfirmDialog'
 import { UPDATE_ITEM } from '../../graphql/mutations'
 import {
   CURRENT_MONTH_BY_USER,
@@ -8,14 +7,12 @@ import {
   GET_CATEGORY_TOTALS,
 } from '../../graphql/queries'
 import useNotification from '../../context/NotificationContext'
-import ConfirmDialog from '../Dialog/ConfirmDialog'
 
 const dayjs = require('dayjs')
 
 //for editing a single item
 const EditButton = ({ item, itemInput, handleClose }) => {
   const currentMonth = dayjs(new Date()).format('YYYY-MM')
-  const { dialog, handleInputMessage, handleActionDialog } = useConfirmDialog()
   const { setNotification } = useNotification()
 
   //mutation for editing an item
@@ -61,26 +58,24 @@ const EditButton = ({ item, itemInput, handleClose }) => {
     },
   })
 
-  const dialogConfirmation = confirm => {
-    if (confirm) {
-      handleActionDialog('', false)
-      editItem(item.id, itemInput)
-    } else {
-      handleActionDialog('', false)
+  const handleEdit = () => {
+    if (
+      itemInput.itemDate === '' &&
+      itemInput.itemName.trim() === '' &&
+      itemInput.itemCategory === '' &&
+      itemInput.itemPrice === ''
+    ) {
+      return console.log('No fields edited')
     }
+    editItem(item.id, itemInput)
   }
 
   return (
-    <div>
-      <button
-        className="modal-button"
-        onClick={() => handleInputMessage('Edit item?')}>
-        Edit
-      </button>
-      {dialog.isLoading && (
-        <ConfirmDialog onDialog={dialogConfirmation} message={dialog.message} />
-      )}
-    </div>
+    <button
+      className="w-full text-center text-xl bg-green-100 rounded-md font-semibold hover:bg-green-200"
+      onClick={() => handleEdit()}>
+      Edit
+    </button>
   )
 }
 

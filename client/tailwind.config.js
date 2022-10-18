@@ -7,8 +7,10 @@ module.exports = {
         backdrop: '#F4F7FC',
         sidebar: '#FCFDFF',
         sidebarActive: '#EDEFF6',
+        button: '#EDEFF6',
+        hoverButton: '#CBD5E1',
         icon: '#00000',
-        container: '#FFFFFF'
+        container: '#FFFFFF',
       },
       fontFamily: {
         poppins: ['Poppins'],

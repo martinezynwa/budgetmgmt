@@ -1,5 +1,5 @@
+import { useState } from 'react'
 import { useMutation } from '@apollo/client'
-import { useConfirmDialog } from '../../hooks/useConfirmDialog'
 import { DELETE_ITEM } from '../../graphql/mutations'
 import {
   CURRENT_MONTH_BY_USER,
@@ -8,20 +8,23 @@ import {
   GET_CATEGORY_TOTALS,
 } from '../../graphql/queries'
 import useNotification from '../../context/NotificationContext'
-import ConfirmDialog from '../Dialog/ConfirmDialog'
 const dayjs = require('dayjs')
 
 //for deleting a single item
-const DeleteButton = ({ item }) => {
+const DeleteButton = ({ item, handleClose }) => {
   const currentMonth = dayjs(new Date()).format('YYYY-MM')
-  const { dialog, handleInputMessage, handleActionDialog } = useConfirmDialog()
   const { setNotification } = useNotification()
+  const [buttonText, setButtonText] = useState({
+    clicked: 0,
+    text: 'Delete',
+  })
 
   //mutation for deletion of an item
   const [deleteItem] = useMutation(DELETE_ITEM, {
     variables: item.id,
     onError(err) {
       setNotification(err.graphQLErrors[0].message, 5, 'error')
+      handleClose()
     },
     //refetching all values so pages get updated immediately
     refetchQueries: () => [
@@ -58,26 +61,34 @@ const DeleteButton = ({ item }) => {
     },
   })
 
-  const dialogConfirmation = confirm => {
-    if (confirm) {
-      handleActionDialog('', false)
+  const confirmDeletion = text => {
+    if (buttonText.clicked >= 2) return
+
+    if (buttonText.clicked === 1) {
+      setButtonText({
+        ...buttonText,
+        clicked: buttonText.clicked + 1,
+        text: 'Delete',
+      })
+      handleClose()
       deleteItem({ variables: { itemId: item.id } })
-    } else {
-      handleActionDialog('', false)
+    }
+
+    if (buttonText.clicked === 0) {
+      setButtonText({
+        ...buttonText,
+        clicked: buttonText.clicked + 1,
+        text: text,
+      })
     }
   }
 
   return (
-    <div>
-      <button
-        className="modal-button"
-        onClick={() => handleInputMessage('Delete item?')}>
-        Delete
-      </button>
-      {dialog.isLoading && (
-        <ConfirmDialog onDialog={dialogConfirmation} message={dialog.message} />
-      )}
-    </div>
+    <button
+      className="w-full text-center text-xl rounded-md bg-red-100 font-semibold hover:bg-red-200"
+      onClick={() => confirmDeletion('Delete item?')}>
+      {buttonText.text}
+    </button>
   )
 }
 

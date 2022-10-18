@@ -63,7 +63,7 @@ const NameChange = () => {
             placeholder="Name"
             onChange={onChange}
           />
-          <button className="w-full p-2 rounded-lg text-lg font-semibold bg-sidebarActive">
+          <button className="w-full p-2 rounded-lg text-lg font-semibold bg-button hover:bg-hoverButton">
             Change
           </button>
         </form>

@@ -6,6 +6,7 @@ import { ALL_USERS } from '../../graphql/queries'
 import { useGoogleLogin } from '@react-oauth/google'
 import GoogleButton from 'react-google-button'
 import mainLogo from '../../assets/img/mainlogo.png'
+import Spinner from '../../util/Spinner'
 
 /*
 component for Login page
@@ -50,16 +51,14 @@ const LoginUser = () => {
 
   return (
     <>
-      <div className="login-container">
-        <div className="items">
-          <img src={mainLogo} alt="mainlogo" />
-          <h2>Expense tracker</h2>
-          {loading ? (
-            <span className="loader"></span>
-          ) : (
-            <GoogleButton onClick={() => loginButtonClick()} />
-          )}
-        </div>
+      <div className="flex flex-col items-center h-screen justify-center sm:-ml-72">
+        <img src={mainLogo} alt="mainlogo" />
+        <h2 className="font-semibold text-lg">Expense tracker</h2>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <GoogleButton onClick={() => loginButtonClick()} />
+        )}
       </div>
     </>
   )

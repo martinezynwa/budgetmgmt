@@ -65,19 +65,25 @@ const CategoryForm = () => {
             name="categoryName"
             placeholder="Name"
             onChange={onChange}
+            required
           />
           <input
             className="w-full p-2 bg-slate-50 rounded-md"
             type="number"
             value={categoryInput.importance}
             name="importance"
-            placeholder="Importance"
+            placeholder="Importance (1-5)"
             onChange={onChange}
+            required
+            min="1"
+            max="5"
           />
-          <button className="w-full p-2 rounded-lg text-lg font-semibold bg-sidebarActive">
+          <button className="w-full p-2 rounded-lg text-lg font-semibold bg-button hover:bg-hoverButton">
             Add
           </button>
-          {errors ? <div className="p-1 text-red-600">{errors}</div> : null}
+          {errors.length > 0 ? (
+            <div className="p-1 text-red-600">{errors}</div>
+          ) : null}
         </form>
       </div>
     </div>
