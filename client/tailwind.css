@@ -7,7 +7,7 @@
   html,
   body,
   #root {
-    @apply bg-backdrop text-black font-Mulish;
+    @apply bg-backdrop text-black font-Inter;
   }
 
   select[type="text"] {

@@ -68,12 +68,10 @@ const EditButton = ({ item, itemInput, handleClose, handleError }) => {
 
   const handleEdit = () => {
     if (item.createdBy.username !== user.username) {
-      return handleError(
-        'Item can be edited only by an user who created it',
-      )
+      return handleError('Item can be edited only by a creator.')
     }
     if (
-      itemInput.itemDate === '' &&
+      (itemInput.itemDate === '' || itemInput.itemDate === item.itemDate) &&
       itemInput.itemName.trim() === '' &&
       itemInput.itemCategory === '' &&
       itemInput.itemPrice === ''

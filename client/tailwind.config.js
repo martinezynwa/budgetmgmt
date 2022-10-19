@@ -15,7 +15,7 @@ module.exports = {
         error: '#DC2626',
       },
       fontFamily: {
-        Mulish: ['Mulish'],
+        Inter: ['Inter'],
       },
       fontSize: {
         head: '26px',

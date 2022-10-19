@@ -71,7 +71,7 @@ const DeleteButton = ({ item, handleClose, handleError }) => {
 
   const confirmDeletion = text => {
     if (item.createdBy.username !== user.username) {
-      return handleError('Item can be deleted only by an user who created it')
+      return handleError('Item can be deleted only by a creator.')
     }
 
     if (buttonText.clicked >= 2) return

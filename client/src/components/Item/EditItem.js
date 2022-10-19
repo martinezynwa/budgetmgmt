@@ -15,7 +15,7 @@ const EditItem = props => {
   item = { ...item, itemDate: item.itemDate.split('T')[0] }
 
   const initialState = {
-    itemDate: '',
+    itemDate: item.itemDate,
     itemName: '',
     itemCategory: '',
     itemPrice: '',
