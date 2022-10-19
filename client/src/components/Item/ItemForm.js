@@ -25,7 +25,6 @@ const ItemForm = () => {
     itemPrice: '',
   }
   const [itemInput, setItemInput] = useState(initialState)
-  const [errors, setErrors] = useState({})
 
   const onChange = event => {
     setItemInput({
@@ -39,7 +38,10 @@ const ItemForm = () => {
     variables: itemInput,
 
     onError(err) {
-      setErrors(err.graphQLErrors[0].extensions.errors)
+      setNotification({
+        message: err.graphQLErrors[0].extensions.errors,
+        style: 'error',
+      })
     },
     //refetching all values so pages get updated immediately
     refetchQueries: () => [
@@ -80,8 +82,10 @@ const ItemForm = () => {
     ],
     onCompleted: () => {
       setItemInput(initialState)
-      setErrors({})
-      setNotification('Item added', 5)
+      setNotification({
+        message: 'Item added',
+        style: 'success',
+      })
     },
   })
 
@@ -142,6 +146,7 @@ const ItemForm = () => {
                     onChange={onChange}
                     required
                     maxLength="20"
+                    min={`${i.type === 'number' ? '0' : ''}`}
                     max={`${i.type === 'number' ? '99999' : ''}`}
                   />
                 ) : (

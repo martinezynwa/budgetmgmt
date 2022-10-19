@@ -37,7 +37,10 @@ const NameChange = () => {
     onCompleted: res => {
       setNameInput(initialState)
       setErrors('')
-      setNotification(res.changeName, 5)
+      setNotification({
+        message: res.changeName,
+        style: 'success',
+      })
     },
   })
 

@@ -13,7 +13,7 @@ module.exports = {
         container: '#FFFFFF',
       },
       fontFamily: {
-        poppins: ['Poppins'],
+        inter: ['Inter'],
       },
     },
   },

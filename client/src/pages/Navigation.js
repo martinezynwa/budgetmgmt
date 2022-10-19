@@ -39,7 +39,7 @@ const Navigation = () => {
   const menuBar = user.username ? (
     <>
       <aside className="sm:fixed h-full w-0 sm:w-80 sm:pt-5 bg-sidebar">
-        <div className="fixed top-0 h-[72px] sm:h-0 flex flex-row sm:static sm:flex sm:flex-row items-center gap-4 px-4 sm:mx-2 py-2 sm:mt-3 mb-6 w-full sm:w-0 bg-sidebarActive sm:bg-sidebar">
+        <div className="fixed top-0 h-[72px] sm:h-0 flex flex-row sm:static sm:flex sm:flex-row items-center gap-3 px-4 sm:mx-2 py-2 sm:mt-3 mb-6 w-full sm:w-0 bg-sidebarActive sm:bg-sidebar">
           <div className="sm:ml-2 text-[28px] text-icon">
             <FaUser />
           </div>

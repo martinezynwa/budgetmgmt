@@ -1,3 +1,4 @@
+import useAuth from '../../context/AuthContext'
 import { useMutation } from '@apollo/client'
 import { UPDATE_ITEM } from '../../graphql/mutations'
 import {
@@ -11,16 +12,20 @@ import useNotification from '../../context/NotificationContext'
 const dayjs = require('dayjs')
 
 //for editing a single item
-const EditButton = ({ item, itemInput, handleClose }) => {
+const EditButton = ({ item, itemInput, handleClose, handleError }) => {
   const currentMonth = dayjs(new Date()).format('YYYY-MM')
   const { setNotification } = useNotification()
+  const { user } = useAuth()
 
   //mutation for editing an item
   const [editItem] = useMutation(UPDATE_ITEM, {
     variables: { itemId: item.id, itemInput: itemInput },
     onError(err) {
       handleClose()
-      setNotification(err.graphQLErrors[0].message, 5, 'error')
+      setNotification({
+        message: 'err.graphQLErrors[0].message',
+        style: 'error',
+      })
     },
     //refetching all values so pages get updated immediately
     refetchQueries: () => [
@@ -53,26 +58,34 @@ const EditButton = ({ item, itemInput, handleClose }) => {
       },
     ],
     onCompleted: () => {
-      setNotification('Item edited', 5)
+      setNotification({
+        message: 'Item edited',
+        style: 'success',
+      })
       handleClose()
     },
   })
 
   const handleEdit = () => {
+    if (item.createdBy.username !== user.username) {
+      return handleError(
+        'Item can be edited only by an user who created it',
+      )
+    }
     if (
       itemInput.itemDate === '' &&
       itemInput.itemName.trim() === '' &&
       itemInput.itemCategory === '' &&
       itemInput.itemPrice === ''
     ) {
-      return console.log('No fields edited')
+      return handleError('No fields edited')
     }
     editItem(item.id, itemInput)
   }
 
   return (
     <button
-      className="w-full text-center text-xl bg-green-100 rounded-md font-semibold hover:bg-green-200"
+      className="p-2 mt-2 w-full text-center text-xl bg-green-100 rounded-md font-semibold hover:bg-green-200"
       onClick={() => handleEdit()}>
       Edit
     </button>

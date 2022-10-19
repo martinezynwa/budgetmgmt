@@ -1,3 +1,4 @@
+import useAuth from '../../context/AuthContext'
 import { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { DELETE_ITEM } from '../../graphql/mutations'
@@ -11,9 +12,10 @@ import useNotification from '../../context/NotificationContext'
 const dayjs = require('dayjs')
 
 //for deleting a single item
-const DeleteButton = ({ item, handleClose }) => {
+const DeleteButton = ({ item, handleClose, handleError }) => {
   const currentMonth = dayjs(new Date()).format('YYYY-MM')
   const { setNotification } = useNotification()
+  const { user } = useAuth()
   const [buttonText, setButtonText] = useState({
     clicked: 0,
     text: 'Delete',
@@ -23,7 +25,10 @@ const DeleteButton = ({ item, handleClose }) => {
   const [deleteItem] = useMutation(DELETE_ITEM, {
     variables: item.id,
     onError(err) {
-      setNotification(err.graphQLErrors[0].message, 5, 'error')
+      setNotification({
+        message: err.graphQLErrors[0].message,
+        style: 'error',
+      })
       handleClose()
     },
     //refetching all values so pages get updated immediately
@@ -57,11 +62,18 @@ const DeleteButton = ({ item, handleClose }) => {
       },
     ],
     onCompleted: () => {
-      setNotification('Item deleted', 5)
+      setNotification({
+        message: 'Item deleted',
+        style: 'success',
+      })
     },
   })
 
   const confirmDeletion = text => {
+    if (item.createdBy.username !== user.username) {
+      return handleError('Item can be deleted only by an user who created it')
+    }
+
     if (buttonText.clicked >= 2) return
 
     if (buttonText.clicked === 1) {
@@ -85,7 +97,7 @@ const DeleteButton = ({ item, handleClose }) => {
 
   return (
     <button
-      className="w-full text-center text-xl rounded-md bg-red-100 font-semibold hover:bg-red-200"
+      className="w-full p-2 text-center text-xl rounded-md bg-red-100 font-semibold hover:bg-red-200"
       onClick={() => confirmDeletion('Delete item?')}>
       {buttonText.text}
     </button>

@@ -1,28 +1,22 @@
-import { useState, useEffect } from 'react'
 import useNotification from '../../context/NotificationContext'
-import { FaCheck, FaTimes } from 'react-icons/fa'
 
 const Notification = () => {
-  const { notification, type } = useNotification()
-  const [style, setStyle] = useState('')
-
-  //setting up styling according to a type of the error
-  useEffect(() => {
-    type === 'error' ? setStyle('error') : setStyle('success')
-  }, [type])
-
-  //no notification on first render
-  if (!notification) {
-    return null
-  }
-
+  const { message } = useNotification()
   return (
-    <div className={`notification ${style}`}>
-      <div className="notification-content">
-        {type === 'error' ? <FaTimes /> : <FaCheck />}
-        <div className="notification-text">{notification}</div>
+    <>
+      <div className="fixed top-2 sm:top-4 sm:right-6 w-full sm:w-auto px-2">
+        <div
+          className={`p-4 sm:p-8 text-center font-semibold sm:text-start ${
+            message.style ? ' ' : 'hidden '
+          }{${
+            message.style === 'success' ? ' bg-green-200 ' : ' bg-red-200 '
+          } rounded-lg`}>
+          <h2 className="text-base font-semibold sm:-my-3">
+            {message.message}
+          </h2>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

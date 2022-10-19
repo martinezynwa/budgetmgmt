@@ -7,6 +7,11 @@ import { FaCalendarAlt, FaFileAlt, FaListAlt, FaCoins } from 'react-icons/fa'
 const EditItem = props => {
   const { navbar, setNavbar } = props
   let { item } = props
+  let message = ''
+  const [error, setError] = useState({ value: false, message: '' })
+
+  /*  console.log('item :>> ', item.createdBy.username);
+  console.log('user', user.username)*/
 
   item = { ...item, itemDate: item.itemDate.split('T')[0] }
 
@@ -54,13 +59,17 @@ const EditItem = props => {
     })
   }
 
+  const handleError = message => {
+    setError({ ...error, value: true, message: message })
+  }
+
   return (
     <>
       <div className="fixed top-0 right-0 w-full sm:w-96 h-screen px-2 pt-4 bg-sidebar">
-        <h2 className="w-full mb-6 text-center text-2xl font-semibold">
+        <h2 className="duration-1000 transition-allw-full mb-6 text-center text-2xl font-semibold">
           Edit Item
         </h2>
-        <form className="flex flex-col mb-8 rounded-xl">
+        <form className="flex flex-col mb-0 rounded-xl">
           {itemForm.map(i => (
             <div
               key={i.label}
@@ -81,6 +90,7 @@ const EditItem = props => {
                     onChange={onChange}
                     required
                     maxLength="20"
+                    min={`${i.type === 'number' ? '0' : ''}`}
                     max={`${i.type === 'number' ? '99999' : ''}`}
                   />
                 ) : (
@@ -99,15 +109,23 @@ const EditItem = props => {
             </div>
           ))}
         </form>
-        <div className="flex flex-col gap-2 ">
+        <div className="py-1 sm:py-3 text-[15px] font-semibold text-red-500">
+          {error.value ? error.message : null}
+        </div>
+        <div className="flex flex-col gap-3">
           <EditButton
             item={item}
             itemInput={itemInput}
             handleClose={() => setNavbar(!navbar)}
+            handleError={handleError}
           />
-          <DeleteButton item={item} handleClose={() => setNavbar(!navbar)} />
+          <DeleteButton
+            item={item}
+            handleClose={() => setNavbar(!navbar)}
+            handleError={handleError}
+          />
           <button
-            className="w-full text-center text-xl bg-button rounded-md font-semibold hover:bg-hoverButton"
+            className="w-full p-2 text-center text-xl bg-button rounded-md font-semibold hover:bg-hoverButton"
             onClick={() => setNavbar(!navbar)}>
             Cancel
           </button>

@@ -51,7 +51,7 @@ const LoginUser = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center h-screen justify-center sm:-ml-72">
+      <div className="flex flex-col items-center h-[60vh] sm:h-[80vh] justify-center">
         <img src={mainLogo} alt="mainlogo" />
         <h2 className="font-semibold text-lg">Expense tracker</h2>
         {loading ? (

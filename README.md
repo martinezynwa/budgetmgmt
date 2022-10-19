@@ -244,10 +244,11 @@ https://budget-mgmt-1.netlify.app
  - [x] Options
  - [x] Data
  - [x] Login
- - [ ] Edit Modal
- - [ ] Notifications
+ - [x] Edit Modal
+ - [x] Notifications
  - [x] re-do confirmation of actions
- - [ ] font change
+ - [x] font change
+ - [ ] item form - date picker width of div
 
 - [ ] statistics page - comparison with previous month(s)
 - [ ] dark mode

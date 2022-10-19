@@ -20,21 +20,26 @@ const ImportData = () => {
   const changeHandler = event => {
     //check that file is in correct format and size is less than 100kb
     if (event.target.files[0].type !== 'text/csv') {
-      setNotification('File is not in CSV format', 5, 'error')
+      setNotification({
+        message: 'File is not in CSV format',
+        style: 'error',
+      })
       return
     }
 
     if (event.target.files[0].size > 100000) {
-      setNotification('File is too big', 5, 'error')
+      setNotification({
+        message: 'File is too big',
+        style: 'error',
+      })
       return
     }
 
     if (1 + 1 === 2) {
-      setNotification(
-        'Import functionality disabled in demo version',
-        5,
-        'error',
-      )
+      setNotification({
+        message: 'Import functionality disabled in demo version',
+        style: 'error',
+      })
       return
     }
 
@@ -52,12 +57,18 @@ const ImportData = () => {
   const [importItem] = useMutation(IMPORT_ITEM, {
     variables: objectWithImportedData,
     onError() {
-      setNotification('CSV is not structured correctly', 5, 'error')
+      setNotification({
+        message: 'CSV is not structured correctly',
+        style: 'error',
+      })
       setImportedData([])
     },
 
     onCompleted: res => {
-      setNotification(res, 5)
+      setNotification({
+        message: res,
+        style: 'success',
+      })
       setImportedData([])
     },
   })

@@ -17,23 +17,21 @@ const App = () => {
     <AuthProvider>
       <Router>
         <NotificationProvider>
-          <div className='flex flex-col h-full relative'>
-            <Navigation />
-            <div className="sm:ml-80 my-24 sm:my-0">
-              <Notification />
-              <Routes>
-                <Route path="/" element={<PrivateRoute />}>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/allitems" element={<AllItems />} />
-                  <Route path="/statistics" element={<Statistics />} />
-                  <Route path="/options" element={<Options />} />
-                  <Route path="/data" element={<ImportExport />} />
-                </Route>
-                <Route path="/" element={<PublicRoute />}>
-                  <Route path="/login" element={<Login />} />
-                </Route>
-              </Routes>
-            </div>
+          <Navigation />
+          <Notification />
+          <div className="py-24 sm:py-6 px-3">
+            <Routes>
+              <Route path="/" element={<PrivateRoute />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/allitems" element={<AllItems />} />
+                <Route path="/statistics" element={<Statistics />} />
+                <Route path="/options" element={<Options />} />
+                <Route path="/data" element={<ImportExport />} />
+              </Route>
+              <Route path="/" element={<PublicRoute />}>
+                <Route path="/login" element={<Login />} />
+              </Route>
+            </Routes>
           </div>
         </NotificationProvider>
       </Router>

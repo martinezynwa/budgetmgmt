@@ -27,7 +27,7 @@ const ItemCard = ({ item }) => {
               <button
                 className="text-2xl hover:text-gray-500"
                 onClick={() => setNavbar(!navbar)}>
-                <FaEdit />
+                <FaEdit className='' />
               </button>
             </div>
           </div>

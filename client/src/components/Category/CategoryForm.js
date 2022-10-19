@@ -40,7 +40,10 @@ const CategoryForm = () => {
     onCompleted: () => {
       setCategoryInput(initialState)
       setErrors({})
-      setNotification('Category added', 5)
+      setNotification({
+        message: 'Category created',
+        style: 'success',
+      })
     },
   })
 

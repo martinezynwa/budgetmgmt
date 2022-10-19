@@ -217,16 +217,6 @@ const itemsResolvers = {
             },
           })
         }
-        if (item.createdBy.username !== currentUser.username) {
-          throw new UserInputError(
-            'Item can be edited only by an user who created it',
-            {
-              errors: {
-                item: 'Item can be edited only by an user who created it',
-              },
-            },
-          )
-        }
       } catch (err) {
         throw new Error(err)
       }
@@ -286,21 +276,9 @@ const itemsResolvers = {
         return itemBody
       }
     },
-    removeItem: async (_, args, context) => {
+    removeItem: async (_, args) => {
       //removing item
-      const currentUser = await checkAuthorization(context)
       try {
-        const itemToBeDeleted = await Item.findById(args.itemId)
-        if (itemToBeDeleted.createdBy.username !== currentUser.username) {
-          throw new UserInputError(
-            'Item can be removed only by an user who created it',
-            {
-              errors: {
-                item: 'Item can be removed only by an user who created it',
-              },
-            },
-          )
-        }
         const item = await Item.findByIdAndDelete(args.itemId)
         await item.delete()
         return `ID ${args.itemId} deleted successfully`

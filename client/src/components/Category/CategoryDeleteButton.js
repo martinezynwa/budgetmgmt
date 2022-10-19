@@ -12,7 +12,10 @@ const DeleteCategoryButton = ({ id }) => {
   const [deleteItem] = useMutation(DELETE_CATEGORY, {
     variables: id,
     onError(err) {
-      setNotification(err.graphQLErrors[0].message, 5, 'error')
+      setNotification({
+        message: err.graphQLErrors[0].message,
+        style: 'error',
+      })
     },
     refetchQueries: () => [
       //refresh of category list
@@ -21,7 +24,10 @@ const DeleteCategoryButton = ({ id }) => {
       },
     ],
     onCompleted: () => {
-      setNotification('Category deleted', 5)
+      setNotification({
+        message: 'Category deleted',
+        style: 'success',
+      })
     },
   })
 
