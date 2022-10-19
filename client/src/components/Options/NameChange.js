@@ -66,11 +66,11 @@ const NameChange = () => {
             placeholder="Name"
             onChange={onChange}
           />
-          <button className="w-full p-2 rounded-lg text-lg font-semibold bg-button hover:bg-hoverButton">
+          <button className="w-full p-2 rounded-lg text-button font-semibold bg-buttonColor hover:bg-hoverButton">
             Change
           </button>
         </form>
-        {errors ? <div className="p-1 text-red-600">{errors}</div> : null}
+        {errors ? <div className="p-1 text-error">{errors}</div> : null}
       </div>
     </div>
   )

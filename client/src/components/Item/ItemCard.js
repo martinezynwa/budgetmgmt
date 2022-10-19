@@ -25,7 +25,7 @@ const ItemCard = ({ item }) => {
                 {item.itemPrice.price} {item.itemPrice.currency}
               </p>
               <button
-                className="text-2xl hover:text-gray-500"
+                className="text-2xl hover:text-hoverIconColor"
                 onClick={() => setNavbar(!navbar)}>
                 <FaEdit className='' />
               </button>

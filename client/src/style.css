@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree&display=swap');
 
 /*
 ! tailwindcss v3.1.8 | MIT License | https://tailwindcss.com
@@ -415,7 +415,7 @@ html,
   #root{
   --tw-bg-opacity: 1;
   background-color: rgb(244 247 252 / var(--tw-bg-opacity));
-  font-family: Inter;
+  font-family: Figtree;
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
@@ -623,32 +623,20 @@ input[type="file"] {
   margin-top: 0.75rem;
 }
 
-.mb-8{
-  margin-bottom: 2rem;
+.mb-0{
+  margin-bottom: 0px;
 }
 
 .-mb-1{
   margin-bottom: -0.25rem;
 }
 
-.mb-0{
-  margin-bottom: 0px;
-}
-
-.mt-4{
-  margin-top: 1rem;
-}
-
-.mt-6{
-  margin-top: 1.5rem;
-}
-
-.ml-4{
-  margin-left: 1rem;
-}
-
 .mt-2{
   margin-top: 0.5rem;
+}
+
+.mb-1{
+  margin-bottom: 0.25rem;
 }
 
 .inline{
@@ -762,12 +750,12 @@ input[type="file"] {
   gap: 2rem;
 }
 
-.gap-3{
-  gap: 0.75rem;
-}
-
 .gap-1{
   gap: 0.25rem;
+}
+
+.gap-3{
+  gap: 0.75rem;
 }
 
 .gap-2{
@@ -797,11 +785,6 @@ input[type="file"] {
   background-color: rgb(248 250 252 / var(--tw-bg-opacity));
 }
 
-.bg-button{
-  --tw-bg-opacity: 1;
-  background-color: rgb(237 239 246 / var(--tw-bg-opacity));
-}
-
 .bg-sidebar{
   --tw-bg-opacity: 1;
   background-color: rgb(252 253 255 / var(--tw-bg-opacity));
@@ -815,6 +798,11 @@ input[type="file"] {
 .bg-container{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-buttonColor{
+  --tw-bg-opacity: 1;
+  background-color: rgb(237 239 246 / var(--tw-bg-opacity));
 }
 
 .bg-red-100{
@@ -867,10 +855,6 @@ input[type="file"] {
   padding: 0.75rem;
 }
 
-.p-0{
-  padding: 0px;
-}
-
 .py-24{
   padding-top: 6rem;
   padding-bottom: 6rem;
@@ -916,11 +900,6 @@ input[type="file"] {
   padding-bottom: 0.25rem;
 }
 
-.py-0{
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
 .pt-4{
   padding-top: 1rem;
 }
@@ -946,18 +925,41 @@ input[type="file"] {
   line-height: 1.75rem;
 }
 
-.text-xl{
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+.text-toggle{
+  font-size: 23px;
 }
 
 .text-\[28px\]{
   font-size: 28px;
 }
 
+.text-navHeadMobile{
+  font-size: 25px;
+}
+
+.text-nav{
+  font-size: 17px;
+}
+
 .text-2xl{
   font-size: 1.5rem;
   line-height: 2rem;
+}
+
+.text-head{
+  font-size: 26px;
+}
+
+.text-cardList{
+  font-size: 19px;
+}
+
+.text-button{
+  font-size: 20px;
+}
+
+.text-headMobile{
+  font-size: 26px;
 }
 
 .text-4xl{
@@ -968,6 +970,15 @@ input[type="file"] {
 .text-3xl{
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-\[15px\]{
+  font-size: 15px;
+}
+
+.text-xl{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .text-sm{
@@ -985,8 +996,8 @@ input[type="file"] {
   line-height: 1.5rem;
 }
 
-.text-\[15px\]{
-  font-size: 15px;
+.text-cardListMobile{
+  font-size: 19px;
 }
 
 .font-semibold{
@@ -998,13 +1009,9 @@ input[type="file"] {
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 
-.text-icon{
-  color: #00000;
-}
-
-.text-gray-900{
+.text-navTextColor{
   --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity));
+  color: rgb(32 32 32 / var(--tw-text-opacity));
 }
 
 .text-gray-200{
@@ -1022,6 +1029,11 @@ input[type="file"] {
   color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
+.text-error{
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+
 .text-red-500{
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
@@ -1030,10 +1042,6 @@ input[type="file"] {
 .filter{
   -webkit-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
           filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.duration-1000{
-  transition-duration: 1000ms;
 }
 
 .hover\:bg-hoverButton:hover{
@@ -1055,9 +1063,9 @@ input[type="file"] {
   font-weight: 600;
 }
 
-.hover\:text-black:hover{
+.hover\:text-hoverIconColor:hover{
   --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
+  color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
 .hover\:text-gray-500:hover{
@@ -1085,40 +1093,12 @@ input[type="file"] {
     position: fixed;
   }
 
-  .sm\:right-5{
-    right: 1.25rem;
-  }
-
-  .sm\:top-0{
-    top: 0px;
-  }
-
-  .sm\:right-8{
-    right: 2rem;
-  }
-
   .sm\:top-4{
     top: 1rem;
   }
 
-  .sm\:right-0{
-    right: 0px;
-  }
-
-  .sm\:right-4{
-    right: 1rem;
-  }
-
   .sm\:right-6{
     right: 1.5rem;
-  }
-
-  .sm\:top-6{
-    top: 1.5rem;
-  }
-
-  .sm\:top-5{
-    top: 1.25rem;
   }
 
   .sm\:mx-2{
@@ -1145,10 +1125,6 @@ input[type="file"] {
 
   .sm\:ml-3{
     margin-left: 0.75rem;
-  }
-
-  .sm\:mt-8{
-    margin-top: 2rem;
   }
 
   .sm\:flex{
@@ -1187,8 +1163,8 @@ input[type="file"] {
     flex-direction: column;
   }
 
-  .sm\:gap-3{
-    gap: 0.75rem;
+  .sm\:gap-4{
+    gap: 1rem;
   }
 
   .sm\:border-b-\[1px\]{
@@ -1217,8 +1193,8 @@ input[type="file"] {
     padding: 2rem;
   }
 
-  .sm\:p-0{
-    padding: 0px;
+  .sm\:p-5{
+    padding: 1.25rem;
   }
 
   .sm\:py-6{
@@ -1241,14 +1217,8 @@ input[type="file"] {
     padding-bottom: 0px;
   }
 
-  .sm\:px-4{
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .sm\:px-0{
-    padding-left: 0px;
-    padding-right: 0px;
+  .sm\:pl-1{
+    padding-left: 0.25rem;
   }
 
   .sm\:pt-5{
@@ -1259,28 +1229,26 @@ input[type="file"] {
     text-align: start;
   }
 
-  .sm\:text-xl{
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
-
   .sm\:text-2xl{
     font-size: 1.5rem;
     line-height: 2rem;
   }
 
-  .sm\:text-\[28px\]{
-    font-size: 28px;
+  .sm\:text-navHead{
+    font-size: 21px;
   }
 
-  .sm\:text-base{
-    font-size: 1rem;
-    line-height: 1.5rem;
+  .sm\:text-head{
+    font-size: 26px;
   }
 
-  .sm\:text-black{
-    --tw-text-opacity: 1;
-    color: rgb(0 0 0 / var(--tw-text-opacity));
+  .sm\:text-xl{
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .sm\:text-cardList{
+    font-size: 19px;
   }
 }
 

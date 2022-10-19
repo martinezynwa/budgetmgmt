@@ -3,7 +3,7 @@ import CategoryIcon from '../Category/CategoryIcon'
 //for statistics card
 const StatisticsCard = ({ category, total }) => {
   return (
-    <div className="flex flex-row py-3 justify-between text-lg sm:text-xl">
+    <div className="flex flex-row py-3 justify-between text-cardListMobile sm:text-cardList">
       <div className="flex flex-row gap-3 font-semibold">
         <CategoryIcon itemCategory={category} />
         <p>{category}</p>

@@ -53,7 +53,7 @@ const LoginUser = () => {
     <>
       <div className="flex flex-col items-center h-[60vh] sm:h-[80vh] justify-center">
         <img src={mainLogo} alt="mainlogo" />
-        <h2 className="font-semibold text-lg">Expense tracker</h2>
+        <h2 className="font-semibold text-xl mb-1">Expense tracker</h2>
         {loading ? (
           <Spinner />
         ) : (

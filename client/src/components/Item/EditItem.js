@@ -7,7 +7,6 @@ import { FaCalendarAlt, FaFileAlt, FaListAlt, FaCoins } from 'react-icons/fa'
 const EditItem = props => {
   const { navbar, setNavbar } = props
   let { item } = props
-  let message = ''
   const [error, setError] = useState({ value: false, message: '' })
 
   /*  console.log('item :>> ', item.createdBy.username);
@@ -66,7 +65,7 @@ const EditItem = props => {
   return (
     <>
       <div className="fixed top-0 right-0 w-full sm:w-96 h-screen px-2 pt-4 bg-sidebar">
-        <h2 className="duration-1000 transition-allw-full mb-6 text-center text-2xl font-semibold">
+        <h2 className="w-full mb-6 text-center text-3xl font-semibold">
           Edit Item
         </h2>
         <form className="flex flex-col mb-0 rounded-xl">
@@ -109,7 +108,7 @@ const EditItem = props => {
             </div>
           ))}
         </form>
-        <div className="py-1 sm:py-3 text-[15px] font-semibold text-red-500">
+        <div className="py-1 sm:py-3 text-[15px] font-semibold text-error">
           {error.value ? error.message : null}
         </div>
         <div className="flex flex-col gap-3">
@@ -125,7 +124,7 @@ const EditItem = props => {
             handleError={handleError}
           />
           <button
-            className="w-full p-2 text-center text-xl bg-button rounded-md font-semibold hover:bg-hoverButton"
+            className="w-full p-2 text-center text-button bg-buttonColor rounded-md font-semibold hover:bg-hoverButton"
             onClick={() => setNavbar(!navbar)}>
             Cancel
           </button>

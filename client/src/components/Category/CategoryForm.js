@@ -15,7 +15,6 @@ const CategoryForm = () => {
   }
   const { formVisibility, toggleForm, Toggle } = useToggle()
   const [categoryInput, setCategoryInput] = useState(initialState)
-  const [errors, setErrors] = useState('')
 
   const onChange = event => {
     setCategoryInput({
@@ -29,7 +28,10 @@ const CategoryForm = () => {
     variables: categoryInput,
 
     onError(err) {
-      setErrors(err.graphQLErrors[0].extensions.errors)
+      setNotification({
+        message: err.graphQLErrors[0].extensions.errors,
+        style: 'error',
+      })
     },
     refetchQueries: () => [
       //refresh of category list
@@ -39,7 +41,6 @@ const CategoryForm = () => {
     ],
     onCompleted: () => {
       setCategoryInput(initialState)
-      setErrors({})
       setNotification({
         message: 'Category created',
         style: 'success',
@@ -81,12 +82,9 @@ const CategoryForm = () => {
             min="1"
             max="5"
           />
-          <button className="w-full p-2 rounded-lg text-lg font-semibold bg-button hover:bg-hoverButton">
+          <button className="w-full p-2 rounded-lg text-button font-semibold bg-buttonColor hover:bg-hoverButton">
             Add
           </button>
-          {errors.length > 0 ? (
-            <div className="p-1 text-red-600">{errors}</div>
-          ) : null}
         </form>
       </div>
     </div>

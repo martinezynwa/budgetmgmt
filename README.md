@@ -232,11 +232,8 @@ https://budget-mgmt-1.netlify.app
 ### 0.31
 - [x] loading spinner on login page
 
----
-
-### future
-
-- [ ] migration to tailwind & re-design
+### 0.32
+- [x] migration to tailwind & re-design
  - [x] Navbar
  - [x] Home
  - [x] Statistics
@@ -248,9 +245,12 @@ https://budget-mgmt-1.netlify.app
  - [x] Notifications
  - [x] re-do confirmation of actions
  - [x] font change
- - [ ] item form - date picker width of div
 
-- [ ] statistics page - comparison with previous month(s)
+---
+
+### future
+
 - [ ] dark mode
+- [ ] statistics page - comparison with previous month(s)
 
 ---

@@ -34,7 +34,7 @@ const SelectButton = () => {
           className={
             activeButton === ''
               ? 'p-2 rounded-xl font-semibold bg-hoverButton'
-              : 'p-2 rounded-xl bg-button hover:bg-hoverButton'
+              : 'p-2 rounded-xl bg-buttonColor hover:bg-hoverButton'
           }
           onClick={() => setItems('', currentMonth)}>
           All
@@ -45,7 +45,7 @@ const SelectButton = () => {
             className={
               activeButton === user.username
                 ? 'p-2 rounded-xl font-semibold bg-hoverButton'
-                : 'p-2 rounded-xl bg-button hover:bg-hoverButton'
+                : 'p-2 rounded-xl bg-buttonColor hover:bg-hoverButton'
             }
             onClick={() => setItems(user.username, currentMonth)}>
             {user.name.split(' ')[0]}

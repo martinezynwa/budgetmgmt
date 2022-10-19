@@ -39,12 +39,12 @@ const Navigation = () => {
   const menuBar = user.username ? (
     <>
       <aside className="sm:fixed h-full w-0 sm:w-80 sm:pt-5 bg-sidebar">
-        <div className="fixed top-0 h-[72px] sm:h-0 flex flex-row sm:static sm:flex sm:flex-row items-center gap-3 px-4 sm:mx-2 py-2 sm:mt-3 mb-6 w-full sm:w-0 bg-sidebarActive sm:bg-sidebar">
-          <div className="sm:ml-2 text-[28px] text-icon">
+        <div className="fixed top-0 h-[72px] sm:h-0 flex flex-row sm:static sm:flex sm:flex-row items-center gap-4 px-4 sm:mx-2 py-2 sm:mt-3 mb-6 w-full sm:w-0 bg-sidebarActive sm:bg-sidebar">
+          <div className="sm:ml-2 text-[28px] sm:text-2xl">
             <FaUser />
           </div>
           {user ? (
-            <p className="font-semibold text-2xl sm:text-xl">
+            <p className="font-semibold text-navHeadMobile sm:text-navHead">
               {user.name.split(' ')[0]}
             </p>
           ) : null}
@@ -58,23 +58,23 @@ const Navigation = () => {
                 isActive
                   ? `${
                       m.name === 'Data' ? 'sm:flex hidden' : ''
-                    } flex flex-col sm:flex-row items-center sm:gap-3 px-1 sm:px-6 p-2 sm:py-3 sm:mx-2 text-md gap-1 rounded-md font-semibold hover:text-black sm:bg-sidebarActive`
+                    } flex flex-col sm:flex-row items-center sm:gap-4 px-1 sm:px-6 p-2 sm:py-3 sm:mx-2 text-nav gap-1 rounded-md font-semibold sm:bg-sidebarActive`
                   : `${
                       m.name === 'Data' ? 'sm:flex hidden' : ''
-                    } flex flex-col sm:flex-row items-center sm:gap-3 px-1 sm:px-6 p-2 sm:py-3 sm:mx-2 text-md gap-1 hover:font-semibold text-gray-900 sm:text-black`
+                    } flex flex-col sm:flex-row items-center sm:gap-4 px-1 sm:px-6 p-2 sm:py-3 sm:mx-2 text-nav gap-1 hover:font-semibold text-navTextColor`
               }>
-              <div className="text-2xl text-icon">{m.icon}</div>
+              <div className="text-2xl">{m.icon}</div>
               <p className="">{m.name}</p>
             </NavLink>
           ))}
         </nav>
         <button
-          className="fixed top-2 right-0 sm:static sm:flex sm:flex-row items-center gap-3 px-6 py-3 mx-2 text-md hover:font-semibold hover:text-black"
+          className="fixed top-2 right-0 sm:static sm:flex sm:flex-row items-center gap-4 px-6 py-3 mx-2 text-nav hover:font-semibold"
           onClick={() => logoutUser()}>
-          <div className="text-[28px] sm:text-2xl text-icon">
+          <div className="text-[28px] sm:text-2xl">
             <FaPowerOff />
           </div>
-          <p className="hidden sm:flex">Logout</p>
+          <p className="hidden sm:flex text-nav">Logout</p>
         </button>
       </aside>
     </>

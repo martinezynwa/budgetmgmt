@@ -126,7 +126,7 @@ const ItemForm = () => {
   return (
     <div className="flex flex-col p-3 rounded-xl bg-container">
       <div className="flex flex-col">
-        <h2 className="text-2xl sm:ml-3 sm:text-[28px] py-3 font-semibold">
+        <h2 className="sm:ml-3 text-headMobile sm:text-head py-3 font-semibold">
           Add Item
         </h2>
         <form className="" onSubmit={onSubmit}>
@@ -166,7 +166,7 @@ const ItemForm = () => {
             </div>
           ))}
 
-          <button className="w-full mt-3 p-2 rounded-lg text-lg font-semibold bg-button hover:bg-hoverButton">
+          <button className="w-full mt-3 p-2 rounded-lg text-button font-semibold bg-buttonColor hover:bg-hoverButton">
             Add Item
           </button>
         </form>

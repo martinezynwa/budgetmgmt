@@ -14,8 +14,8 @@ export const useToggle = () => {
   //formName for header of the toggle for form
   const Toggle = ({ formVisibility, toggleForm, formName }) => {
     return (
-      <div onClick={() => toggleForm()} className="flex items-center w-full justify-between">
-        <p className="text-xl font-semibold">{formName}</p>
+      <div onClick={() => toggleForm()} className="flex items-center w-full justify-between sm:pl-1">
+        <p className="text-toggle font-semibold">{formName}</p>
         {formVisibility ? (
           <FaPlus className="toggle-sign" />
         ) : (

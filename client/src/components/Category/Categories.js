@@ -8,7 +8,7 @@ const Categories = () => {
   return (
     <>
       <div className="p-4 sm:p-6 rounded-xl bg-container">
-        <h2 className="text-2xl sm:text-[28px] mb-4 font-semibold">Categories</h2>
+        <h2 className="text-head mb-4 font-semibold">Categories</h2>
         {categories
           ? categories.map(category => (
               <CategoryCard key={category.categoryName} category={category} />

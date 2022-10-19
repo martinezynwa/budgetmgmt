@@ -16,9 +16,9 @@ const StatisticsList = ({ selectedMonth }) => {
   }
 
   return (
-    <div className="p-4 sm:p-6 rounded-xl bg-container">
-      <h2 className="text-xl sm:text-[28px] mb-6 font-semibold">
-        Spending in {dayjs(selectedMonth).format('MMMM YYYY')}
+    <div className="p-3 sm:p-5 rounded-xl bg-container">
+      <h2 className="text-headMobile sm:text-head mb-6 font-semibold">
+        {dayjs(selectedMonth).format('MMMM YYYY')}
       </h2>
       {categoryTotals
         ? categoryTotals.map(c => (
