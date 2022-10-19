@@ -129,40 +129,40 @@ const ItemForm = () => {
         <h2 className="sm:ml-3 text-headMobile sm:text-head py-3 font-semibold">
           Add Item
         </h2>
-        <form className="" onSubmit={onSubmit}>
+        <form onSubmit={onSubmit}>
           {itemForm.map(i => (
             <div
               key={i.label}
-              className="flex flex-row items-center py-2 sm:py-0">
+              className="flex flex-row items-center py-[6px] sm:py-0">
               <div className="text-3xl pr-3 sm:p-3">{i.icon}</div>
-              <div className="flex flex-col w-full">
-                {i.label !== 'Category' ? (
-                  <input
-                    className="pl-1 h-10 w-full bg-white rounded-md"
-                    type={i.type}
-                    name={`item${i.label}`}
-                    value={i.value}
-                    placeholder={i.placeholder}
-                    onChange={onChange}
-                    required
-                    maxLength="20"
-                    min={`${i.type === 'number' ? '0' : ''}`}
-                    max={`${i.type === 'number' ? '99999' : ''}`}
-                  />
-                ) : (
-                  <select
-                    className={` pl-1 h-10 w-full bg-white rounded-md ${
-                      i.value === '' ? 'text-gray-400' : 'text-black'
-                    }`}
-                    type={i.type}
-                    name={`item${i.label}`}
-                    value={i.value}
-                    onChange={onChange}
-                    required>
-                    <CategorySelect />
-                  </select>
-                )}
-              </div>
+              {i.label !== 'Category' ? (
+                <input
+                  className={`${
+                    i.type === 'date' ? '-ml-[2px] ' : 'sm:ml-0 '
+                  } h-10 w-full bg-transparent rounded-md`}
+                  type={i.type}
+                  name={`item${i.label}`}
+                  value={i.value}
+                  placeholder={i.placeholder}
+                  onChange={onChange}
+                  required
+                  maxLength="20"
+                  min={`${i.type === 'number' ? '0' : ''}`}
+                  max={`${i.type === 'number' ? '99999' : ''}`}
+                />
+              ) : (
+                <select
+                  className={`h-10 w-full bg-white rounded-md ${
+                    i.value === '' ? 'text-gray-400' : 'text-black'
+                  }`}
+                  type={i.type}
+                  name={`item${i.label}`}
+                  value={i.value}
+                  onChange={onChange}
+                  required>
+                  <CategorySelect />
+                </select>
+              )}
             </div>
           ))}
 

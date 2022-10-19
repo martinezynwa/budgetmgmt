@@ -74,37 +74,37 @@ const EditItem = props => {
               key={i.label}
               className="flex flex-row items-center py-2 sm:py-0">
               <div className="text-3xl pr-3 sm:p-3">{i.icon}</div>
-              <div className="flex flex-col w-full">
-                {i.label !== 'Category' ? (
-                  <input
-                    className="pl-1 h-10 w-full bg-sidebar rounded-md"
-                    type={i.type}
-                    name={`item${i.label}`}
-                    value={i.value}
-                    placeholder={
-                      i.label === 'Price'
-                        ? `${item.itemPrice.price} ${item.itemPrice.currency}`
-                        : item[`item${i.label}`]
-                    }
-                    onChange={onChange}
-                    required
-                    maxLength="20"
-                    min={`${i.type === 'number' ? '0' : ''}`}
-                    max={`${i.type === 'number' ? '99999' : ''}`}
-                  />
-                ) : (
-                  <select
-                    className={` pl-1 h-10 w-full bg-sidebar rounded-md ${
-                      i.value === '' ? 'text-gray-400' : 'text-black'
-                    }`}
-                    type={i.type}
-                    name={`item${i.label}`}
-                    onChange={onChange}
-                    required>
-                    <CategorySelect category={item[`item${i.label}`]} />
-                  </select>
-                )}
-              </div>
+              {i.label !== 'Category' ? (
+                <input
+                  className={`${
+                    i.type === 'date' ? '-ml-[2px] ' : 'sm:ml-0 '
+                  } h-10 w-full bg-transparent rounded-md`}
+                  type={i.type}
+                  name={`item${i.label}`}
+                  value={i.value}
+                  placeholder={
+                    i.label === 'Price'
+                      ? `${item.itemPrice.price} ${item.itemPrice.currency}`
+                      : item[`item${i.label}`]
+                  }
+                  onChange={onChange}
+                  required
+                  maxLength="20"
+                  min={`${i.type === 'number' ? '0' : ''}`}
+                  max={`${i.type === 'number' ? '99999' : ''}`}
+                />
+              ) : (
+                <select
+                  className={`h-10 w-full bg-sidebar rounded-md ${
+                    i.value === '' ? 'text-gray-400' : 'text-black'
+                  }`}
+                  type={i.type}
+                  name={`item${i.label}`}
+                  onChange={onChange}
+                  required>
+                  <CategorySelect category={item[`item${i.label}`]} />
+                </select>
+              )}
             </div>
           ))}
         </form>

@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Figtree&display=swap');
 @tailwind base;
 @tailwind utilities;
 @tailwind components;
@@ -8,15 +7,20 @@
   html,
   body,
   #root {
-    @apply bg-backdrop text-black font-figtree;
+    @apply bg-backdrop text-black font-Mulish;
   }
 
   select[type="text"] {
-    -webkit-appearance: none;
+    appearance: none;
   }
 
   input[type="file"] {
     display: none;
+  }
+
+  input::-webkit-date-and-time-value {
+    appearance: none;
+    text-align: left;
   }
 
 }

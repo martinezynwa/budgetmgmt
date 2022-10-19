@@ -33,7 +33,7 @@ const TotalCard = ({ selectedMonth }) => {
       <div className="p-3 sm:p-5 rounded-xl bg-container">
         <div className="text-lg sm:text-xl">
           <div className="flex flex-row justify-between w-full">
-            <h2 className="text-2xl sm:text-head mb-6 mr-4 font-semibold">
+            <h2 className="text-headMobile sm:text-head mb-6 mr-4 font-semibold">
               {selectedMonth
                 ? `${dayjs(selectedMonth).format('MMMM YYYY')}`
                 : null}
@@ -57,7 +57,9 @@ const TotalCard = ({ selectedMonth }) => {
               <div
                 key={user.username}
                 className="flex flex-row items-center justify-between">
-                <h2 className="font-semibold text-cardListMobile sm:text-cardList">{user.name.split(' ')[0]}</h2>
+                <h2 className="font-semibold text-cardListMobile sm:text-cardList">
+                  {user.name.split(' ')[0]}
+                </h2>
                 <div className="flex flex-col items-center  font-semibold">
                   <TotalValue
                     username={user.username}

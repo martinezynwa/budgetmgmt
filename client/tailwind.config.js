@@ -15,7 +15,7 @@ module.exports = {
         error: '#DC2626',
       },
       fontFamily: {
-        figtree: ['Figtree'],
+        Mulish: ['Mulish'],
       },
       fontSize: {
         head: '26px',
