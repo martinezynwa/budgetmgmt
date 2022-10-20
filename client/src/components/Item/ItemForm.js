@@ -139,9 +139,7 @@ const ItemForm = () => {
               </div>
               {i.label !== 'Category' ? (
                 <input
-                  className={`${
-                    i.type === 'date' ? '-ml-[3px] ' : 'sm:ml-0 '
-                  } h-10 w-full bg-transparent dark:text-formSelectedColor text-formSelectedColorLight rounded-md`}
+                  className='h-10 w-full bg-transparent dark:text-formSelectedColor text-formSelectedColorLight rounded-md'
                   type={i.type}
                   name={`item${i.label}`}
                   value={i.value}

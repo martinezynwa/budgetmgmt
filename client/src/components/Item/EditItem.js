@@ -76,9 +76,7 @@ const EditItem = props => {
               <div className="text-3xl pr-3 sm:p-3 dark:text-iconColor text-iconColorLight">{i.icon}</div>
               {i.label !== 'Category' ? (
                 <input
-                  className={`${
-                    i.type === 'date' ? '-ml-[2px] ' : 'sm:ml-0 '
-                  } h-10 w-full bg-transparent rounded-md dark:text-formPlaceholderColor text-formPlaceholderColorLight`}
+                  className='h-10 w-full bg-transparent rounded-md dark:text-formPlaceholderColor text-formPlaceholderColorLight'
                   type={i.type}
                   name={`item${i.label}`}
                   value={i.value}

@@ -667,6 +667,14 @@ input::-webkit-date-and-time-value {
   margin-bottom: 1rem;
 }
 
+.-ml-\[5px\] {
+  margin-left: -5px;
+}
+
+.-ml-\[1px\] {
+  margin-left: -1px;
+}
+
 .inline {
   display: inline;
 }
