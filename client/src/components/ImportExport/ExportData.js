@@ -8,13 +8,13 @@ const ExportData = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-4 items-center p-4 rounded-xl bg-container cursor-pointer">
-        <h2 className="text-headMobile sm:text-head mb-6 mr-4 font-semibold">
+      <div className="page-container items-center">
+        <h2 className="page-container-header">
           Export to JSON
         </h2>
-        <FaDownload className="text-4xl" />
+        <FaDownload className="text-4xl mb-2 dark:text-iconColor text-iconColorLight" />
         <button
-          className="w-full mt-3 p-2 rounded-lg text-button font-semibold bg-buttonColor hover:bg-hoverButton"
+          className="page-container-button"
           onClick={() => setDownload(true)}>
           Export
         </button>

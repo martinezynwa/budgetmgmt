@@ -30,52 +30,50 @@ const TotalCard = ({ selectedMonth }) => {
 
   return (
     <>
-      <div className="p-3 sm:p-5 rounded-xl bg-container">
-        <div className="text-lg sm:text-xl">
-          <div className="flex flex-row justify-between w-full">
-            <h2 className="text-headMobile sm:text-head mb-6 mr-4 font-semibold">
-              {selectedMonth
-                ? `${dayjs(selectedMonth).format('MMMM YYYY')}`
-                : null}
-            </h2>
-            <div className="cursor-pointer hover:text-gray-500">
-              <FaInfoCircle onClick={() => hideDifferences()}>
-                Differences
-              </FaInfoCircle>
+      <div className="page-container">
+        <div className="flex flex-row justify-between w-full">
+          <h2 className="page-container-header">
+            {selectedMonth
+              ? `${dayjs(selectedMonth).format('MMMM YYYY')}`
+              : null}
+          </h2>
+          <div className="dark:text-iconColor text-iconColorLight h-4 cursor-pointer">
+            <FaInfoCircle onClick={() => hideDifferences()}>
+              Differences
+            </FaInfoCircle>
+          </div>
+        </div>
+        <div className="flex flex-col space-y-2 dark:text-itemColor text-itemColorLight sm:text-cardList">
+          <div className="flex flex-row items-center justify-between">
+            <h2 className="font-semibold text-cardList">Total</h2>
+            <div className="flex flex-col items-center font-semibold text-cardListMobile sm:text-cardList">
+              <TotalValue username="allUsers" selectedMonth={selectedMonth} />{' '}
+              Kč
             </div>
           </div>
-          <div className="flex flex-col space-y-2">
-            <div className="flex flex-row items-center justify-between">
-              <h2 className="font-semibold text-cardList">Total</h2>
-              <div className="flex flex-col items-center font-semibold">
-                <TotalValue username="allUsers" selectedMonth={selectedMonth} />{' '}
+          {/* listing each user and displaying total spent per month */}
+          {users.map(user => (
+            <div
+              key={user.username}
+              className="flex flex-row items-center justify-between">
+              <h2 className="font-semibold text-cardListMobile sm:text-cardList">
+                {user.name.split(' ')[0]}
+              </h2>
+              <div className="flex flex-col items-center font-semibold text-cardListMobile sm:text-cardList">
+                <TotalValue
+                  username={user.username}
+                  selectedMonth={selectedMonth}
+                />{' '}
                 Kč
+                {/* historical difference between users */}
+                <TotalDifference
+                  username={user.username}
+                  totals={totals}
+                  show={differenceVisibility}
+                />
               </div>
             </div>
-            {/* listing each user and displaying total spent per month */}
-            {users.map(user => (
-              <div
-                key={user.username}
-                className="flex flex-row items-center justify-between">
-                <h2 className="font-semibold text-cardListMobile sm:text-cardList">
-                  {user.name.split(' ')[0]}
-                </h2>
-                <div className="flex flex-col items-center  font-semibold">
-                  <TotalValue
-                    username={user.username}
-                    selectedMonth={selectedMonth}
-                  />{' '}
-                  Kč
-                  {/* historical difference between users */}
-                  <TotalDifference
-                    username={user.username}
-                    totals={totals}
-                    show={differenceVisibility}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
+          ))}
         </div>
       </div>
     </>

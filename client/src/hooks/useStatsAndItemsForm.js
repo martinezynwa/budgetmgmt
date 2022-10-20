@@ -63,7 +63,7 @@ export const useStatsAndItemsForm = () => {
             className="flex flex-col justify-between gap-4 my-4"
             onSubmit={onSubmit}>
             <select
-              className="w-full p-2 rounded-md bg-slate-50"
+              className="w-full p-2 rounded-md dark:bg-formInputColor bg-formInputColorLight dark:text-formPlaceholderColor text-formPlaceholderColorLight"
               type="text"
               name="year"
               onChange={onChange}>
@@ -75,7 +75,7 @@ export const useStatsAndItemsForm = () => {
               ))}
             </select>
             <select
-              className="w-full p-2 rounded-md bg-slate-50"
+              className="w-full p-2 rounded-md dark:bg-formInputColor bg-formInputColorLight dark:text-formPlaceholderColor text-formPlaceholderColorLight"
               type="text"
               name="month"
               onChange={onChange}>
@@ -94,9 +94,9 @@ export const useStatsAndItemsForm = () => {
               <option value="12">December</option>
             </select>
             {errors ? (
-              <div className="p-1 text-error">{errors}</div>
+              <div className="p-2 font-semibold dark:text-errorColor text-errorColor">{errors}</div>
             ) : null}
-            <button className="w-full p-2 rounded-lg text-button font-semibold bg-buttonColor hover:bg-hoverButton">
+            <button className="page-container-button">
               Filter
             </button>
           </form>

@@ -7,8 +7,8 @@ const Categories = () => {
 
   return (
     <>
-      <div className="p-4 sm:p-6 rounded-xl bg-container">
-        <h2 className="text-head mb-4 font-semibold">Categories</h2>
+      <div className="page-container">
+        <h2 className="page-container-header">Categories</h2>
         {categories
           ? categories.map(category => (
               <CategoryCard key={category.categoryName} category={category} />

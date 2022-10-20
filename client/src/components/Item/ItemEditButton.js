@@ -83,7 +83,7 @@ const EditButton = ({ item, itemInput, handleClose, handleError }) => {
 
   return (
     <button
-      className="p-2 mt-2 w-full text-center text-button bg-green-100 rounded-md font-semibold hover:bg-green-200"
+      className="p-2 mt-2 w-full text-center text-button bg-green-200 rounded-md font-semibold hover:bg-green-300"
       onClick={() => handleEdit()}>
       Edit
     </button>

@@ -50,23 +50,23 @@ const NameChange = () => {
   }
 
   return (
-    <div className="flex flex-col gap-4 justify-between p-4 rounded-xl bg-container cursor-pointer">
+    <div className="page-container cursor-pointer">
       <Toggle
         formVisibility={formVisibility}
         toggleForm={() => toggleForm()}
         formName="Change name"
       />
       <div className={formVisibility}>
-        <form className="flex flex-col gap-3" onSubmit={onSubmit}>
+        <form className="flex flex-col gap-3 mt-4" onSubmit={onSubmit}>
           <input
-            className="w-full p-2 bg-slate-50 rounded-md"
+            className="w-full p-2 rounded-md dark:bg-formInputColor bg-formInputColorLight dark:text-formPlaceholderColor text-formPlaceholderColorLight"
             type="text"
             value={nameInput.name}
             name="name"
             placeholder="Name"
             onChange={onChange}
           />
-          <button className="w-full p-2 rounded-lg text-button font-semibold bg-buttonColor hover:bg-hoverButton">
+          <button className="page-container-button">
             Change
           </button>
         </form>

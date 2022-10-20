@@ -1,3 +1,4 @@
+import ThemeSetting from '../components/Options/ThemeSetting'
 import NameChange from '../components/Options/NameChange'
 import CategoryForm from '../components/Category/CategoryForm'
 import Categories from '../components/Category/Categories'
@@ -7,7 +8,8 @@ import { CategoryProvider } from '../context/CategoryContext'
 const Options = () => {
   return (
     <>
-      <div className="flex flex-col gap-8 lg:w-3/4 xl:w-3/5 sm:ml-[340px]">
+      <div className="page">
+        <ThemeSetting />
         <NameChange />
         <CategoryProvider>
           <CategoryForm />

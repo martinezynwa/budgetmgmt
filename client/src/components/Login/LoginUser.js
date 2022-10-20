@@ -4,10 +4,9 @@ import useAuth from '../../context/AuthContext'
 import { GOOGLE_AUTH } from '../../graphql/mutations'
 import { ALL_USERS } from '../../graphql/queries'
 import { useGoogleLogin } from '@react-oauth/google'
-import GoogleButton from 'react-google-button'
 import mainLogo from '../../assets/img/mainlogo.png'
 import Spinner from '../../util/Spinner'
-
+import { GoogleLoginButton } from 'react-social-login-buttons'
 /*
 component for Login page
 using the react-oauth2 package + react-google-button for logging-in via google account
@@ -51,13 +50,15 @@ const LoginUser = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center h-[60vh] sm:h-[80vh] justify-center">
-        <img src={mainLogo} alt="mainlogo" />
-        <h2 className="font-semibold text-xl mb-1">Expense tracker</h2>
+      <div className="flex flex-col items-center h-[80vh] sm:h-screen justify-center">
+        <img src={mainLogo} alt="mainlogo" className='mb-2' />
         {loading ? (
           <Spinner />
         ) : (
-          <GoogleButton onClick={() => loginButtonClick()} />
+          <GoogleLoginButton
+            style={{ width: 'auto', background: '#ffffff' }}
+            onClick={() => loginButtonClick()}
+          />
         )}
       </div>
     </>

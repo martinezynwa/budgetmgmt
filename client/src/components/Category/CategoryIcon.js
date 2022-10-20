@@ -16,43 +16,50 @@ import {
   FaHotel,
   FaMusic,
 } from 'react-icons/fa'
-const style = { fontSize: '30px', color: 'black' }
+
+const fontSize = '30px'
 
 //icons for categories
 const CategoryIcon = itemCategory => {
   switch (itemCategory.itemCategory) {
     case 'Shopping':
-      return <FaShoppingBasket style={style} />
-    case 'Gas':
-      return <FaGasPump style={style} />
-    case 'Car':
-      return <FaCar style={style} />
-    case 'Pets':
-      return <FaCat style={style} />
-    case 'Restaurants':
-      return <FaUtensils style={style} />
-    case 'Beer':
-      return <FaBeer style={style} />
-    case 'Wine':
-      return <FaWineGlassAlt style={style} />
+      return (
+        <FaShoppingBasket style={{ fontSize: fontSize, color: '#4680C2' }} />
+      )
     case 'Home':
-      return <FaHome style={style} />
-    case 'Gifts':
-      return <FaGift style={style} />
-    case 'Transportation':
-      return <FaBusAlt style={style} />
-    case 'Take-out food':
-      return <FaPizzaSlice style={style} />
+      return <FaHome style={{ fontSize: fontSize, color: '#54BBFF' }} />
+    case 'Pets':
+      return <FaCat style={{ fontSize: fontSize, color: '#C19A6B' }} />
     case 'Drugstore':
-      return <FaHeart style={style} />
+      return <FaHeart style={{ fontSize: fontSize, color: '#EF4678' }} />
+    case 'Gifts':
+      return <FaGift style={{ fontSize: fontSize, color: '#F22F46' }} />
+
+    case 'Restaurants':
+      return <FaUtensils style={{ fontSize: fontSize, color: '#F0652F' }} />
+    case 'Take-out food':
+      return <FaPizzaSlice style={{ fontSize: fontSize, color: '#F28834' }} />
+
+    case 'Beer':
+      return <FaBeer style={{ fontSize: fontSize, color: '#FFD900' }} />
+    case 'Wine':
+      return <FaWineGlassAlt style={{ fontSize: fontSize, color: '#EC5252' }} />
+
+    case 'Gas':
+      return <FaGasPump style={{ fontSize: fontSize, color: '#8B8B8B' }} />
+    case 'Car':
+      return <FaCar style={{ fontSize: fontSize, color: '#7DA0D0' }} />
+
+    case 'Transportation':
+      return <FaBusAlt style={{ fontSize: fontSize, color: '#72D44C' }} />
     case 'Accomodation':
-      return <FaHotel style={style} />
+      return <FaHotel style={{ fontSize: fontSize, color: '#00B67A' }} />
     case 'Concerts':
-      return <FaMusic style={style} />
+      return <FaMusic style={{ fontSize: fontSize, color: '#5FCF80' }} />
     case 'Others':
-      return <FaEllipsisH style={style} />
+      return <FaEllipsisH style={{ fontSize: fontSize, color: '#654FF0' }} />
     default:
-      return <FaRegStar style={style} />
+      return <FaRegStar style={{ fontSize: fontSize, color: '#654FF0' }} />
   }
 }
 

@@ -42,6 +42,7 @@ const typeDefs = gql`
     token: String
     username: String
     registeredAt: String
+    darkTheme: Boolean
   }
 
   input ItemInput {
@@ -118,6 +119,7 @@ const typeDefs = gql`
     googleAuth(idToken: String!): User
     changeName(name: String!): String!
     cleanupAfterLogout(username: String!): String!
+    setTheme(darkTheme: Boolean!): String!
   }
 `
 

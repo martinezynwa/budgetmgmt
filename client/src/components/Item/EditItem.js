@@ -64,8 +64,8 @@ const EditItem = props => {
 
   return (
     <>
-      <div className="fixed top-0 right-0 w-full sm:w-96 h-screen px-2 pt-4 bg-sidebar">
-        <h2 className="w-full mb-6 text-center text-3xl font-semibold">
+      <div className="fixed top-0 right-0 w-full sm:w-96 h-screen px-2 pt-4 dark:bg-editOffcanvasColor bg-editOffcanvasColorLight">
+        <h2 className="w-full mb-6 text-center text-3xl dark:text-headingColor text-headingColorLight font-semibold">
           Edit Item
         </h2>
         <form className="flex flex-col mb-0 rounded-xl">
@@ -73,12 +73,12 @@ const EditItem = props => {
             <div
               key={i.label}
               className="flex flex-row items-center py-2 sm:py-0">
-              <div className="text-3xl pr-3 sm:p-3">{i.icon}</div>
+              <div className="text-3xl pr-3 sm:p-3 dark:text-iconColor text-iconColorLight">{i.icon}</div>
               {i.label !== 'Category' ? (
                 <input
                   className={`${
-                    i.type === 'date' ? '-ml-[2px] ' : 'sm:ml-0 '
-                  } h-10 w-full bg-transparent rounded-md`}
+                    i.type === 'date' ? '-ml-[2px] dark:text-formPlaceholderColor text-formPlaceholderColorLight ' : 'sm:ml-0 '
+                  } h-10 w-full bg-sidebar rounded-md dark:text-formPlaceholderColor text-formPlaceholderColorLight dark:bg-editOffcanvasColor bg-editOffcanvasColorLight`}
                   type={i.type}
                   name={`item${i.label}`}
                   value={i.value}
@@ -95,9 +95,7 @@ const EditItem = props => {
                 />
               ) : (
                 <select
-                  className={`h-10 w-full bg-sidebar rounded-md ${
-                    i.value === '' ? 'text-gray-400' : 'text-black'
-                  }`}
+                  className='h-10 w-full bg-sidebar rounded-md dark:text-formPlaceholderColor text-formPlaceholderColorLight dark:bg-editOffcanvasColor bg-editOffcanvasColorLight'
                   type={i.type}
                   name={`item${i.label}`}
                   onChange={onChange}
@@ -108,7 +106,7 @@ const EditItem = props => {
             </div>
           ))}
         </form>
-        <div className="py-1 sm:py-3 text-[15px] font-semibold text-error">
+        <div className="py-1 sm:py-3 text-[15px] font-semibold dark:text-errorColor text-errorColorLight">
           {error.value ? error.message : null}
         </div>
         <div className="flex flex-col gap-3">
@@ -124,7 +122,7 @@ const EditItem = props => {
             handleError={handleError}
           />
           <button
-            className="w-full p-2 text-center text-button bg-buttonColor rounded-md font-semibold hover:bg-hoverButton"
+            className="w-full p-2 text-center text-button rounded-md font-semibold bg-slate-200 hover:bg-slate-300"
             onClick={() => setNavbar(!navbar)}>
             Cancel
           </button>

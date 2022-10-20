@@ -97,7 +97,7 @@ const DeleteButton = ({ item, handleClose, handleError }) => {
 
   return (
     <button
-      className="w-full p-2 text-center text-button rounded-md bg-red-100 font-semibold hover:bg-red-200"
+      className="w-full p-2 text-center text-button rounded-md dark:bg-red-200 bg-red-300 font-semibold dark:hover:bg-red-300 hover:bg-red-400"
       onClick={() => confirmDeletion('Delete item?')}>
       {buttonText.text}
     </button>

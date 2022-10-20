@@ -124,22 +124,24 @@ const ItemForm = () => {
   ]
 
   return (
-    <div className="flex flex-col p-3 rounded-xl bg-container">
+    <div className="page-container">
       <div className="flex flex-col">
-        <h2 className="sm:ml-3 text-headMobile sm:text-head py-3 font-semibold">
+      <h2 className="page-container-header">
           Add Item
         </h2>
         <form onSubmit={onSubmit}>
           {itemForm.map(i => (
             <div
               key={i.label}
-              className="flex flex-row items-center py-[6px] sm:py-0">
-              <div className="text-3xl pr-3 sm:p-3">{i.icon}</div>
+              className="flex flex-row items-center py-[6px] sm:py-[6px] gap-2">
+              <div className="text-3xl dark:text-iconColor text-iconColorLight">
+                {i.icon}
+              </div>
               {i.label !== 'Category' ? (
                 <input
                   className={`${
                     i.type === 'date' ? '-ml-[2px] ' : 'sm:ml-0 '
-                  } h-10 w-full bg-transparent rounded-md`}
+                  } h-10 w-full dark:bg-containerColor bg-containerColorLight dark:placeholder:text-formPlaceholderColor placeholder:text-formPlaceholderColorLight dark:text-formSelectedColor text-formSelectedColorLight rounded-md`}
                   type={i.type}
                   name={`item${i.label}`}
                   value={i.value}
@@ -152,8 +154,10 @@ const ItemForm = () => {
                 />
               ) : (
                 <select
-                  className={`h-10 w-full bg-white rounded-md ${
-                    i.value === '' ? 'text-gray-400' : 'text-black'
+                  className={`h-10 w-full dark:bg-containerColor bg-containerColorLight rounded-md ${
+                    i.value === ''
+                      ? 'dark:text-formPlaceholderColor text-formPlaceholderColorLight'
+                      : 'dark:text-formSelectedColor text-formSelectedColorLight'
                   }`}
                   type={i.type}
                   name={`item${i.label}`}
@@ -166,7 +170,7 @@ const ItemForm = () => {
             </div>
           ))}
 
-          <button className="w-full mt-3 p-2 rounded-lg text-button font-semibold bg-buttonColor hover:bg-hoverButton">
+          <button className="page-container-button">
             Add Item
           </button>
         </form>

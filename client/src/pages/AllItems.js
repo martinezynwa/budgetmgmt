@@ -6,7 +6,7 @@ import Items from '../components/Item/Items'
 const AllItems = () => {
   return (
     <ItemProvider>
-      <div className="flex flex-col gap-8 lg:w-3/4 xl:w-3/5 sm:ml-[340px]">
+      <div className="page">
         <AllItemsList />
         <Items />
       </div>

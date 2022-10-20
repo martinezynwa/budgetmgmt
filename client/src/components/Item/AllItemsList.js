@@ -17,7 +17,7 @@ const AllItems = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-between p-4 rounded-xl bg-container cursor-pointer">
+      <div className="page-container cursor-pointer">
         <Toggle
           toggleForm={() => toggleForm()}
           formVisibility={formVisibility}

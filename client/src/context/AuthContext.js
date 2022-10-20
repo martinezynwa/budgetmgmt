@@ -13,10 +13,16 @@ let userState = {
 if (localStorage.getItem('jwtToken')) {
   //decoded token from local storage
   const decodedToken = jwtDecode(localStorage.getItem('jwtToken'))
+  const darkTheme = localStorage.getItem('darkTheme')
 
   if (decodedToken.exp * 1000 < Date.now()) {
     localStorage.removeItem('jwtToken')
+    localStorage.removeItem('darkTheme')
   } else {
+    darkTheme === 'true'
+    ? document.documentElement.classList.add('dark')
+    : document.documentElement.classList.remove('dark')
+    
     //setting up context with user info
     userState = {
       ...userState,
@@ -38,6 +44,11 @@ export const AuthProvider = ({ children }) => {
   //for logging-in
   const login = data => {
     localStorage.setItem('jwtToken', data.token)
+    localStorage.setItem('darkTheme', data.darkTheme)
+    //sets up dark theme if in user's setting
+    if (data.darkTheme) {
+      document.documentElement.classList.add('dark')
+    }
     dispatch({
       type: 'LOGIN',
       payload: data,
@@ -47,6 +58,7 @@ export const AuthProvider = ({ children }) => {
   //for log-out
   const logout = () => {
     localStorage.removeItem('jwtToken')
+    localStorage.removeItem('darkTheme')
     dispatch({
       type: 'LOGOUT',
     })

@@ -7,8 +7,8 @@ const Items = () => {
   const { items } = useItem()
 
   return (
-    <div className="p-3 sm:p-6 rounded-xl bg-container">
-      <h2 className="text-headMobile sm:text-head mb-4 font-semibold">Items</h2>
+    <div className="page-container">
+      <h2 className="page-container-header">Items</h2>
       <SelectButton />
       {items ? items.map(item => <ItemCard key={item.id} item={item} />) : null}
     </div>

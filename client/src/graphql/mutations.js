@@ -10,6 +10,7 @@ const GOOGLE_AUTH = gql`
       token
       username
       registeredAt
+      darkTheme
     }
   }
 `
@@ -115,6 +116,12 @@ const CLEANUP_AFTER_LOGOUT = gql`
   }
 `
 
+const SET_THEME = gql`
+  mutation setTheme($darkTheme: Boolean!) {
+    setTheme(darkTheme: $darkTheme)
+  }
+`
+
 export {
   GOOGLE_AUTH,
   ADD_ITEM,
@@ -125,4 +132,5 @@ export {
   CHANGE_NAME,
   IMPORT_ITEM,
   CLEANUP_AFTER_LOGOUT,
+  SET_THEME,
 }

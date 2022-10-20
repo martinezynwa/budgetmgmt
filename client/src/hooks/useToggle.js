@@ -14,12 +14,12 @@ export const useToggle = () => {
   //formName for header of the toggle for form
   const Toggle = ({ formVisibility, toggleForm, formName }) => {
     return (
-      <div onClick={() => toggleForm()} className="flex items-center w-full justify-between sm:pl-1">
-        <p className="text-toggle font-semibold">{formName}</p>
+      <div onClick={() => toggleForm()} className="flex items-center w-full justify-between">
+        <h2 className="page-container-header-toggle">{formName}</h2>
         {formVisibility ? (
-          <FaPlus className="toggle-sign" />
+          <FaPlus className="text-headingColor" />
         ) : (
-          <FaMinus className="toggle-sign" />
+          <FaMinus className="text-headingColor" />
         )}
       </div>
     )

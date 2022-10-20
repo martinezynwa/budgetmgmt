@@ -32,7 +32,7 @@ const DeleteCategoryButton = ({ id }) => {
   })
 
   return (
-    <div className="text-2xl hover:text-hoverIconColor cursor-pointer">
+    <div className="text-2xl dark:text-iconColor text-iconColorLight dark:hover:text-hoverIconColor hover:text-hoverIconColorLight cursor-pointer">
       <FaTrashAlt
         onClick={() =>
           deleteItem({ variables: { categoryId: id } })

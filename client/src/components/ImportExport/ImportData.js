@@ -80,17 +80,17 @@ const ImportData = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-4 items-center p-4 rounded-xl bg-container cursor-pointer">
-        <h2 className="text-headMobile sm:text-head mb-6 mr-4 font-semibold">
+      <div className="page-container items-center">
+      <h2 className="page-container-header">
           Import CSV file
         </h2>
         {/* button for addition only appears if imported CSV contains something */}
         {importedData.length === 0 ? (
           <>
-            <FaUpload className="text-4xl" />
+            <FaUpload className="text-4xl mb-2 dark:text-iconColor text-iconColorLight" />
             <label
               htmlFor="upload-form"
-              className="w-full mt-3 p-2 rounded-lg text-lg font-semibold text-center bg-buttonColor hover:bg-hoverButton cursor-pointer">
+              className="w-full mt-3 p-2 rounded-lg text-lg font-semibold text-center dark:text-buttonTextColor text-buttonTextColorLight dark:bg-buttonColor bg-buttonColorLight dark:hover:bg-buttonHoverColor hover:bg-buttonHoverColorLight cursor-pointer">
               Import
             </label>
             <input

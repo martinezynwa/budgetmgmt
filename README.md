@@ -246,11 +246,16 @@ https://budget-mgmt-1.netlify.app
  - [x] re-do confirmation of actions
  - [x] font change
 
+### 0.33  
+- [x] dark/light mode switch
+  - [x] variables tailwind
+  - [x] save setting to backend
+  - [x] frontend value should persist
+
 ---
 
 ### future
 
-- [ ] dark mode
 - [ ] statistics page - comparison with previous month(s)
 
 ---

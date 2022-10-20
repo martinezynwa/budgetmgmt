@@ -42,6 +42,7 @@ const userResolvers = {
           name,
           username: email,
           registeredAt: dayjs(new Date()).format('YYYY-MM-DDTHH:mm:ss'),
+          darkTheme: true,
         })
         await newUser.save()
         return {
@@ -74,6 +75,23 @@ const userResolvers = {
           },
         )
         return `Previous name: ${currentUser.name}, new name: ${args.name}`
+      } catch (err) {
+        throw new Error(err)
+      }
+    },
+    setTheme: async (_, args, context) => {
+      //change theme(dark, light)
+      const currentUser = await checkAuthorization(context)
+      try {
+        await User.findOneAndUpdate(
+          { _id: currentUser._id },
+          {
+            $set: {
+              darkTheme: args.darkTheme,
+            },
+          },
+        )
+        return 'Theme changed'
       } catch (err) {
         throw new Error(err)
       }

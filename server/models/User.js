@@ -17,6 +17,9 @@ const schema = new mongoose.Schema({
   registeredAt: {
     type: String,
   },
+  darkTheme: {
+    type: Boolean,
+  },
 })
 
 module.exports = mongoose.model('User', schema)

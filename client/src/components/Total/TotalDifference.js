@@ -28,7 +28,7 @@ const TotalDifference = ({ username, totals, show }) => {
     return null
   }
 
-  return <div className="text-xs text-error">{difference} Kč</div>
+  return <div className="text-xs text-errorColor">{difference} Kč</div>
 }
 
 export default TotalDifference

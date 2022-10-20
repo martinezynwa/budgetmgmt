@@ -31,22 +31,22 @@ const SelectButton = () => {
             : 'flex flex-row gap-2 mb-4'
         }>
         <button
-          className={
+          className={`p-2 rounded-xl dark:text-buttonTextColor text-buttonTextColorLight ${
             activeButton === ''
-              ? 'p-2 rounded-xl font-semibold bg-hoverButton'
-              : 'p-2 rounded-xl bg-buttonColor hover:bg-hoverButton'
-          }
+              ? 'font-semibold dark:bg-buttonHoverColor bg-buttonHoverColorLight'
+              : 'dark:text-buttonTextColor text-buttonTextColorLight dark:bg-buttonColor bg-buttonColorLight'
+          }`}
           onClick={() => setItems('', currentMonth)}>
           All
         </button>
         {users.map(user => (
           <button
             key={user.username}
-            className={
+            className={`p-2 rounded-xl dark:text-buttonTextColor text-buttonTextColorLight ${
               activeButton === user.username
-                ? 'p-2 rounded-xl font-semibold bg-hoverButton'
-                : 'p-2 rounded-xl bg-buttonColor hover:bg-hoverButton'
-            }
+                ? 'font-semibold dark:bg-buttonHoverColor bg-buttonHoverColorLight'
+                : 'dark:text-buttonTextColor text-buttonTextColorLight dark:bg-buttonColor bg-buttonColorLight'
+            }`}
             onClick={() => setItems(user.username, currentMonth)}>
             {user.name.split(' ')[0]}
           </button>

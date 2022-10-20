@@ -6,7 +6,7 @@ import { ItemProvider } from '../context/ItemsContext'
 const Data = () => {
   return (
     <ItemProvider>
-      <div className="flex flex-col gap-8 lg:w-3/4 xl:w-3/5 sm:ml-[340px]">
+      <div className="page">
         <ImportData />
         <ExportData />
       </div>

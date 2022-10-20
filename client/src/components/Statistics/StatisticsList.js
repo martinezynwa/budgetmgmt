@@ -16,8 +16,8 @@ const StatisticsList = ({ selectedMonth }) => {
   }
 
   return (
-    <div className="p-3 sm:p-5 rounded-xl bg-container">
-      <h2 className="text-headMobile sm:text-head mb-6 font-semibold">
+    <div className="page-container">
+      <h2 className="page-container-header">
         {dayjs(selectedMonth).format('MMMM YYYY')}
       </h2>
       {categoryTotals
