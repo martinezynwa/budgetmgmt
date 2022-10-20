@@ -20,7 +20,7 @@
   input[type='date']::-webkit-calendar-picker-indicator {
     opacity: 0;
     position: absolute;
-    width: 65%;
+    width: 80%;
   }
 
   input::-webkit-date-and-time-value {

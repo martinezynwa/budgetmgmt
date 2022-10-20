@@ -77,8 +77,8 @@ const EditItem = props => {
               {i.label !== 'Category' ? (
                 <input
                   className={`${
-                    i.type === 'date' ? '-ml-[2px] dark:text-formPlaceholderColor text-formPlaceholderColorLight ' : 'sm:ml-0 '
-                  } h-10 w-full bg-sidebar rounded-md dark:text-formPlaceholderColor text-formPlaceholderColorLight dark:bg-editOffcanvasColor bg-editOffcanvasColorLight`}
+                    i.type === 'date' ? '-ml-[2px] ' : 'sm:ml-0 '
+                  } h-10 w-full bg-transparent rounded-md dark:text-formPlaceholderColor text-formPlaceholderColorLight`}
                   type={i.type}
                   name={`item${i.label}`}
                   value={i.value}
