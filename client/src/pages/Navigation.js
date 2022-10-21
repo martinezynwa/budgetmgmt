@@ -38,7 +38,7 @@ const Navigation = () => {
   //using navLink as link to each page
   const menuBar = user.username ? (
     <>
-      <aside className="sm:fixed h-full w-0 sm:w-80 sm:pt-5  dark:bg-navColorMobile dark:sm:bg-navColor bg-navColorMobileLight sm:bg-navColorLight">
+      <aside className="sm:fixed h-full w-0 sm:w-72 sm:pt-5  dark:bg-navColorMobile dark:sm:bg-navColor bg-navColorMobileLight sm:bg-navColorLight">
         <div className="fixed top-0 h-[72px] sm:h-0 flex flex-row sm:static sm:flex sm:flex-row items-center gap-4 px-4 sm:mx-2 py-2 sm:mt-3 mb-6 w-full sm:w-0 dark:sm:bg-transparent dark:navHeadTextColor navHeadTextColorLight dark:bg-navColorMobile bg-navColorMobileLight">
           <div className="sm:ml-2 text-[28px] sm:text-2xl dark:text-navHeadTextColor text-navHeadTextColorLight">
             <FaUser />

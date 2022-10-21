@@ -19,7 +19,7 @@ const App = () => {
         <NotificationProvider>
           <Navigation />
           <Notification />
-          <div className="py-24 sm:py-6 px-3 sm:px-2">
+          <div className="py-24 sm:py-6 px-3 sm:px-0">
             <Routes>
               <Route path="/" element={<PrivateRoute />}>
                 <Route path="/" element={<Home />} />

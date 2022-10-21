@@ -31,7 +31,7 @@
 
 @layer components {
   .page {
-    @apply flex flex-col min-h-screen gap-8 lg:w-3/4 xl:w-3/5 sm:ml-[340px];
+    @apply flex flex-col min-h-screen gap-8 lg:w-3/4 xl:w-3/5 sm:ml-80;
   }
 
   .page-container {
