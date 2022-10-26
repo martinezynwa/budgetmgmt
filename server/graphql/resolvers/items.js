@@ -1,22 +1,16 @@
 const { checkAuthorization } = require('../../util/auth')
 const { UserInputError } = require('apollo-server')
 const Item = require('../../models/Item')
-const { validateItemInput } = require('../../util/validators')
 const dayjs = require('dayjs')
 
 const itemsResolvers = {
   Query: {
+    //get all items
     getItems: async () => {
-      //get all items
       try {
-        const allItems = await Item.find({})
         //sorting by date + time, newest on top
-        const items = allItems.sort(
-          (a, b) =>
-            b.itemDate.replaceAll(/[-T:]/g, '') -
-            a.itemDate.replaceAll(/[-T:]/g, ''),
-        )
-        return items
+        const allItems = await Item.find({}).sort({ itemDate: -1 })
+        return allItems
       } catch (err) {
         throw new Error(err)
       }
@@ -24,19 +18,14 @@ const itemsResolvers = {
     getCurrentMonthByUser: async (_, args) => {
       //get items from current month
       try {
-        const allItems = await Item.find({})
-        //posssible filter by month + username
+        const allItems = await Item.find({}).sort({ itemDate: -1 })
+        //filter by month + username(if provided, otherwise it returns everything)
         const items = allItems
           .filter(item => item.itemDate.substring(0, 7) === args.selectedMonth)
           .filter(item =>
             args.username ? item.createdBy.username === args.username : true,
           )
-          .sort(
-            //sorting by date + time, newest on top
-            (a, b) =>
-              b.itemDate.replaceAll(/[-T:]/g, '') -
-              a.itemDate.replaceAll(/[-T:]/g, ''),
-          )
+
         return items
       } catch (err) {
         throw new Error('Specific month not found')
@@ -132,30 +121,13 @@ const itemsResolvers = {
       context,
     ) => {
       const currentUser = await checkAuthorization(context)
-      const { valid, errors } = validateItemInput(
-        itemDate,
-        itemName,
-        itemCategory,
-        itemPrice,
-      )
-
-      if (!valid) {
-        throw new UserInputError('Errors', { errors })
-      }
 
       //DEMO - check number of items in database
-      const allItems = await Item.find({})
-      const items = allItems
-        .filter(
-          item =>
-            item.createdBy.username !== 'U1' &&
-            item.createdBy.username !== 'U2',
-        )
-        .sort(
-          (a, b) =>
-            a.itemDate.replaceAll(/[-T:]/g, '') -
-            b.itemDate.replaceAll(/[-T:]/g, ''),
-        )
+      const allItems = await Item.find({}).sort({ itemDate: -1 })
+      const items = allItems.filter(
+        item =>
+          item.createdBy.username !== 'U1' && item.createdBy.username !== 'U2',
+      )
       if (items.length >= 30) {
         const item = await Item.findByIdAndDelete(items[0]._id)
         await item.delete()
@@ -203,10 +175,6 @@ const itemsResolvers = {
       let item = {}
       let { itemDate, itemName, itemCategory, itemPrice, itemUpdated } =
         args.itemInput
-
-      if (!itemDate && !itemName && !itemCategory && !itemPrice) {
-        throw new Error('At least one field must be edited')
-      }
 
       try {
         item = await Item.findById(args.itemID)

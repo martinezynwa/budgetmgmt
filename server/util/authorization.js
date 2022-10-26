@@ -8,7 +8,7 @@ const googleAuth = async idToken => {
     return 'No token provided'
   }
 
-  //using env values to complete authentication
+  //using env values to complete authentication with Google OAuth client
   const oAuth2Client = new OAuth2Client(
     process.env.CLIENT_ID,
     process.env.CLIENT_SECRET,

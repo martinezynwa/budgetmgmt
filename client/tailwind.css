@@ -18,9 +18,9 @@
   }
 
   input[type='date']::-webkit-calendar-picker-indicator {
+    @apply w-[80%] sm:w-[40%] md:w-[53%] lg:w-[63%] xl:w-[70%];
     opacity: 0;
     position: absolute;
-    width: 80%;
   }
 
   input::-webkit-date-and-time-value {
@@ -31,7 +31,7 @@
 
 @layer components {
   .page {
-    @apply flex flex-col min-h-screen gap-8 lg:w-3/4 xl:w-3/5 sm:ml-80;
+    @apply flex flex-col min-h-screen gap-8 max-w-6xl sm:ml-80 sm:mx-8;
   }
 
   .page-container {
@@ -49,5 +49,4 @@
   .page-container-button {
     @apply w-full mt-3 p-2 rounded-lg text-button dark:text-buttonTextColor text-buttonTextColorLight font-semibold dark:bg-buttonColor bg-buttonColorLight dark:hover:bg-buttonHoverColor hover:bg-buttonHoverColorLight;
   }
-
 }

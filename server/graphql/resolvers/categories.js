@@ -1,7 +1,6 @@
 const Category = require('../../models/Category')
 const { checkAuthorization } = require('../../util/auth')
 const { UserInputError } = require('apollo-server')
-const { validateCategoryInput } = require('../../util/validators')
 const dayjs = require('dayjs')
 
 const categoryResolvers = {
@@ -25,10 +24,6 @@ const categoryResolvers = {
       context,
     ) => {
       const currentUser = await checkAuthorization(context)
-      const { valid, errors } = validateCategoryInput(categoryName, importance)
-      if (!valid) {
-        throw new UserInputError('Errors', { errors })
-      }
 
       const categoryCheck = await Category.findOne({ categoryName })
       if (categoryCheck) {
