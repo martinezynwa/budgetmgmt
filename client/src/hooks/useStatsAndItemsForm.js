@@ -55,7 +55,7 @@ export const useStatsAndItemsForm = () => {
     if (formVisibility) {
       return null
     }
-
+    console.log(dateInput.year)
     return (
       <>
         <div className={formVisibility}>
@@ -63,7 +63,12 @@ export const useStatsAndItemsForm = () => {
             className="flex flex-col justify-between gap-4 my-4"
             onSubmit={onSubmit}>
             <select
-              className="w-full p-2 rounded-md dark:bg-formInputColor bg-formInputColorLight dark:text-formPlaceholderColor text-formPlaceholderColorLight"
+              className={`w-full p-2 rounded-md dark:bg-formInputColor bg-formInputColorLight 
+              ${
+                dateInput.year
+                  ? 'text-black dark:text-white '
+                  : 'text-formPlaceholderColorLight dark:text-formPlaceholderColor '
+              }  text-formPlaceholderColorLight`}
               type="text"
               name="year"
               onChange={onChange}>
@@ -75,7 +80,12 @@ export const useStatsAndItemsForm = () => {
               ))}
             </select>
             <select
-              className="w-full p-2 rounded-md dark:bg-formInputColor bg-formInputColorLight dark:text-formPlaceholderColor text-formPlaceholderColorLight"
+              className={`w-full p-2 rounded-md dark:bg-formInputColor bg-formInputColorLight 
+              ${
+                dateInput.month
+                  ? 'text-black dark:text-white '
+                  : 'text-formPlaceholderColorLight dark:text-formPlaceholderColor '
+              }  text-formPlaceholderColorLight`}
               type="text"
               name="month"
               onChange={onChange}>
@@ -94,11 +104,11 @@ export const useStatsAndItemsForm = () => {
               <option value="12">December</option>
             </select>
             {errors ? (
-              <div className="p-2 font-semibold dark:text-errorColor text-errorColor">{errors}</div>
+              <div className="p-2 font-semibold dark:text-errorColor text-errorColor">
+                {errors}
+              </div>
             ) : null}
-            <button className="page-container-button">
-              Filter
-            </button>
+            <button className="page-container-button">Filter</button>
           </form>
         </div>
       </>

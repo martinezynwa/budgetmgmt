@@ -61,9 +61,16 @@ const CategoryForm = () => {
         formName="Add Category"
       />
       <div className={formVisibility}>
-        <form className="flex flex-col gap-3 mt-4 rounded-md" onSubmit={onSubmit}>
+        <form
+          className="flex flex-col gap-3 mt-4 rounded-md"
+          onSubmit={onSubmit}>
           <input
-            className="w-full p-2 rounded-md dark:bg-formInputColor bg-formInputColorLight dark:text-formPlaceholderColor text-formPlaceholderColorLight"
+            className={`w-full p-2 rounded-md dark:bg-formInputColor bg-formInputColorLight 
+              ${
+                categoryInput.categoryName
+                  ? 'text-black dark:text-white '
+                  : 'text-formPlaceholderColorLight dark:text-formPlaceholderColor '
+              }  text-formPlaceholderColorLight`}
             type="text"
             value={categoryInput.categoryName}
             name="categoryName"
@@ -72,7 +79,12 @@ const CategoryForm = () => {
             required
           />
           <input
-            className="w-full p-2 rounded-md dark:bg-formInputColor bg-formInputColorLight dark:text-formPlaceholderColor text-formPlaceholderColorLight"
+            className={`w-full p-2 rounded-md dark:bg-formInputColor bg-formInputColorLight 
+              ${
+                categoryInput.importance
+                  ? 'text-black dark:text-white '
+                  : 'text-formPlaceholderColorLight dark:text-formPlaceholderColor '
+              }  text-formPlaceholderColorLight`}
             type="number"
             value={categoryInput.importance}
             name="importance"
@@ -82,9 +94,7 @@ const CategoryForm = () => {
             min="1"
             max="5"
           />
-          <button className="page-container-button">
-            Add
-          </button>
+          <button className="page-container-button">Add</button>
         </form>
       </div>
     </div>

@@ -10,7 +10,6 @@ const PrivateRoute = () => {
 //public route for anyone, only login page is displayed and nothing else can be accessed
 const PublicRoute = () => {
   const { user } = useAuth()
-
   return user.username ? <Navigate to="/" /> : <Outlet />
 }
 

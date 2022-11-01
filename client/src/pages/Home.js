@@ -11,6 +11,12 @@ const Home = () => {
   return (
     <ItemProvider>
       <div className="page">
+        <div className="page-container sm:text-cardList dark:text-itemColor text-itemColorLight">
+          <h2 className="page-container-header">Welcome</h2>
+          <p>This is a demo version</p>
+          <p>Login info is deleted after you logout</p>
+          <p>Limit for 10 items and categories</p>
+        </div>
         <TotalCard selectedMonth={selectedMonth} />
         <ItemForm />
         <Items />

@@ -1,6 +1,7 @@
 const { checkAuthorization } = require('../../util/auth')
 const { UserInputError } = require('apollo-server')
 const Item = require('../../models/Item')
+const User = require('../../models/User')
 const dayjs = require('dayjs')
 
 const itemsResolvers = {
@@ -122,17 +123,11 @@ const itemsResolvers = {
     ) => {
       const currentUser = await checkAuthorization(context)
 
-      //DEMO - check number of items in database
-      const allItems = await Item.find({}).sort({ itemDate: -1 })
-      const items = allItems.filter(
-        item =>
-          item.createdBy.username !== 'U1' && item.createdBy.username !== 'U2',
-      )
-      if (items.length >= 30) {
-        const item = await Item.findByIdAndDelete(items[0]._id)
-        await item.delete()
+      //DEMO START
+      if (currentUser.totalItems > 1) {
+        throw new Error('Limit reached')
       }
-      //DEMO end
+      //DEMO END
 
       const currentDate = dayjs(new Date()).format('YYYY-MM-DDTHH:mm:ss')
       itemDate = dayjs(itemDate).format('YYYY-MM-DDTHH:mm:ss')
@@ -167,6 +162,19 @@ const itemsResolvers = {
         createdBy,
       })
       await item.save()
+
+      try {
+        await User.findOneAndUpdate(
+          { _id: currentUser._id },
+          {
+            $set: {
+              totalItems: currentUser.totalItems + 1,
+            },
+          },
+        )
+      } catch (err) {
+        throw new Error(err)
+      }
       return item
     },
     editItem: async (_, args, context) => {
@@ -175,7 +183,6 @@ const itemsResolvers = {
       let item = {}
       let { itemDate, itemName, itemCategory, itemPrice, itemUpdated } =
         args.itemInput
-
       try {
         item = await Item.findById(args.itemID)
         if (!item) {
@@ -188,11 +195,10 @@ const itemsResolvers = {
       } catch (err) {
         throw new Error(err)
       }
-
       //formatting of date into correct structure or re-using existing
-      itemDate
-        ? (itemDate = dayjs(itemDate).format('YYYY-MM-DDTHH:mm:ss'))
-        : (itemDate = item.itemDate)
+      item.itemDate.substring(0, 10) === itemDate
+        ? (itemDate = item.itemDate)
+        : (itemDate = dayjs(itemDate).format('YYYY-MM-DDTHH:mm:ss'))
 
       //re-use of existing name if necessary
       if (!itemName) {
@@ -244,11 +250,24 @@ const itemsResolvers = {
         return itemBody
       }
     },
-    removeItem: async (_, args) => {
+    removeItem: async (_, args, context) => {
       //removing item
       try {
+        const currentUser = await checkAuthorization(context)
         const item = await Item.findByIdAndDelete(args.itemId)
         await item.delete()
+        try {
+          await User.findOneAndUpdate(
+            { _id: currentUser._id },
+            {
+              $set: {
+                totalItems: currentUser.totalItems - 1,
+              },
+            },
+          )
+        } catch (err) {
+          throw new Error(err)
+        }
         return `ID ${args.itemId} deleted successfully`
       } catch (err) {
         throw new Error(err)

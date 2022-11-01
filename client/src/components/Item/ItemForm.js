@@ -39,7 +39,7 @@ const ItemForm = () => {
 
     onError(err) {
       setNotification({
-        message: err.graphQLErrors[0].extensions.errors,
+        message: err.graphQLErrors[0].message,
         style: 'error',
       })
     },

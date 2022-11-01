@@ -777,6 +777,10 @@ input::-webkit-date-and-time-value {
   flex-direction: column;
 }
 
+.items-end {
+  align-items: flex-end;
+}
+
 .items-center {
   align-items: center;
 }
@@ -1016,6 +1020,11 @@ input::-webkit-date-and-time-value {
   line-height: 1rem;
 }
 
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -1097,6 +1106,16 @@ input::-webkit-date-and-time-value {
 .text-errorColorLight {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .filter {
@@ -1296,6 +1315,11 @@ input::-webkit-date-and-time-value {
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 
+.dark .dark\:text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 .dark .dark\:text-navHeadTextColor {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -1344,6 +1368,21 @@ input::-webkit-date-and-time-value {
 .dark .dark\:text-headingColor {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.dark .dark\:text-navColor {
+  --tw-text-opacity: 1;
+  color: rgb(28 28 29 / var(--tw-text-opacity));
+}
+
+.dark .dark\:placeholder-formPlaceholderColor::-webkit-input-placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-placeholder-opacity));
+}
+
+.dark .dark\:placeholder-formPlaceholderColor::placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-placeholder-opacity));
 }
 
 .dark .dark\:hover\:bg-buttonHoverColor:hover {
@@ -1511,6 +1550,10 @@ input::-webkit-date-and-time-value {
   }
 
   .sm\:text-cardList {
+    font-size: 19px;
+  }
+
+  .sm\:text-cardListMobile {
     font-size: 19px;
   }
 

@@ -20,6 +20,7 @@ const LoginUser = () => {
   const context = useAuth()
   const [token, setToken] = useState('')
   const [loading, setLoading] = useState(false)
+  const [showInfo, setShowInfo] = useState(false)
 
   //mutation for google login, token sent to backend
   const [loginViaGoogle] = useMutation(GOOGLE_AUTH, {
@@ -51,7 +52,8 @@ const LoginUser = () => {
   return (
     <>
       <div className="flex flex-col items-center h-[80vh] sm:h-screen justify-center">
-        <img src={mainLogo} alt="mainlogo" className='mb-2' />
+        <img src={mainLogo} alt="mainlogo" className="mb-2" />
+        <h2 className="text-xl font font-semibold dark:text-white">Budget management</h2>
         {loading ? (
           <Spinner />
         ) : (

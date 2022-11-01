@@ -59,18 +59,21 @@ const NameChange = () => {
       <div className={formVisibility}>
         <form className="flex flex-col gap-3 mt-4" onSubmit={onSubmit}>
           <input
-            className="w-full p-2 rounded-md dark:bg-formInputColor bg-formInputColorLight dark:text-formPlaceholderColor text-formPlaceholderColorLight"
+            className={`w-full p-2 rounded-md dark:bg-formInputColor bg-formInputColorLight 
+              ${
+                nameInput
+                  ? 'text-black dark:text-white '
+                  : 'text-formPlaceholderColorLight dark:text-formPlaceholderColor '
+              }  text-formPlaceholderColorLight`}
             type="text"
             value={nameInput.name}
             name="name"
             placeholder="Name"
             onChange={onChange}
+            required={true}
           />
-          <button className="page-container-button">
-            Change
-          </button>
+          <button className="page-container-button">Change</button>
         </form>
-        {errors ? <div className="p-1 text-error">{errors}</div> : null}
       </div>
     </div>
   )

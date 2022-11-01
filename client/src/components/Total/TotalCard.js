@@ -59,7 +59,7 @@ const TotalCard = ({ selectedMonth }) => {
               <h2 className="font-semibold text-cardListMobile sm:text-cardList">
                 {user.name.split(' ')[0]}
               </h2>
-              <div className="flex flex-col items-center font-semibold text-cardListMobile sm:text-cardList">
+              <div className="flex flex-col items-end font-semibold text-cardListMobile sm:text-cardList">
                 <TotalValue
                   username={user.username}
                   selectedMonth={selectedMonth}

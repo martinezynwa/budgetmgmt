@@ -1,7 +1,6 @@
 const User = require('../../models/User')
 const { googleAuth } = require('../../util/authorization')
 const { checkAuthorization } = require('../../util/auth')
-const { UserInputError } = require('apollo-server')
 const dayjs = require('dayjs')
 
 const userResolvers = {
@@ -43,6 +42,7 @@ const userResolvers = {
           username: email,
           registeredAt: dayjs(new Date()).format('YYYY-MM-DDTHH:mm:ss'),
           darkTheme: true,
+          totalItems: 0,
         })
         await newUser.save()
         return {
@@ -60,11 +60,6 @@ const userResolvers = {
     changeName: async (_, args, context) => {
       //change of user name
       const currentUser = await checkAuthorization(context)
-      if (!args.name) {
-        throw new UserInputError('Name cannot be empty', {
-          errors: 'Name cannot be empty',
-        })
-      }
       try {
         await User.findOneAndUpdate(
           { _id: currentUser._id },

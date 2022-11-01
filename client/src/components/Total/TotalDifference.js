@@ -12,15 +12,12 @@ const TotalDifference = ({ username, totals, show }) => {
   }
   //gets all totals
   const totalOfUser = totals.find(t => t.username === username)
-
   if (!totalOfUser) {
     return null
   }
   const { total } = totalOfUser
-
   //counts the highest spender
   const highestSpender = Math.max(...totals.map(t => t.total))
-
   //difference between selected user and highest spender
   const difference = total - highestSpender
 

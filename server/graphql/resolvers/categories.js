@@ -33,21 +33,11 @@ const categoryResolvers = {
           },
         })
       }
-      //DEMO - check number of items in database
-      const allCategories = await Category.find({})
-      const categories = allCategories
-        .filter(category => category.defaultCategory !== true)
-        .sort(
-          (a, b) =>
-            a.createdBy.date.replaceAll(/[-T:]/g, '') -
-            b.createdBy.date.replaceAll(/[-T:]/g, ''),
-        )
-      if (categories.length >= 10) {
-        const category = await Category.findByIdAndDelete(categories[0]._id)
-        await category.delete()
+      //DEMO START
+      if (currentUser.totalItems > 9) {
+        throw new Error('Limit reached')
       }
-      //DEMO end
-
+      //DEMO END
       const defaultCategory = false //default categories cannot be deleted
 
       const createdBy = {

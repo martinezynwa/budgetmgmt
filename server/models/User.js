@@ -20,6 +20,9 @@ const schema = new mongoose.Schema({
   darkTheme: {
     type: Boolean,
   },
+  totalItems: {
+    type: Number,
+  },
 })
 
 module.exports = mongoose.model('User', schema)
